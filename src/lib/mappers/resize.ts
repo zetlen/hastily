@@ -1,4 +1,4 @@
-import { MParam, Mapper } from '../mapping-types';
+import { Param, Mapper } from '../imageopto-types';
 import { FastlyCompatError, FastlyParamError } from '../errors';
 import { paramsToNumbers } from '../helpers';
 import { FitEnum, ResizeOptions, KernelEnum } from 'sharp';
@@ -38,7 +38,7 @@ const resize: Mapper = (sharp, params) => {
     if (param && param < 1 && param > 0) {
       throw new FastlyCompatError(
         params,
-        <MParam>name,
+        <Param>name,
         'ratio-based resize/crop'
       );
     }

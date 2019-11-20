@@ -1,68 +1,68 @@
-/// <reference types="@types/express" />
 /**
  * Simulate the [Fastly ImageOpto](https://docs.fastly.com/api/imageopto/) API.
  * Returns a middleware which attempts to run image responses through `sharp`.
  */
 
-import accepts from 'accepts';
 import onHeaders from 'on-headers';
 import vary from 'vary';
 import mime from 'mime-types';
-import sharp, { Sharp } from 'sharp';
+import sharp, { Sharp, FormatEnum } from 'sharp';
 import { ServerResponse } from 'http';
+import { Request } from 'express';
+import mapOptions from './map-options';
+import {
+  MutableResponse,
+  Handler,
+  Listener,
+  EventName
+} from './imageopto-types';
 
 const debug = require('debug')('hastily:imageopto');
 
-const imageTypes = new Set(
-  ['jpeg', 'jpg', 'png', 'webp', 'gif', 'svg', 'tiff'].map(
-    ext => mime.types[ext]
-  )
-);
-
-interface MutableResponse extends ServerResponse, Express.Response {
-  flush(): void;
-}
-
 export function imageopto(): (
-  req: Express.Request,
+  req: Request,
   res: MutableResponse,
   next: () => any
 ) => any {
   return function optimizeImages(req, res, next) {
-    let listeners: [];
+    debug('testing hastily for %s: %s', req.path, req.rawHeaders);
+    const listeners: Listener[] = [];
     let ended = false;
     let sharpStream: Sharp;
 
-    const _end = res.end;
-    const _on = res.on;
-    const _write = res.write;
-
-    // flush
-    res.flush = function flush() {
-      if (sharpStream) {
-        sharpStream.flush();
-      }
-    };
-
-    // proxy
+    const resEnd = res.end.bind(res);
+    const resOn = res.on.bind(res);
+    const resWrite = res.write.bind(res);
 
     res.write = function write(
       this: MutableResponse,
       chunk: Buffer,
       encoding: BufferEncoding
     ) {
+      debug(
+        'outgoing response.write() called with %s of length %s',
+        encoding,
+        chunk.length
+      );
       if (ended) {
+        debug('response.write(): ended flag is true, returning');
         return false;
       }
 
       if (!this.headersSent) {
+        debug(
+          'response.write(): this.headersSent is false, writing head to this.statusCode: %s',
+          this.statusCode
+        );
         this.writeHead(this.statusCode);
       }
 
       if (sharpStream) {
+        debug('sharpStream exists, writing to it');
         sharpStream.write(toBuffer(chunk, encoding));
       } else {
-        _write.call(this, chunk, encoding);
+        debug('no sharpStream, writing directly to response');
+        resWrite(chunk, encoding);
       }
       return true;
     } as ServerResponse['write'];
@@ -72,115 +72,106 @@ export function imageopto(): (
       chunk: Buffer,
       encoding: BufferEncoding
     ) {
+      debug('outgoing response.end() called');
       if (ended) {
+        debug('response.end(): ended is already true, returning');
         return false;
       }
 
       if (!this.headersSent) {
+        debug(
+          'response.end(): this.headersSent is false, writing head to this.statusCode: %s',
+          this.statusCode
+        );
         this.writeHead(this.statusCode);
       }
 
       if (!sharpStream) {
-        return _end.call(this, chunk, encoding as BufferEncoding);
+        debug('sharpStream never existed! ending response directly');
+        return resEnd.call(this, chunk, encoding as BufferEncoding);
       }
 
       // mark ended
       ended = true;
+      debug('marked ended');
       sharpStream.end();
+      debug('called sharpStream.end()');
       return false;
     } as ServerResponse['end'];
 
-    res.on = function on(
+    function addResponseListener(
       this: MutableResponse,
-      type: string,
-      listener: Listener
-    ) {
-      if (!listeners || type !== 'drain') {
-        return _on.call(this, type, listener);
+      type: string | symbol,
+      listener: Handler
+    ): MutableResponse {
+      debug('addResponseListener called for "%s" event', type);
+      if (listeners.length == 0 || type !== 'drain') {
+        debug(
+          'zero listeners or not drain. calling method directly on response'
+        );
+        resOn.call(this, type, listener);
+        return this;
       }
 
       if (sharpStream) {
-        return sharpStream.on(type, listener);
+        debug('sharpStream exists, subscribing');
+        const mapSharpType: (x: EventName) => string = x => x.toString();
+        sharpStream.on(mapSharpType(type), listener);
+        return this;
       }
 
+      debug(
+        'sharpStream does not exist, buffering "%s" listener (now %n listeners)',
+        type,
+        listeners.length + 1
+      );
       // buffer listeners for future stream
       listeners.push([type, listener]);
 
       return this;
-    };
-
-    function nocompress(msg) {
-      debug('no compression: %s', msg);
-      addListeners(res, _on, listeners);
-      listeners = null;
     }
 
-    onHeaders(res, function onResponseHeaders() {
-      // determine if request is filtered
-      if (!filter(req, res)) {
-        nocompress('filtered');
-        return;
-      }
+    res.on = addResponseListener;
 
+    onHeaders(res, function onResponseHeaders() {
       // determine if the entity should be transformed
       if (!shouldTransform(req, res)) {
-        nocompress('no transform');
+        addListeners(res, resOn, listeners);
+        listeners.length = 0;
         return;
       }
 
-      // vary
-      vary(res, 'Accept-Encoding');
-
-      var encoding = res.getHeader('Content-Encoding') || 'identity';
-
-      // already encoded
-      if (encoding !== 'identity') {
-        nocompress('already encoded');
-        return;
-      }
-
-      // head
-      if (req.method === 'HEAD') {
-        nocompress('HEAD request');
-        return;
-      }
-
-      // compression method
-      var accept = accepts(req);
-      var method = accept.encoding(['gzip', 'deflate', 'identity']);
-
-      // we really don't prefer deflate
-      if (method === 'deflate' && accept.encoding(['gzip'])) {
-        method = accept.encoding(['gzip', 'identity']);
-      }
-
-      // negotiation failed
-      if (!method || method === 'identity') {
-        nocompress('not acceptable');
-        return;
-      }
+      debug(
+        'hastily will handle this image by transforming the response through sharp'
+      );
+      vary(res, 'Accept');
 
       // image opto stream
-      sharpStream = sharp()
-        // add buffered listeners to stream
-        .addListeners(sharpStream, sharpStream.on, listeners);
+      sharpStream = mapOptions(req.query, sharp(), req, res);
+      debug('mapped options and created sharp stream');
+      // add buffered listeners to stream
+      addListeners(sharpStream, sharpStream.on, listeners);
+      debug('added listeners to sharp stream');
 
-      // header fields
-      res.setHeader('Content-Encoding', method);
       res.removeHeader('Content-Length');
 
       // compression
-      sharpStream.on('data', function onStreamData(chunk) {
-        if (_write.call(res, chunk) === false) {
+      sharpStream.on('data', function onStreamData(chunk: any, enc: any) {
+        debug(
+          'sharpStream received %s of length %n from response',
+          enc,
+          chunk.length
+        );
+        if (resWrite(chunk, enc) === false) {
+          debug('response buffer is full, pausing sharpStream');
           sharpStream.pause();
         }
       });
 
-      sharpStream.on('end', function onStreamEnd() {
-        _end.call(res);
-      });
+      sharpStream.on('end', resEnd);
 
-      _on.call(res, 'drain', function onResponseDrain() {
+      resOn.call(res, 'drain', function onResponseDrain() {
+        debug('response buffer is empty, resuming sharpStream');
         sharpStream.resume();
       });
     });
@@ -194,36 +185,62 @@ export function imageopto(): (
  * @private
  */
 
-function addListeners(stream, on, listeners) {
+function addListeners<T>(
+  stream: T,
+  on: (e: EventName, h: Handler) => any,
+  listeners: Listener[]
+) {
   for (var i = 0; i < listeners.length; i++) {
     on.apply(stream, listeners[i]);
   }
 }
 
+const cacheControlNoTransformRegExp = /(?:^|,)\s*?no-transform\s*?(?:,|$)/;
 /**
- * Get the length of a given chunk
- */
-
-function chunkLength(chunk, encoding) {
-  if (!chunk) {
-    return 0;
-  }
-
-  return !Buffer.isBuffer(chunk)
-    ? Buffer.byteLength(chunk, encoding)
-    : chunk.length;
-}
-
-/**
- * Default filter function.
+ * Determine if the entity should be transformed.
  * @private
  */
 
-function shouldOptimize(req, res) {
-  var type = res.getHeader('Content-Type');
+function shouldTransform(req: Request, res: MutableResponse) {
+  if (req.method === 'HEAD') {
+    debug('no transform: request method is HEAD');
+    return false;
+  }
 
-  if (type === undefined || !imageTypes.has(type)) {
-    debug('%s not an optimizable image', type);
+  const cacheControl = res.getHeader('Cache-Control');
+
+  // Don't optimize for Cache-Control: no-transform
+  // https://tools.ietf.org/html/rfc7234#section-5.2.2.4
+  if (
+    cacheControl &&
+    cacheControlNoTransformRegExp.test(cacheControl.toString())
+  ) {
+    debug('no transform: cache control header: "%s"', cacheControl);
+    return false;
+  }
+
+  // Don't optimize if Fastly has already done it for us
+  const fastlyHeader = res.getHeader('fastly-io-info');
+  if (fastlyHeader) {
+    debug(
+      'no transform: fastly already transformed according to fastly-io-info header: "%s"',
+      fastlyHeader
+    );
+    return false;
+  }
+
+  const contentType = res.getHeader('content-type');
+  const extension = mime.extension(<string>contentType);
+  if (!extension) {
+    debug('no transform: no valid content-type could not be detected');
+    return false;
+  }
+  const sharpFormatCapabilities = sharp.format[extension as keyof FormatEnum];
+  if (!sharpFormatCapabilities || !sharpFormatCapabilities.input.stream) {
+    debug(
+      'no transform: sharp does not support input of type "%s"',
+      contentType
+    );
     return false;
   }
 
@@ -231,23 +248,10 @@ function shouldOptimize(req, res) {
 }
 
 /**
- * Determine if the entity should be transformed.
- * @private
- */
-
-function shouldTransform(req, res) {
-  var cacheControl = res.getHeader('Cache-Control');
-
-  // Don't compress for Cache-Control: no-transform
-  // https://tools.ietf.org/html/rfc7234#section-5.2.2.4
-  return !cacheControl || !cacheControlNoTransformRegExp.test(cacheControl);
-}
-
-/**
  * Coerce arguments to Buffer
  * @private
  */
 
-function toBuffer(chunk, encoding) {
+function toBuffer(chunk: any, encoding: BufferEncoding) {
   return !Buffer.isBuffer(chunk) ? Buffer.from(chunk, encoding) : chunk;
 }

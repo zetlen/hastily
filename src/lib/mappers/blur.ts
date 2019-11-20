@@ -1,4 +1,4 @@
-import { Mapper } from '../mapping-types';
+import { Mapper } from '../imageopto-types';
 import { paramsToNumbers } from '../helpers';
 import { FastlyParamError } from '../errors';
 

@@ -1,18 +1,18 @@
-import { MParams, MParam } from './mapping-types';
+import { Params, Param } from './imageopto-types';
 
 export class FastlyParamError extends Error {
-  constructor(params: MParams, name: MParam, customMessage?: string) {
+  constructor(params: Params, name: Param, customMessage?: string) {
     let message = `"${name}" cannot be "${params.get(name)}"`;
     if (customMessage) {
       message += `: ${customMessage}`;
     }
     super(message);
-    Error.captureStackTrace(this, FastlyCompatError);
+    Error.captureStackTrace(this, this.constructor);
   }
 }
 
 export class FastlyCompatError extends FastlyParamError {
-  constructor(params: MParams, name: MParam, feature: string) {
+  constructor(params: Params, name: Param, feature: string) {
     super(
       params,
       name,

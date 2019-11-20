@@ -1,9 +1,9 @@
-import { MParam, MParams, Mapper } from '../mapping-types';
+import { Param, Params, Mapper } from '../imageopto-types';
 import { FastlyCompatError } from '../errors';
 
-const unsupported = (param: MParam, msg: string): Mapper => (
+const unsupported = (param: Param, msg: string): Mapper => (
   _,
-  params: MParams
+  params: Params
 ) => {
   throw new FastlyCompatError(params, param, msg);
 };

@@ -1,4 +1,4 @@
-import { Mapper } from '../mapping-types';
+import { Mapper } from '../imageopto-types';
 import { regionFromParam } from '../helpers';
 
 const extractCrop: Mapper = (sharp, params) => {

@@ -1,11 +1,8 @@
-import { NumericParams, MParams, MParam } from './mapping-types';
+import { NumericParams, Params, Param } from './imageopto-types';
 import { FastlyParamError, FastlyCompatError } from './errors';
 import { ExtendOptions, Color, RGBA, Region } from 'sharp';
 
-export function paramsToNumbers(
-  params: MParams,
-  names: MParam[]
-): NumericParams {
+export function paramsToNumbers(params: Params, names: Param[]): NumericParams {
   const nums: NumericParams = [];
   for (let name of names) {
     if (params.has(name)) {
@@ -25,10 +22,7 @@ export function paramsToNumbers(
   }
   return nums;
 }
-export const cssBoxFromParam = (
-  params: MParams,
-  name: MParam
-): ExtendOptions => {
+export const cssBoxFromParam = (params: Params, name: Param): ExtendOptions => {
   const csv = params.get(name) as string;
   const values: string[] = csv.split(',');
   if (values.length > 4) {
@@ -82,7 +76,7 @@ export const cssBoxFromParam = (
 };
 
 const rgbRE = /^(?:[0-9a-fA-F]{3}){1,2}$/;
-export const colorFromParam = (params: MParams, name: MParam): Color => {
+export const colorFromParam = (params: Params, name: Param): Color => {
   const die = () => {
     throw new FastlyParamError(
       params,
@@ -119,7 +113,7 @@ export const colorFromParam = (params: MParams, name: MParam): Color => {
   return die();
 };
 
-export const regionFromParam = (params: MParams, name: MParam): Region => {
+export const regionFromParam = (params: Params, name: Param): Region => {
   const csv = <string>params.get(name);
   if (csv.includes(':') || csv.includes('offset')) {
     throw new FastlyCompatError(params, name, 'ratio-based regions');
@@ -161,7 +155,7 @@ export const regionFromParam = (params: MParams, name: MParam): Region => {
     ) {
       throw new FastlyCompatError(
         params,
-        <MParam>'smart',
+        <Param>'smart',
         'smart image cropping'
       );
     }

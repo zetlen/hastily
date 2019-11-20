@@ -1,4 +1,4 @@
-import { Mapper } from '../mapping-types';
+import { Mapper } from '../imageopto-types';
 
 import { cssBoxFromParam, colorFromParam } from '../helpers';
 import { ExtendOptions } from 'sharp';

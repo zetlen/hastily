@@ -1,4 +1,4 @@
-import { Mapper } from '../mapping-types';
+import { Mapper } from '../imageopto-types';
 import { regionFromParam, colorFromParam } from '../helpers';
 import { ResizeOptions } from 'sharp';
 import { FastlyCompatError } from '../errors';

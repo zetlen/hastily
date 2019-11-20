@@ -1,5 +1,5 @@
 import { Sharp } from 'sharp';
-import { Mapper, Orientation } from '../mapping-types';
+import { Mapper, Orientation } from '../imageopto-types';
 import { FastlyParamError } from '../errors';
 
 type Orienter = (x: Sharp) => Sharp;
