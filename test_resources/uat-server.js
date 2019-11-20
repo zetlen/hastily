@@ -21,7 +21,7 @@ function serve(middleware) {
       app.use(middleware);
       const server = http.createServer(app);
       server.on('error', reject);
-      server.listen(0, '0.0.0.0', () => {
+      server.listen(process.env.PORT || 0, '0.0.0.0', () => {
         const { address, port } = server.address();
         resolve(`http://${address}:${port}`);
       });

@@ -27,6 +27,8 @@ import blur from './mappers/blur';
 import { Request } from 'express';
 import { FastlyParamError } from './errors';
 
+const debug = require('debug')('hastily:options');
+
 const mappers: Record<Param, Mapper> = {
   'bg-color': bgFlatten,
   blur: blur,
@@ -67,6 +69,7 @@ export default function optoToSharp(
   req: Request,
   res: MutableResponse
 ) {
+  debug('starting with %o', options);
   const params = new Map(Object.entries(options));
 
   let quality = undefined;
@@ -82,12 +85,14 @@ export default function optoToSharp(
   for (let param of paramKeys) {
     const mapper = mappers[<Param>param];
     if (mapper && !applied.has(mapper)) {
+      debug('running mapper for %s', param);
       applied.add(mapper);
       transform = mapper(transform, params as Params, quality, req, res);
     }
   }
 
   if (params.get('auto') === 'webp' && accepts(req).type('image/webp')) {
+    debug('returning webp');
     res.type('image/webp');
     return transform.webp({
       quality
@@ -97,6 +102,8 @@ export default function optoToSharp(
   const arguedFormat = <Format>params.get('format');
 
   if (!arguedFormat) {
+    debug('no format argument, returning jpeg or whatever');
+    res.type('image/jpeg');
     return transform.jpeg({
       quality,
       force: false
@@ -108,5 +115,7 @@ export default function optoToSharp(
   if (typeof mapFormat !== 'function') {
     throw new FastlyParamError(params as Params, 'format' as Param);
   }
+  debug('attempting "%s" transform', arguedFormat);
+  res.type(`image/${arguedFormat}`);
   return mapFormat(transform, params as Params, quality, req, res);
 }
