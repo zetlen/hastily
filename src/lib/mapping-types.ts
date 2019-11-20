@@ -1,6 +1,6 @@
 import { Sharp } from 'sharp';
 
-export type OParam = 'auto' | 'format' | 'disable' | 'enable' | 'quality';
+export type OParam = 'auto' | 'format' | 'quality';
 
 export type OParams = Map<OParam, string>;
 
@@ -11,7 +11,9 @@ export type MParam =
   | 'canvas'
   | 'crop'
   | 'contrast'
+  | 'disable'
   | 'dpr'
+  | 'enable'
   | 'fit'
   | 'height'
   | 'orient'

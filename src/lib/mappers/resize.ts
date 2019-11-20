@@ -23,6 +23,9 @@ const optoResizeFilterToSharp: Record<string, keyof KernelEnum> = {
 };
 
 const resize: Mapper = (sharp, params) => {
+  if (!params.has('width') || !params.has('height')) {
+    return sharp;
+  }
   let [width, height, dpr] = paramsToNumbers(params, [
     'width',
     'height',
@@ -55,14 +58,17 @@ const resize: Mapper = (sharp, params) => {
       height *= dpr;
     }
   }
-  const options: ResizeOptions = {};
+  const options: ResizeOptions = {
+    withoutEnlargement: true
+  };
   if (params.has('fit')) {
     options.fit = optoFitToSharp[<string>params.get('fit')];
   }
-  if (params.has('resize-filter')) {
-    options.kernel =
-      optoResizeFilterToSharp[<string>params.get('resize-filter')];
-  }
+  if (params.get('enable') === 'true' || params.get('disable') === 'false')
+    if (params.has('resize-filter')) {
+      options.kernel =
+        optoResizeFilterToSharp[<string>params.get('resize-filter')];
+    }
   return sharp.resize(width, height, options);
 };
 
