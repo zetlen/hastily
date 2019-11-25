@@ -3,26 +3,49 @@
  * Returns a middleware which attempts to run image responses through `sharp`.
  */
 
-import vary from 'vary';
+import makeDebug from 'debug';
+import { Request } from 'express';
 import mime from 'mime-types';
 import sharp, { FormatEnum } from 'sharp';
-import { Request } from 'express';
+import vary from 'vary';
+import { DebugLogger, MutableResponse, WorkStream } from './imageopto-types';
 import mapOptions from './map-options';
-import { MutableResponse, WorkStream } from './imageopto-types';
 import splice from './splice-response';
 
-const debug = require('debug')('hastily:imageopto');
+const HASTILY_HEADER = {
+  NAME: 'X-Optimized',
+  VALUE: 'hastily'
+};
 
-export function imageopto(): (
-  req: Request,
-  res: MutableResponse,
-  next: () => any
-) => any {
-  return function optimizeImages(req, res, next) {
-    debug('testing hastily for %s: %s', req.path, req.rawHeaders);
-    splice(res, next, () => {
+const streamableFileExtensions = new Set(
+  ...Object.keys(sharp.format).filter(
+    ext => sharp.format[ext as keyof FormatEnum].input.stream
+  )
+);
+// plus the one sharp doesn't mention outright, the alias to jpeg...
+streamableFileExtensions.add('jpg');
+// minus SVGs, which are widely supported in 2019 and we should not rasterize
+streamableFileExtensions.delete('svg');
+const imageExtensionRE = new RegExp(
+  `\\.(?:${[...streamableFileExtensions].join('|')})$`
+);
+export function hasSupportedExtension(req: Request): boolean {
+  return imageExtensionRE.test(req.path);
+}
+
+export function imageopto(
+  filter: (req: Request) => boolean = hasSupportedExtension
+): (req: Request, res: MutableResponse, next: () => any) => any {
+  makeDebug('hastily:middleware:construct')('creating new middleware');
+  return function hastily(req, res, next) {
+    const debug = makeDebug('hastily:middleware:' + req.path);
+    if (!filter(req)) {
+      return next();
+    }
+    debug('testing hastily for %s', req.rawHeaders);
+    splice(req, res, next, () => {
       // determine if the entity should be transformed
-      if (!shouldTransform(req, res)) {
+      if (!shouldTransform(req, res, debug)) {
         return false;
       }
 
@@ -30,6 +53,7 @@ export function imageopto(): (
         'hastily will handle this image by transforming the response through sharp'
       );
       vary(res, 'Accept');
+      res.setHeader(HASTILY_HEADER.NAME, HASTILY_HEADER.VALUE);
 
       // image opto stream
       const sharpStream = mapOptions(req.query, sharp(), req, res);
@@ -45,7 +69,11 @@ const cacheControlNoTransformRegExp = /(?:^|,)\s*?no-transform\s*?(?:,|$)/;
  * @private
  */
 
-function shouldTransform(req: Request, res: MutableResponse) {
+function shouldTransform(
+  req: Request,
+  res: MutableResponse,
+  debug: DebugLogger
+) {
   if (req.method === 'HEAD') {
     debug('no transform: request method is HEAD');
     return false;
@@ -63,6 +91,16 @@ function shouldTransform(req: Request, res: MutableResponse) {
     return false;
   }
 
+  // Don't optimize if we've already done it somewhere
+  const hastilyHeader = res.getHeader(HASTILY_HEADER.NAME);
+  if (hastilyHeader === HASTILY_HEADER.VALUE) {
+    debug(
+      'no transform: header %o, hastily alrady transformed this earlier',
+      HASTILY_HEADER
+    );
+    return false;
+  }
+
   // Don't optimize if Fastly has already done it for us
   const fastlyHeader = res.getHeader('fastly-io-info');
   if (fastlyHeader) {
@@ -74,7 +112,7 @@ function shouldTransform(req: Request, res: MutableResponse) {
   }
 
   const contentType = res.getHeader('content-type');
-  const extension = mime.extension(<string>contentType);
+  const extension = mime.extension(contentType as string);
   if (!extension) {
     debug('no transform: no valid content-type could not be detected');
     return false;

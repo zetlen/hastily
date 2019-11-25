@@ -1,28 +1,32 @@
 'use strict';
 
+import makeDebug from 'debug';
+import { Request } from 'express';
 import onHeaders from 'on-headers';
 import {
-  MutableResponse,
   Handler,
   Listener,
+  MutableResponse,
   WorkStream
 } from './imageopto-types';
 
-const debug = require('debug')('hastily:splice');
-
 export default function splice(
+  req: Request,
   res: MutableResponse,
   next: (e?: Error) => any,
   makeStream: () => WorkStream | false
 ) {
+  const debug = makeDebug('hastily:splice:' + req.url);
   let ended = false;
   let length;
-  let listeners: Listener[] = [];
+  const listeners: Listener[] = [];
   let stream: WorkStream | false;
 
-  const _end = res.end.bind(res);
-  const _on = res.on.bind(res);
-  const _write = res.write.bind(res);
+  const resEnd = res.end.bind(res);
+  const resOn = res.on.bind(res);
+  const resWrite = res.write.bind(res);
+  const resFlush =
+    typeof res.flush === 'function' ? res.flush.bind(res) : () => null;
 
   const tryImplicitHeader = (instance: MutableResponse): boolean => {
     try {
@@ -35,8 +39,11 @@ export default function splice(
 
   // flush
   res.flush = function flush() {
+    debug('response.flush() called');
     if (stream) {
       stream.flush();
+    } else {
+      resFlush();
     }
   };
 
@@ -44,8 +51,7 @@ export default function splice(
 
   res.write = function write(chunk: any, encoding: any) {
     debug(
-      'outgoing response.write() called with %s of length %s',
-      encoding || Object.prototype.toString.call(chunk),
+      'outgoing response.write() called with chunk of length %s',
       chunk.length
     );
     if (ended) {
@@ -68,7 +74,7 @@ export default function splice(
     debug(
       'res.write() has no access to stream yet. calling underlying response'
     );
-    return _write.call(this, chunk, encoding);
+    return resWrite.call(this, chunk, encoding);
   };
 
   res.end = function end(this: MutableResponse, chunk: any, encoding: any) {
@@ -95,14 +101,23 @@ export default function splice(
 
     if (!stream) {
       debug('response.end(): stream never became available');
-      return _end.call(this, chunk, encoding);
+      return resEnd.call(this, chunk, encoding);
     }
     debug('response.end(): stream is available, flushing? %s', chunk);
     // mark ended
     ended = true;
 
     // write Buffer for Node.js 0.8
-    return chunk ? stream.end(Buffer.from(chunk, encoding)) : stream.end();
+    if (chunk) {
+      debug(
+        'chunk of length %s exists in .end, writing it to stream',
+        chunk.length
+      );
+      stream.end(Buffer.from(chunk, encoding));
+    } else {
+      debug('no chunk exists in .end, ending stream clean');
+      stream.end();
+    }
   } as MutableResponse['end'];
 
   function addBufferedListener(
@@ -117,7 +132,7 @@ export default function splice(
         listeners.length,
         type
       );
-      return _on.call(this, type, listener);
+      return resOn.call(this, type, listener);
     }
 
     if (stream) {
@@ -135,12 +150,17 @@ export default function splice(
 
   onHeaders(res, function onResponseHeaders() {
     try {
-      if (ended) return;
+      if (ended) {
+        return;
+      }
       stream = makeStream();
 
       if (!stream) {
         // request is filtered
-        addListeners(res, _on, listeners);
+        res.on = resOn;
+        res.end = resEnd;
+        res.write = resWrite;
+        addListeners(res, resOn, listeners);
         listeners.length = 0;
         return;
       }
@@ -153,21 +173,21 @@ export default function splice(
 
       // compression
       stream.on('data', function onStreamData(chunk) {
-        if (_write(chunk) === false) {
+        if (resWrite(chunk) === false) {
           (stream as WorkStream).pause();
         }
       });
 
-      stream.on('end', _end);
+      stream.on('end', resEnd);
 
-      _on.call(res, 'drain', function onResponseDrain() {
+      resOn.call(res, 'drain', function onResponseDrain() {
         (stream as WorkStream).resume();
       });
     } catch (e) {
       console.error(e);
       res.statusCode = 400;
       res.statusMessage = e.message;
-      _end();
+      resEnd();
       ended = true;
     }
   });
@@ -183,9 +203,9 @@ function addListeners(
   stream: MutableResponse | WorkStream,
   on: any,
   listeners: Listener[]
-) {
-  for (let i = 0; i < listeners.length; i++) {
-    on.apply(stream, listeners[i]);
+): void {
+  for (const listener of listeners) {
+    on.apply(stream, listener);
   }
 }
 
@@ -193,7 +213,7 @@ function addListeners(
  * Get the length of a given chunk
  */
 
-function chunkLength(chunk: any, encoding: any) {
+function chunkLength(chunk: any, encoding: any): number {
   if (!chunk) {
     return 0;
   }

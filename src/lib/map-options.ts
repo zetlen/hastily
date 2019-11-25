@@ -8,40 +8,41 @@
 'use strict';
 
 import accepts from 'accepts';
+import makeDebug from 'debug';
+import { Request } from 'express';
+import { Sharp } from 'sharp';
+import { FastlyParamError } from './errors';
 import {
   Format,
-  Param,
-  Params,
   Mapper,
-  MutableResponse
+  MutableResponse,
+  Param,
+  Params
 } from './imageopto-types';
+import bgFlatten from './mappers/background-flatten';
+import blur from './mappers/blur';
 import extend from './mappers/extend';
 import extractCrop from './mappers/extract-crop';
+import orient from './mappers/orient';
 import resize from './mappers/resize';
 import resizeCanvas from './mappers/resize-canvas';
 import unsupported from './mappers/unsupported';
-import { Sharp } from 'sharp';
-import bgFlatten from './mappers/background-flatten';
-import orient from './mappers/orient';
-import blur from './mappers/blur';
-import { Request } from 'express';
-import { FastlyParamError } from './errors';
 
-const debug = require('debug')('hastily:options');
+const debug = makeDebug('hastily:options');
 
 const mappers: Record<Param, Mapper> = {
   'bg-color': bgFlatten,
-  blur: blur,
+  blur,
   brightness: unsupported('brightness', 'absolute brightness adjustment'),
-  contrast: unsupported('contrast', 'absolute contrast adjustment'),
   canvas: resizeCanvas,
+  contrast: unsupported('contrast', 'absolute contrast adjustment'),
   crop: extractCrop,
   disable: resize,
   dpr: resize,
   enable: resize,
   fit: resize,
   height: resize,
-  orient: orient,
+  orient,
   pad: extend,
   'resize-filter': resize,
   saturation: unsupported('saturation', 'absolute saturation adjustment'),
@@ -52,11 +53,11 @@ const mappers: Record<Param, Mapper> = {
 
 const formatters: Record<Format, Mapper> = {
   gif: unsupported('format' as Param, 'GIF output unsupported by node-hastily'),
-  png: (transform, _, quality) => transform.png({ quality }),
-  png8: (transform, _, quality) => transform.png({ palette: true, quality }),
   jpg: (transform, _, quality) => transform.jpeg({ quality }),
   pjpg: (transform, _, quality) =>
     transform.jpeg({ quality, progressive: true }),
+  png: (transform, _, quality) => transform.png({ quality }),
+  png8: (transform, _, quality) => transform.png({ palette: true, quality }),
   webp: (transform, _, quality) => transform.webp({ quality }),
   webpll: (transform, _, quality) =>
     transform.webp({ quality, lossless: true }),
@@ -72,7 +73,7 @@ export default function optoToSharp(
   debug('starting with %o', options);
   const params = new Map(Object.entries(options));
 
-  let quality = undefined;
+  let quality: number | undefined;
   if (params.has('quality')) {
     quality = Number(params.get('quality'));
     if (isNaN(quality)) {
@@ -80,10 +81,10 @@ export default function optoToSharp(
     }
   }
 
-  let applied = new Set();
+  const applied = new Set();
   const paramKeys = params.keys();
-  for (let param of paramKeys) {
-    const mapper = mappers[<Param>param];
+  for (const param of paramKeys) {
+    const mapper = mappers[param as Param];
     if (mapper && !applied.has(mapper)) {
       debug('running mapper for %s', param);
       applied.add(mapper);
@@ -99,14 +100,14 @@ export default function optoToSharp(
     });
   }
 
-  const arguedFormat = <Format>params.get('format');
+  const arguedFormat = params.get('format') as Format;
 
   if (!arguedFormat) {
     debug('no format argument, returning jpeg or whatever');
     res.type('image/jpeg');
     return transform.jpeg({
-      quality,
-      force: false
+      force: false,
+      quality
     });
   }
 

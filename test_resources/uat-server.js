@@ -63,13 +63,13 @@ async function main() {
   </head>
   <body>
       <figure>
-        <img src="${original}">
-        <figcaption>Original ${filename}</figcaption>
-      </figure>
-      <figure>
         <img src="${resized}">
         <figcaption>Resized: ${resized}</figcaption>
       </figure>
+      <details>
+        <summary>Original ${filename}</summary>
+        <img src="${original}">
+      </details>
   </body>
 </html>
  `.trim()

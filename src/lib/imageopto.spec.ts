@@ -1,8 +1,0 @@
-// tslint:disable:no-expression-statement
-import test from 'ava';
-// import { asyncABC } from './async';
-
-test('getABC', async t => {
-  t.pass();
-  // t.deepEqual(await asyncABC(), ['a', 'b', 'c']);
-});

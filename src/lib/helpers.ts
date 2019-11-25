@@ -1,10 +1,10 @@
-import { NumericParams, Params, Param } from './imageopto-types';
-import { FastlyParamError, FastlyCompatError } from './errors';
-import { ExtendOptions, Color, RGBA, Region } from 'sharp';
+import { Color, ExtendOptions, Region, RGBA } from 'sharp';
+import { FastlyCompatError, FastlyParamError } from './errors';
+import { NumericParams, Param, Params } from './imageopto-types';
 
 export function paramsToNumbers(params: Params, names: Param[]): NumericParams {
   const nums: NumericParams = [];
-  for (let name of names) {
+  for (const name of names) {
     if (params.has(name)) {
       const param = params.get(name);
       const num = Number(param);
@@ -33,7 +33,7 @@ export const cssBoxFromParam = (params: Params, name: Param): ExtendOptions => {
     );
   }
   const nums: number[] = [];
-  for (let value of values) {
+  for (const value of values) {
     const num = Number(value);
     if (isNaN(num)) {
       throw new FastlyParamError(params, name, 'values must be numeric');
@@ -45,33 +45,33 @@ export const cssBoxFromParam = (params: Params, name: Param): ExtendOptions => {
   }
   if (nums.length === 4) {
     return {
-      top: nums[0],
-      right: nums[1],
       bottom: nums[2],
-      left: nums[3]
+      left: nums[3],
+      right: nums[1],
+      top: nums[0]
     };
   }
   if (nums.length === 3) {
     return {
-      top: nums[0],
-      right: nums[1],
       bottom: nums[2],
-      left: nums[1]
+      left: nums[1],
+      right: nums[1],
+      top: nums[0]
     };
   }
   if (nums.length === 2) {
     return {
-      top: nums[0],
-      right: nums[1],
       bottom: nums[0],
-      left: nums[1]
+      left: nums[1],
+      right: nums[1],
+      top: nums[0]
     };
   }
   return {
-    top: nums[0],
-    right: nums[0],
     bottom: nums[0],
-    left: nums[0]
+    left: nums[0],
+    right: nums[0],
+    top: nums[0]
   };
 };
 
@@ -114,7 +114,7 @@ export const colorFromParam = (params: Params, name: Param): Color => {
 };
 
 export const regionFromParam = (params: Params, name: Param): Region => {
-  const csv = <string>params.get(name);
+  const csv = params.get(name) as string;
   if (csv.includes(':') || csv.includes('offset')) {
     throw new FastlyCompatError(params, name, 'ratio-based regions');
   }
@@ -122,7 +122,7 @@ export const regionFromParam = (params: Params, name: Param): Region => {
     throw new FastlyParamError(params, name, 'width and height are required');
   }
   const [width, height, ...rest] = csv.split(',');
-  const region = {} as Region;
+  const region = ({} as unknown) as Region;
   const numWidth = Number(width);
   if (isNaN(numWidth)) {
     throw new FastlyParamError(params, name, 'width must be numeric');
@@ -155,7 +155,7 @@ export const regionFromParam = (params: Params, name: Param): Region => {
     ) {
       throw new FastlyCompatError(
         params,
-        <Param>'smart',
+        'smart' as Param,
         'smart image cropping'
       );
     }

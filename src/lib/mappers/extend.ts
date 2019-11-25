@@ -1,7 +1,7 @@
 import { Mapper } from '../imageopto-types';
 
-import { cssBoxFromParam, colorFromParam } from '../helpers';
 import { ExtendOptions } from 'sharp';
+import { colorFromParam, cssBoxFromParam } from '../helpers';
 
 const extend: Mapper = (sharp, params) => {
   const options = cssBoxFromParam(params, 'pad') as ExtendOptions;

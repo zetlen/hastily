@@ -1,5 +1,5 @@
-import { Param, Params, Mapper } from '../imageopto-types';
 import { FastlyCompatError } from '../errors';
+import { Mapper, Param, Params } from '../imageopto-types';
 
 const unsupported = (param: Param, msg: string): Mapper => (
   _,

@@ -7,7 +7,7 @@ express middleware to simulate fastly cdn
 - [x] implement resize and crop mappers
 - [x] throw on unsupported
 - [x] implement enable and disable for upscaling in resize
-- [ ] implement format, auto=webp, and quality params in post-manip phase
+- [x] implement format, auto=webp, and quality params in post-manip phase
 - [ ] add unit tests
 - [ ] add image-diff automated testing
 - [ ] implement sharpen, mapping [amt, radius, threshold] to libvips sharpen params

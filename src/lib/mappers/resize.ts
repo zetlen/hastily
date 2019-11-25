@@ -1,9 +1,10 @@
-import { Param, Mapper } from '../imageopto-types';
+import makeDebug from 'debug';
+import { FitEnum, KernelEnum, ResizeOptions } from 'sharp';
 import { FastlyCompatError, FastlyParamError } from '../errors';
 import { paramsToNumbers } from '../helpers';
-import { FitEnum, ResizeOptions, KernelEnum } from 'sharp';
+import { Mapper, Param } from '../imageopto-types';
 
-const debug = require('debug')('hastily:resize');
+const debug = makeDebug('hastily:resize');
 
 const optoFitToSharp: Record<string, keyof FitEnum> = {
   bounds: 'contain',
@@ -29,19 +30,17 @@ const resize: Mapper = (sharp, params) => {
     debug('resize called without width param');
     return sharp;
   }
-  let [width, height, dpr] = paramsToNumbers(params, [
-    'width',
-    'height',
-    'dpr'
-  ]);
-  for (let [name, param] of [
+  const nums = paramsToNumbers(params, ['width', 'height', 'dpr']);
+  let [width, height] = nums;
+  const dpr = nums[2];
+  for (const [name, param] of [
     ['width', width],
     ['height', height]
   ]) {
     if (param && param < 1 && param > 0) {
       throw new FastlyCompatError(
         params,
-        <Param>name,
+        name as Param,
         'ratio-based resize/crop'
       );
     }
@@ -68,7 +67,7 @@ const resize: Mapper = (sharp, params) => {
     withoutEnlargement: true
   };
   if (params.has('fit')) {
-    const fitOpt = <string>params.get('fit');
+    const fitOpt = params.get('fit') as string;
     options.fit = optoFitToSharp[fitOpt];
     debug('mapped options.fit from %s -> %s', fitOpt, options.fit);
   }
@@ -77,7 +76,7 @@ const resize: Mapper = (sharp, params) => {
     options.withoutEnlargement = false;
   }
   if (params.has('resize-filter')) {
-    const filterOpt = <string>params.get('resize-filter');
+    const filterOpt = params.get('resize-filter') as string;
     options.kernel = optoResizeFilterToSharp[filterOpt];
     debug(
       'mapped options.resize-filter from %s -> %s',

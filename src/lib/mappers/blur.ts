@@ -1,6 +1,6 @@
-import { Mapper } from '../imageopto-types';
-import { paramsToNumbers } from '../helpers';
 import { FastlyParamError } from '../errors';
+import { paramsToNumbers } from '../helpers';
+import { Mapper } from '../imageopto-types';
 
 const blur: Mapper = (sharp, params) => {
   const [sigma] = paramsToNumbers(params, ['blur']) as [number];

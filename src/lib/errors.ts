@@ -1,4 +1,4 @@
-import { Params, Param } from './imageopto-types';
+import { Param, Params } from './imageopto-types';
 
 export class FastlyParamError extends Error {
   constructor(params: Params, name: Param, customMessage?: string) {

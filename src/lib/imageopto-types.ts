@@ -1,7 +1,9 @@
+import { Request, Response } from 'express';
 import { ServerResponse } from 'http';
-import { Response, Request } from 'express';
 import { Sharp } from 'sharp';
 import { Duplex } from 'stream';
+
+export type DebugLogger = (message: string, ...args: readonly any[]) => any;
 
 export type Param =
   | 'bg-color'
@@ -24,17 +26,15 @@ export type Param =
   | 'width';
 
 export type Params = Map<Param, string>;
-export type NumericParams = (number | undefined)[];
+export type NumericParams = Array<number | undefined>;
 
-export interface Mapper {
-  (
-    sharp: Sharp,
-    params: Params,
-    quality: number | undefined,
-    req: Request,
-    res: MutableResponse
-  ): Sharp;
-}
+export type Mapper = (
+  sharp: Sharp,
+  params: Params,
+  quality: number | undefined,
+  req: Request,
+  res: MutableResponse
+) => Sharp;
 
 export type Orientation =
   | 'r'
@@ -63,16 +63,16 @@ export type Format =
   | 'webply';
 
 export interface MutableResponse extends ServerResponse, Response {
-  flush(): any;
   _header: any;
+  flush(): any;
   _implicitHeader(): any;
 }
 
-export type Handler = (...args: any[]) => any;
+export type Handler = (...args: readonly any[]) => any;
 
 export type EventName = string | symbol;
 
-export type Listener = [EventName, Handler];
+export type Listener = readonly [EventName, Handler];
 
 export interface WorkStream extends Duplex {
   flush(): any;

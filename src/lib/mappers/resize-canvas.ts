@@ -1,16 +1,16 @@
-import { Mapper } from '../imageopto-types';
-import { regionFromParam, colorFromParam } from '../helpers';
 import { ResizeOptions } from 'sharp';
 import { FastlyCompatError } from '../errors';
+import { colorFromParam, regionFromParam } from '../helpers';
+import { Mapper } from '../imageopto-types';
 
 const resizeCanvas: Mapper = (sharp, params) => {
-  const options = {
-    fit: 'contain',
-    withoutEnlargement: true,
+  const options = ({
     background: params.has('bg-color')
       ? colorFromParam(params, 'bg-color')
-      : 'white'
-  } as ResizeOptions;
+      : 'white',
+    fit: 'contain',
+    withoutEnlargement: true
+  } as unknown) as ResizeOptions;
   const region = regionFromParam(params, 'canvas');
   if (region.left > 0 || region.top > 0) {
     throw new FastlyCompatError(
