@@ -31,7 +31,8 @@ const resize: Mapper = (sharp, params) => {
     return sharp;
   }
   const nums = paramsToNumbers(params, ['width', 'height', 'dpr']);
-  let [width, height] = nums;
+  let width: number = nums[0] as number;
+  let height: number = nums[1] as number;
   const dpr = nums[2];
   for (const [name, param] of [
     ['width', width],
@@ -54,10 +55,8 @@ const resize: Mapper = (sharp, params) => {
         'dot pixel ratio must be above 1'
       );
     }
-    if (width) {
-      width *= dpr;
-      debug('width *= dpr == %s', width);
-    }
+    width *= dpr;
+    debug('width *= dpr == %s', width);
     if (height) {
       height *= dpr;
       debug('height *= dpr == %s', height);
@@ -69,6 +68,9 @@ const resize: Mapper = (sharp, params) => {
   if (params.has('fit')) {
     const fitOpt = params.get('fit') as string;
     options.fit = optoFitToSharp[fitOpt];
+    if (!options.fit) {
+      throw new FastlyParamError(params, 'fit');
+    }
     debug('mapped options.fit from %s -> %s', fitOpt, options.fit);
   }
   if (params.get('enable') === 'true' || params.get('disable') === 'false') {
@@ -78,6 +80,9 @@ const resize: Mapper = (sharp, params) => {
   if (params.has('resize-filter')) {
     const filterOpt = params.get('resize-filter') as string;
     options.kernel = optoResizeFilterToSharp[filterOpt];
+    if (!options.kernel) {
+      throw new FastlyParamError(params, 'resize-filter');
+    }
     debug(
       'mapped options.resize-filter from %s -> %s',
       filterOpt,

@@ -113,63 +113,85 @@ export const colorFromParam = (params: Params, name: Param): Color => {
   return die();
 };
 
-export const regionFromParam = (params: Params, name: Param): Region => {
+export function getTaggedValues(
+  params: Params,
+  name: Param,
+  positional: string[],
+  named: string[]
+): { [key: string]: string | null } {
+  const csv = params.get(name) as string;
+  const values = csv.split(',').map(v => v.toLowerCase().trim());
+  const tagged: { [key: string]: string | null } = {};
+  named.forEach(n => {
+    const valueIndex = values.findIndex(value => value.startsWith(n));
+    if (valueIndex > -1) {
+      tagged[n] = values[valueIndex].slice(n.length);
+      values.splice(valueIndex, 1);
+    }
+  });
+  // values should just be required positional now
+  if (values.length > positional.length) {
+    throw new FastlyParamError(params, name);
+  } else if (values.length < positional.length) {
+    throw new FastlyParamError(
+      params,
+      name,
+      `${positional} arguments required`
+    );
+  } else {
+    values.forEach((value, i) => {
+      tagged[positional[i]] = value;
+    });
+  }
+  return tagged;
+}
+
+export const regionFromParam = (
+  params: Params,
+  name: Param
+): Partial<Region> => {
   const csv = params.get(name) as string;
   if (csv.includes(':') || csv.includes('offset')) {
     throw new FastlyCompatError(params, name, 'ratio-based regions');
   }
-  if (!csv.includes(',')) {
-    throw new FastlyParamError(params, name, 'width and height are required');
+  const values = getTaggedValues(
+    params,
+    name,
+    ['width', 'height'],
+    ['x', 'y', 'smart', 'offset-x', 'offset-y']
+  );
+  if (values.hasOwnProperty('smart')) {
+    throw new FastlyCompatError(params, name, 'smart image cropping');
   }
-  const [width, height, ...rest] = csv.split(',');
-  const region = ({} as unknown) as Region;
-  const numWidth = Number(width);
-  if (isNaN(numWidth)) {
-    throw new FastlyParamError(params, name, 'width must be numeric');
-  }
-  region.width = numWidth;
-  const numHeight = Number(height);
-  if (isNaN(numHeight)) {
-    throw new FastlyParamError(params, name, 'height must be numeric');
-  }
-  region.height = numHeight;
-  const validateDimension = (value: string, dim: 'x' | 'y') => {
-    const matches = value.match(new RegExp(`^${dim}(\\d+)$`));
-    if (!matches) {
-      throw new FastlyParamError(
-        params,
-        name,
-        `${dim} must be "${dim}<pixel>"`
-      );
+
+  function validate(tag: string, optional?: true) {
+    if (optional && !values.hasOwnProperty(tag)) {
+      return;
     }
-    return Number(matches[1]);
-  };
-  if (rest.length > 2) {
-    const last = rest.pop();
-    if (
-      last &&
-      last
-        .toString()
-        .toLowerCase()
-        .trim() === 'smart'
-    ) {
+    const value = Number(values[tag]);
+    if (isNaN(value)) {
+      throw new FastlyParamError(params, name, `${tag} is ${values[tag]}`);
+    }
+    if (value < 1 && value !== 0) {
       throw new FastlyCompatError(
         params,
-        'smart' as Param,
-        'smart image cropping'
+        name,
+        `percentage ${tag} value in regions (must use absolute pixels)`
       );
     }
-    throw new FastlyParamError(
-      params,
-      name,
-      `unrecognized parameters: ${rest.join(', ')}`
-    );
+    return value;
   }
-  if (rest.length === 2) {
-    region.top = validateDimension(rest[1], 'y');
+  const region: Partial<Region> = {
+    height: validate('height'),
+    width: validate('width')
+  };
+  const left = validate('x', true);
+  if (left !== undefined) {
+    region.left = left;
   }
-  if (rest.length > 0) {
-    region.left = validateDimension(rest[0], 'x');
+  const top = validate('y', true);
+  if (top !== undefined) {
+    region.top = top;
   }
   return region;
 };
