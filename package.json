@@ -31,7 +31,7 @@
     "cov:send": "nyc report --reporter=lcov && codecov",
     "cov:unit": "run-s clean build:main && nyc --reporter=lcov ava",
     "cov:check": "nyc report && nyc check-coverage --lines 100 --functions 100 --branches 100",
-    "doc": "run-s doc:html && open-cli build/docs/index.html",
+    "doc": "run-s doc:html doc:json && open-cli docs/index.html",
     "doc:html": "typedoc src/ --exclude **/*.spec.ts,**/__*.ts,**/*-types.ts --target ES6 --mode file --out docs --readme none --theme minimal --excludeExternals",
     "doc:json": "typedoc src/ --exclude **/*.spec.ts,**/__*.ts,**/*-types.ts --target ES6 --mode file --json docs/typedoc.json",
     "doc:publish": "gh-pages -m \"[ci skip] Updates\" -d docs",
