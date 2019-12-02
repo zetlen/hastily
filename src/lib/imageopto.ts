@@ -12,6 +12,16 @@ import { DebugLogger, MutableResponse, WorkStream } from './imageopto-types';
 import mapOptions from './map-options';
 import splice from './splice-response';
 
+/**
+ * Receives an [express Request](https://expressjs.com/en/api.html#req) and
+ * returns `true` if hastily should attempt to optimize the current request.
+ * The default implementation tests the file extension for files supported as
+ * input formats by `sharp`.
+ */
+export interface RequestFilter {
+  (request: Request): boolean;
+}
+
 const HASTILY_HEADER = {
   NAME: 'X-Optimized',
   VALUE: 'hastily'
@@ -29,12 +39,24 @@ streamableFileExtensions.delete('svg');
 const imageExtensionRE = new RegExp(
   `\\.(?:${[...streamableFileExtensions].join('|')})$`
 );
-export function hasSupportedExtension(req: Request): boolean {
-  return imageExtensionRE.test(req.path);
-}
 
+/**
+ * Use the `sharp.format` manifest to determine if the current request's file
+ * extension matches a format that sharp can stream in to optimize.
+ * @param req {Request}
+ */
+export const hasSupportedExtension: RequestFilter = req =>
+  imageExtensionRE.test(req.path);
+
+/**
+ * Returns a new imageopto middleware for use in Express `app.use()`.
+ * Won't do anything if the Express app isn't already serving images!
+ *
+ * @param filter {RequestFilter} Optionally, supply a {@link RequestFilter}
+ * function here to filter requests.
+ */
 export function imageopto(
-  filter: (req: Request) => boolean = hasSupportedExtension
+  filter: RequestFilter = hasSupportedExtension
 ): (req: Request, res: MutableResponse, next: () => any) => any {
   makeDebug('hastily:middleware:construct')('creating new middleware');
   return function hastily(req, res, next) {

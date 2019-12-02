@@ -1,5 +1,8 @@
 import { Param, Params } from './imageopto-types';
 
+/**
+ * @hidden
+ */
 export class FastlyParamError extends Error {
   constructor(params: Params, name: Param, customMessage?: string) {
     let message = `"${name}" cannot be "${params.get(name)}"`;
@@ -11,6 +14,9 @@ export class FastlyParamError extends Error {
   }
 }
 
+/**
+ * @hidden
+ */
 export class FastlyCompatError extends FastlyParamError {
   constructor(params: Params, name: Param, feature: string) {
     super(

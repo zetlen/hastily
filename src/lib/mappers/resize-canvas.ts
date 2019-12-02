@@ -3,6 +3,9 @@ import { FastlyCompatError } from '../errors';
 import { colorFromParam, regionFromParam } from '../helpers';
 import { Mapper } from '../imageopto-types';
 
+/**
+ * @hidden
+ */
 const resizeCanvas: Mapper = (sharp, params) => {
   const options = ({
     background: params.has('bg-color')
