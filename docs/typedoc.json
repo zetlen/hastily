@@ -1,0 +1,5180 @@
+{
+	"id": 0,
+	"name": "hastily",
+	"kind": 0,
+	"flags": {},
+	"children": [
+		{
+			"id": 62,
+			"name": "Orienter",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/lib/mappers/orient.ts",
+					"line": 5,
+					"character": 13
+				}
+			],
+			"type": {
+				"type": "reflection",
+				"declaration": {
+					"id": 63,
+					"name": "__type",
+					"kind": 65536,
+					"kindString": "Type literal",
+					"flags": {},
+					"signatures": [
+						{
+							"id": 64,
+							"name": "__call",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 65,
+									"name": "x",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sharp"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/orient.ts",
+							"line": 5,
+							"character": 15
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": 384,
+			"name": "RequestFilter",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {
+				"isExported": true
+			},
+			"comment": {
+				"shortText": "Receives an [express Request](https://expressjs.com/en/api.html#req) and\nreturns `true` if hastily should attempt to optimize the current request.\nThe default implementation tests the file extension for files supported as\ninput formats by `sharp`."
+			},
+			"sources": [
+				{
+					"fileName": "src/lib/imageopto.ts",
+					"line": 21,
+					"character": 25
+				}
+			],
+			"type": {
+				"type": "reflection",
+				"declaration": {
+					"id": 385,
+					"name": "__type",
+					"kind": 65536,
+					"kindString": "Type literal",
+					"flags": {},
+					"signatures": [
+						{
+							"id": 386,
+							"name": "__call",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 387,
+									"name": "request",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Request"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/lib/imageopto.ts",
+							"line": 21,
+							"character": 27
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": 406,
+			"name": "cacheControlNoTransformRegExp",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "src/lib/imageopto.ts",
+					"line": 86,
+					"character": 35
+				}
+			],
+			"type": {
+				"type": "reference",
+				"name": "RegExp"
+			},
+			"defaultValue": " /(?:^|,)\\s*?no-transform\\s*?(?:,|$)/"
+		},
+		{
+			"id": 143,
+			"name": "debug",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "src/lib/mappers/resize.ts",
+					"line": 7,
+					"character": 11
+				},
+				{
+					"fileName": "src/lib/map-options.ts",
+					"line": 31,
+					"character": 11
+				}
+			],
+			"type": {
+				"type": "reference",
+				"name": "Debugger"
+			},
+			"defaultValue": " makeDebug('hastily:options')"
+		},
+		{
+			"id": 392,
+			"name": "imageExtensionRE",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "src/lib/imageopto.ts",
+					"line": 37,
+					"character": 22
+				}
+			],
+			"type": {
+				"type": "reference",
+				"name": "RegExp"
+			},
+			"defaultValue": " new RegExp(\n  `\\\\.(?:${[...streamableFileExtensions].join('|')})$`\n)"
+		},
+		{
+			"id": 28,
+			"name": "rgbRE",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "src/lib/helpers.ts",
+					"line": 85,
+					"character": 11
+				}
+			],
+			"type": {
+				"type": "reference",
+				"name": "RegExp"
+			},
+			"defaultValue": " /^(?:[0-9a-fA-F]{3}){1,2}$/"
+		},
+		{
+			"id": 391,
+			"name": "streamableFileExtensions",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "src/lib/imageopto.ts",
+					"line": 28,
+					"character": 30
+				}
+			],
+			"type": {
+				"type": "reference",
+				"name": "Set",
+				"typeArguments": [
+					{
+						"type": "intrinsic",
+						"name": "string"
+					}
+				]
+			},
+			"defaultValue": " new Set(\n  ...Object.keys(sharp.format).filter(\n    ext => sharp.format[ext as keyof FormatEnum].input.stream\n  )\n)"
+		},
+		{
+			"id": 375,
+			"name": "addListeners",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isPrivate": true
+			},
+			"signatures": [
+				{
+					"id": 376,
+					"name": "addListeners",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {
+						"isPrivate": true
+					},
+					"comment": {
+						"shortText": "Add bufferred listeners to stream"
+					},
+					"parameters": [
+						{
+							"id": 377,
+							"name": "stream",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "union",
+								"types": [
+									{
+										"type": "reference",
+										"name": "MutableResponse"
+									},
+									{
+										"type": "reference",
+										"name": "WorkStream"
+									}
+								]
+							}
+						},
+						{
+							"id": 378,
+							"name": "on",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "any"
+							}
+						},
+						{
+							"id": 379,
+							"name": "listeners",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"name": "Listener"
+								}
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "void"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/lib/splice-response.ts",
+					"line": 205,
+					"character": 21
+				}
+			]
+		},
+		{
+			"id": 380,
+			"name": "chunkLength",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"signatures": [
+				{
+					"id": 381,
+					"name": "chunkLength",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Get the length of a given chunk"
+					},
+					"parameters": [
+						{
+							"id": 382,
+							"name": "chunk",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "any"
+							}
+						},
+						{
+							"id": 383,
+							"name": "encoding",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "any"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/lib/splice-response.ts",
+					"line": 219,
+					"character": 20
+				}
+			]
+		},
+		{
+			"id": 66,
+			"name": "exif",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isConst": true
+			},
+			"signatures": [
+				{
+					"id": 67,
+					"name": "exif",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 68,
+							"name": "sharp",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"name": "Sharp"
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "Sharp"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/lib/mappers/orient.ts",
+					"line": 6,
+					"character": 10
+				}
+			]
+		},
+		{
+			"id": 75,
+			"name": "flipH",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isConst": true
+			},
+			"signatures": [
+				{
+					"id": 76,
+					"name": "flipH",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 77,
+							"name": "sharp",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"name": "Sharp"
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "Sharp"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/lib/mappers/orient.ts",
+					"line": 9,
+					"character": 11
+				}
+			]
+		},
+		{
+			"id": 81,
+			"name": "flipHV",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isConst": true
+			},
+			"signatures": [
+				{
+					"id": 82,
+					"name": "flipHV",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 83,
+							"name": "sharp",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"name": "Sharp"
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "Sharp"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/lib/mappers/orient.ts",
+					"line": 11,
+					"character": 12
+				}
+			]
+		},
+		{
+			"id": 78,
+			"name": "flipV",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isConst": true
+			},
+			"signatures": [
+				{
+					"id": 79,
+					"name": "flipV",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 80,
+							"name": "sharp",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"name": "Sharp"
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "Sharp"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/lib/mappers/orient.ts",
+					"line": 10,
+					"character": 11
+				}
+			]
+		},
+		{
+			"id": 393,
+			"name": "hasSupportedExtension",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true,
+				"isConst": true
+			},
+			"comment": {
+				"shortText": "Use the `sharp.format` manifest to determine if the current request's file\nextension matches a format that sharp can stream in to optimize."
+			},
+			"signatures": [
+				{
+					"id": 394,
+					"name": "hasSupportedExtension",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Use the `sharp.format` manifest to determine if the current request's file\nextension matches a format that sharp can stream in to optimize."
+					},
+					"parameters": [
+						{
+							"id": 395,
+							"name": "req",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"comment": {
+								"shortText": "\n"
+							},
+							"type": {
+								"type": "reference",
+								"name": "Request",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"name": "ParamsDictionary"
+									}
+								]
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/lib/imageopto.ts",
+					"line": 46,
+					"character": 34
+				}
+			]
+		},
+		{
+			"id": 396,
+			"name": "imageopto",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 397,
+					"name": "imageopto",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Returns a new imageopto middleware for use in Express `app.use()`.\nWon't do anything if the Express app isn't already serving images!"
+					},
+					"parameters": [
+						{
+							"id": 398,
+							"name": "filter",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"comment": {
+								"text": "Optionally, supply a {@link RequestFilter}\nfunction here to filter requests.\n"
+							},
+							"type": {
+								"type": "reference",
+								"name": "RequestFilter",
+								"id": 384
+							},
+							"defaultValue": " hasSupportedExtension"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 399,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 400,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 401,
+											"name": "req",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Request"
+											}
+										},
+										{
+											"id": 402,
+											"name": "res",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "MutableResponse"
+											}
+										},
+										{
+											"id": 403,
+											"name": "next",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reflection",
+												"declaration": {
+													"id": 404,
+													"name": "__type",
+													"kind": 65536,
+													"kindString": "Type literal",
+													"flags": {},
+													"signatures": [
+														{
+															"id": 405,
+															"name": "__call",
+															"kind": 4096,
+															"kindString": "Call signature",
+															"flags": {},
+															"type": {
+																"type": "intrinsic",
+																"name": "any"
+															}
+														}
+													],
+													"sources": [
+														{
+															"fileName": "src/lib/imageopto.ts",
+															"line": 58,
+															"character": 45
+														}
+													]
+												}
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "src/lib/imageopto.ts",
+									"line": 58,
+									"character": 2
+								}
+							]
+						}
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/lib/imageopto.ts",
+					"line": 56,
+					"character": 25
+				}
+			]
+		},
+		{
+			"id": 72,
+			"name": "left",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isConst": true
+			},
+			"signatures": [
+				{
+					"id": 73,
+					"name": "left",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 74,
+							"name": "sharp",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"name": "Sharp"
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "Sharp"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/lib/mappers/orient.ts",
+					"line": 8,
+					"character": 10
+				}
+			]
+		},
+		{
+			"id": 69,
+			"name": "right",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isConst": true
+			},
+			"signatures": [
+				{
+					"id": 70,
+					"name": "right",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 71,
+							"name": "sharp",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"name": "Sharp"
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "Sharp"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/lib/mappers/orient.ts",
+					"line": 7,
+					"character": 11
+				}
+			]
+		},
+		{
+			"id": 407,
+			"name": "shouldTransform",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isPrivate": true
+			},
+			"signatures": [
+				{
+					"id": 408,
+					"name": "shouldTransform",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {
+						"isPrivate": true
+					},
+					"comment": {
+						"shortText": "Determine if the entity should be transformed."
+					},
+					"parameters": [
+						{
+							"id": 409,
+							"name": "req",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"name": "Request"
+							}
+						},
+						{
+							"id": 410,
+							"name": "res",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"name": "MutableResponse"
+							}
+						},
+						{
+							"id": 411,
+							"name": "debug",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"name": "DebugLogger"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/lib/imageopto.ts",
+					"line": 92,
+					"character": 24
+				}
+			]
+		},
+		{
+			"id": 388,
+			"name": "HASTILY_HEADER",
+			"kind": 2097152,
+			"kindString": "Object literal",
+			"flags": {
+				"isConst": true
+			},
+			"children": [
+				{
+					"id": 389,
+					"name": "NAME",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/imageopto.ts",
+							"line": 24,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"defaultValue": "\"X-Optimized\""
+				},
+				{
+					"id": 390,
+					"name": "VALUE",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/imageopto.ts",
+							"line": 25,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"defaultValue": "\"hastily\""
+				}
+			],
+			"groups": [
+				{
+					"title": "Variables",
+					"kind": 32,
+					"children": [
+						389,
+						390
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/lib/imageopto.ts",
+					"line": 23,
+					"character": 20
+				}
+			],
+			"type": {
+				"type": "intrinsic",
+				"name": "object"
+			}
+		},
+		{
+			"id": 314,
+			"name": "formatters",
+			"kind": 2097152,
+			"kindString": "Object literal",
+			"flags": {
+				"isConst": true
+			},
+			"children": [
+				{
+					"id": 315,
+					"name": "gif",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 55,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 316,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 317,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 318,
+											"name": "sharp",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										},
+										{
+											"id": 319,
+											"name": "params",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Params"
+											}
+										},
+										{
+											"id": 320,
+											"name": "quality",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "union",
+												"types": [
+													{
+														"type": "intrinsic",
+														"name": "number"
+													},
+													{
+														"type": "intrinsic",
+														"name": "undefined"
+													}
+												]
+											}
+										},
+										{
+											"id": 321,
+											"name": "req",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Request"
+											}
+										},
+										{
+											"id": 322,
+											"name": "res",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "MutableResponse"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " unsupported('format' as Param, 'GIF output unsupported by node-hastily')"
+				},
+				{
+					"id": 323,
+					"name": "jpg",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"signatures": [
+						{
+							"id": 324,
+							"name": "jpg",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 325,
+									"name": "transform",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								},
+								{
+									"id": 326,
+									"name": "_",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Map",
+										"typeArguments": [
+											{
+												"type": "union",
+												"types": [
+													{
+														"type": "stringLiteral",
+														"value": "bg-color"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "blur"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "brightness"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "canvas"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "crop"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "contrast"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "disable"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "dpr"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "enable"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "fit"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "height"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "orient"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "pad"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "resize-filter"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "saturation"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "sharpen"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "trim"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "width"
+													}
+												]
+											},
+											{
+												"type": "intrinsic",
+												"name": "string"
+											}
+										]
+									}
+								},
+								{
+									"id": 327,
+									"name": "quality",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "undefined"
+											},
+											{
+												"type": "intrinsic",
+												"name": "number"
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sharp"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 56,
+							"character": 5
+						}
+					]
+				},
+				{
+					"id": 328,
+					"name": "pjpg",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"signatures": [
+						{
+							"id": 329,
+							"name": "pjpg",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 330,
+									"name": "transform",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								},
+								{
+									"id": 331,
+									"name": "_",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Map",
+										"typeArguments": [
+											{
+												"type": "union",
+												"types": [
+													{
+														"type": "stringLiteral",
+														"value": "bg-color"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "blur"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "brightness"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "canvas"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "crop"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "contrast"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "disable"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "dpr"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "enable"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "fit"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "height"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "orient"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "pad"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "resize-filter"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "saturation"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "sharpen"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "trim"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "width"
+													}
+												]
+											},
+											{
+												"type": "intrinsic",
+												"name": "string"
+											}
+										]
+									}
+								},
+								{
+									"id": 332,
+									"name": "quality",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "undefined"
+											},
+											{
+												"type": "intrinsic",
+												"name": "number"
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sharp"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 57,
+							"character": 6
+						}
+					]
+				},
+				{
+					"id": 333,
+					"name": "png",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"signatures": [
+						{
+							"id": 334,
+							"name": "png",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 335,
+									"name": "transform",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								},
+								{
+									"id": 336,
+									"name": "_",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Map",
+										"typeArguments": [
+											{
+												"type": "union",
+												"types": [
+													{
+														"type": "stringLiteral",
+														"value": "bg-color"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "blur"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "brightness"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "canvas"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "crop"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "contrast"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "disable"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "dpr"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "enable"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "fit"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "height"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "orient"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "pad"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "resize-filter"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "saturation"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "sharpen"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "trim"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "width"
+													}
+												]
+											},
+											{
+												"type": "intrinsic",
+												"name": "string"
+											}
+										]
+									}
+								},
+								{
+									"id": 337,
+									"name": "quality",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "undefined"
+											},
+											{
+												"type": "intrinsic",
+												"name": "number"
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sharp"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 59,
+							"character": 5
+						}
+					]
+				},
+				{
+					"id": 338,
+					"name": "png8",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"signatures": [
+						{
+							"id": 339,
+							"name": "png8",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 340,
+									"name": "transform",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								},
+								{
+									"id": 341,
+									"name": "_",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Map",
+										"typeArguments": [
+											{
+												"type": "union",
+												"types": [
+													{
+														"type": "stringLiteral",
+														"value": "bg-color"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "blur"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "brightness"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "canvas"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "crop"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "contrast"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "disable"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "dpr"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "enable"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "fit"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "height"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "orient"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "pad"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "resize-filter"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "saturation"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "sharpen"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "trim"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "width"
+													}
+												]
+											},
+											{
+												"type": "intrinsic",
+												"name": "string"
+											}
+										]
+									}
+								},
+								{
+									"id": 342,
+									"name": "quality",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "undefined"
+											},
+											{
+												"type": "intrinsic",
+												"name": "number"
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sharp"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 60,
+							"character": 6
+						}
+					]
+				},
+				{
+					"id": 343,
+					"name": "webp",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"signatures": [
+						{
+							"id": 344,
+							"name": "webp",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 345,
+									"name": "transform",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								},
+								{
+									"id": 346,
+									"name": "_",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Map",
+										"typeArguments": [
+											{
+												"type": "union",
+												"types": [
+													{
+														"type": "stringLiteral",
+														"value": "bg-color"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "blur"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "brightness"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "canvas"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "crop"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "contrast"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "disable"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "dpr"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "enable"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "fit"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "height"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "orient"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "pad"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "resize-filter"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "saturation"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "sharpen"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "trim"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "width"
+													}
+												]
+											},
+											{
+												"type": "intrinsic",
+												"name": "string"
+											}
+										]
+									}
+								},
+								{
+									"id": 347,
+									"name": "quality",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "undefined"
+											},
+											{
+												"type": "intrinsic",
+												"name": "number"
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sharp"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 61,
+							"character": 6
+						}
+					]
+				},
+				{
+					"id": 348,
+					"name": "webpll",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"signatures": [
+						{
+							"id": 349,
+							"name": "webpll",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 350,
+									"name": "transform",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								},
+								{
+									"id": 351,
+									"name": "_",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Map",
+										"typeArguments": [
+											{
+												"type": "union",
+												"types": [
+													{
+														"type": "stringLiteral",
+														"value": "bg-color"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "blur"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "brightness"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "canvas"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "crop"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "contrast"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "disable"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "dpr"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "enable"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "fit"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "height"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "orient"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "pad"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "resize-filter"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "saturation"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "sharpen"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "trim"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "width"
+													}
+												]
+											},
+											{
+												"type": "intrinsic",
+												"name": "string"
+											}
+										]
+									}
+								},
+								{
+									"id": 352,
+									"name": "quality",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "undefined"
+											},
+											{
+												"type": "intrinsic",
+												"name": "number"
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sharp"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 62,
+							"character": 8
+						}
+					]
+				},
+				{
+					"id": 353,
+					"name": "webply",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"signatures": [
+						{
+							"id": 354,
+							"name": "webply",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 355,
+									"name": "transform",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								},
+								{
+									"id": 356,
+									"name": "_",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Map",
+										"typeArguments": [
+											{
+												"type": "union",
+												"types": [
+													{
+														"type": "stringLiteral",
+														"value": "bg-color"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "blur"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "brightness"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "canvas"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "crop"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "contrast"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "disable"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "dpr"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "enable"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "fit"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "height"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "orient"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "pad"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "resize-filter"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "saturation"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "sharpen"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "trim"
+													},
+													{
+														"type": "stringLiteral",
+														"value": "width"
+													}
+												]
+											},
+											{
+												"type": "intrinsic",
+												"name": "string"
+											}
+										]
+									}
+								},
+								{
+									"id": 357,
+									"name": "quality",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "undefined"
+											},
+											{
+												"type": "intrinsic",
+												"name": "number"
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sharp"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 64,
+							"character": 8
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Variables",
+					"kind": 32,
+					"children": [
+						315
+					]
+				},
+				{
+					"title": "Functions",
+					"kind": 64,
+					"children": [
+						323,
+						328,
+						333,
+						338,
+						343,
+						348,
+						353
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/lib/map-options.ts",
+					"line": 54,
+					"character": 16
+				}
+			],
+			"type": {
+				"type": "intrinsic",
+				"name": "object"
+			}
+		},
+		{
+			"id": 169,
+			"name": "mappers",
+			"kind": 2097152,
+			"kindString": "Object literal",
+			"flags": {
+				"isConst": true
+			},
+			"children": [
+				{
+					"id": 170,
+					"name": "bg-color",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 34,
+							"character": 12
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 171,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 172,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 173,
+											"name": "sharp",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										},
+										{
+											"id": 174,
+											"name": "params",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Params"
+											}
+										},
+										{
+											"id": 175,
+											"name": "quality",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "union",
+												"types": [
+													{
+														"type": "intrinsic",
+														"name": "number"
+													},
+													{
+														"type": "intrinsic",
+														"name": "undefined"
+													}
+												]
+											}
+										},
+										{
+											"id": 176,
+											"name": "req",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Request"
+											}
+										},
+										{
+											"id": 177,
+											"name": "res",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "MutableResponse"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " bgFlatten"
+				},
+				{
+					"id": 178,
+					"name": "blur",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 35,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 179,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 180,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 181,
+											"name": "sharp",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										},
+										{
+											"id": 182,
+											"name": "params",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Params"
+											}
+										},
+										{
+											"id": 183,
+											"name": "quality",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "union",
+												"types": [
+													{
+														"type": "intrinsic",
+														"name": "number"
+													},
+													{
+														"type": "intrinsic",
+														"name": "undefined"
+													}
+												]
+											}
+										},
+										{
+											"id": 184,
+											"name": "req",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Request"
+											}
+										},
+										{
+											"id": 185,
+											"name": "res",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "MutableResponse"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"id": 186,
+					"name": "brightness",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 36,
+							"character": 12
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 187,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 188,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 189,
+											"name": "sharp",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										},
+										{
+											"id": 190,
+											"name": "params",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Params"
+											}
+										},
+										{
+											"id": 191,
+											"name": "quality",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "union",
+												"types": [
+													{
+														"type": "intrinsic",
+														"name": "number"
+													},
+													{
+														"type": "intrinsic",
+														"name": "undefined"
+													}
+												]
+											}
+										},
+										{
+											"id": 192,
+											"name": "req",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Request"
+											}
+										},
+										{
+											"id": 193,
+											"name": "res",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "MutableResponse"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " unsupported('brightness', 'absolute brightness adjustment')"
+				},
+				{
+					"id": 194,
+					"name": "canvas",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 37,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 195,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 196,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 197,
+											"name": "sharp",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										},
+										{
+											"id": 198,
+											"name": "params",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Params"
+											}
+										},
+										{
+											"id": 199,
+											"name": "quality",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "union",
+												"types": [
+													{
+														"type": "intrinsic",
+														"name": "number"
+													},
+													{
+														"type": "intrinsic",
+														"name": "undefined"
+													}
+												]
+											}
+										},
+										{
+											"id": 200,
+											"name": "req",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Request"
+											}
+										},
+										{
+											"id": 201,
+											"name": "res",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "MutableResponse"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " resizeCanvas"
+				},
+				{
+					"id": 202,
+					"name": "contrast",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 38,
+							"character": 10
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 203,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 204,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 205,
+											"name": "sharp",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										},
+										{
+											"id": 206,
+											"name": "params",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Params"
+											}
+										},
+										{
+											"id": 207,
+											"name": "quality",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "union",
+												"types": [
+													{
+														"type": "intrinsic",
+														"name": "number"
+													},
+													{
+														"type": "intrinsic",
+														"name": "undefined"
+													}
+												]
+											}
+										},
+										{
+											"id": 208,
+											"name": "req",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Request"
+											}
+										},
+										{
+											"id": 209,
+											"name": "res",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "MutableResponse"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " unsupported('contrast', 'absolute contrast adjustment')"
+				},
+				{
+					"id": 210,
+					"name": "crop",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 39,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 211,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 212,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 213,
+											"name": "sharp",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										},
+										{
+											"id": 214,
+											"name": "params",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Params"
+											}
+										},
+										{
+											"id": 215,
+											"name": "quality",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "union",
+												"types": [
+													{
+														"type": "intrinsic",
+														"name": "number"
+													},
+													{
+														"type": "intrinsic",
+														"name": "undefined"
+													}
+												]
+											}
+										},
+										{
+											"id": 216,
+											"name": "req",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Request"
+											}
+										},
+										{
+											"id": 217,
+											"name": "res",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "MutableResponse"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " extractCrop"
+				},
+				{
+					"id": 218,
+					"name": "disable",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 40,
+							"character": 9
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 219,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 220,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 221,
+											"name": "sharp",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										},
+										{
+											"id": 222,
+											"name": "params",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Params"
+											}
+										},
+										{
+											"id": 223,
+											"name": "quality",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "union",
+												"types": [
+													{
+														"type": "intrinsic",
+														"name": "number"
+													},
+													{
+														"type": "intrinsic",
+														"name": "undefined"
+													}
+												]
+											}
+										},
+										{
+											"id": 224,
+											"name": "req",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Request"
+											}
+										},
+										{
+											"id": 225,
+											"name": "res",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "MutableResponse"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " resize"
+				},
+				{
+					"id": 226,
+					"name": "dpr",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 41,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 227,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 228,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 229,
+											"name": "sharp",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										},
+										{
+											"id": 230,
+											"name": "params",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Params"
+											}
+										},
+										{
+											"id": 231,
+											"name": "quality",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "union",
+												"types": [
+													{
+														"type": "intrinsic",
+														"name": "number"
+													},
+													{
+														"type": "intrinsic",
+														"name": "undefined"
+													}
+												]
+											}
+										},
+										{
+											"id": 232,
+											"name": "req",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Request"
+											}
+										},
+										{
+											"id": 233,
+											"name": "res",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "MutableResponse"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " resize"
+				},
+				{
+					"id": 234,
+					"name": "enable",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 42,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 235,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 236,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 237,
+											"name": "sharp",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										},
+										{
+											"id": 238,
+											"name": "params",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Params"
+											}
+										},
+										{
+											"id": 239,
+											"name": "quality",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "union",
+												"types": [
+													{
+														"type": "intrinsic",
+														"name": "number"
+													},
+													{
+														"type": "intrinsic",
+														"name": "undefined"
+													}
+												]
+											}
+										},
+										{
+											"id": 240,
+											"name": "req",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Request"
+											}
+										},
+										{
+											"id": 241,
+											"name": "res",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "MutableResponse"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " resize"
+				},
+				{
+					"id": 242,
+					"name": "fit",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 43,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 243,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 244,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 245,
+											"name": "sharp",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										},
+										{
+											"id": 246,
+											"name": "params",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Params"
+											}
+										},
+										{
+											"id": 247,
+											"name": "quality",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "union",
+												"types": [
+													{
+														"type": "intrinsic",
+														"name": "number"
+													},
+													{
+														"type": "intrinsic",
+														"name": "undefined"
+													}
+												]
+											}
+										},
+										{
+											"id": 248,
+											"name": "req",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Request"
+											}
+										},
+										{
+											"id": 249,
+											"name": "res",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "MutableResponse"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " resize"
+				},
+				{
+					"id": 250,
+					"name": "height",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 44,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 251,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 252,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 253,
+											"name": "sharp",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										},
+										{
+											"id": 254,
+											"name": "params",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Params"
+											}
+										},
+										{
+											"id": 255,
+											"name": "quality",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "union",
+												"types": [
+													{
+														"type": "intrinsic",
+														"name": "number"
+													},
+													{
+														"type": "intrinsic",
+														"name": "undefined"
+													}
+												]
+											}
+										},
+										{
+											"id": 256,
+											"name": "req",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Request"
+											}
+										},
+										{
+											"id": 257,
+											"name": "res",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "MutableResponse"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " resize"
+				},
+				{
+					"id": 258,
+					"name": "orient",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 45,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 259,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 260,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 261,
+											"name": "sharp",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										},
+										{
+											"id": 262,
+											"name": "params",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Params"
+											}
+										},
+										{
+											"id": 263,
+											"name": "quality",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "union",
+												"types": [
+													{
+														"type": "intrinsic",
+														"name": "number"
+													},
+													{
+														"type": "intrinsic",
+														"name": "undefined"
+													}
+												]
+											}
+										},
+										{
+											"id": 264,
+											"name": "req",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Request"
+											}
+										},
+										{
+											"id": 265,
+											"name": "res",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "MutableResponse"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"id": 266,
+					"name": "pad",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 46,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 267,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 268,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 269,
+											"name": "sharp",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										},
+										{
+											"id": 270,
+											"name": "params",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Params"
+											}
+										},
+										{
+											"id": 271,
+											"name": "quality",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "union",
+												"types": [
+													{
+														"type": "intrinsic",
+														"name": "number"
+													},
+													{
+														"type": "intrinsic",
+														"name": "undefined"
+													}
+												]
+											}
+										},
+										{
+											"id": 272,
+											"name": "req",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Request"
+											}
+										},
+										{
+											"id": 273,
+											"name": "res",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "MutableResponse"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " extend"
+				},
+				{
+					"id": 274,
+					"name": "resize-filter",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 47,
+							"character": 17
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 275,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 276,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 277,
+											"name": "sharp",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										},
+										{
+											"id": 278,
+											"name": "params",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Params"
+											}
+										},
+										{
+											"id": 279,
+											"name": "quality",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "union",
+												"types": [
+													{
+														"type": "intrinsic",
+														"name": "number"
+													},
+													{
+														"type": "intrinsic",
+														"name": "undefined"
+													}
+												]
+											}
+										},
+										{
+											"id": 280,
+											"name": "req",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Request"
+											}
+										},
+										{
+											"id": 281,
+											"name": "res",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "MutableResponse"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " resize"
+				},
+				{
+					"id": 282,
+					"name": "saturation",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 48,
+							"character": 12
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 283,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 284,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 285,
+											"name": "sharp",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										},
+										{
+											"id": 286,
+											"name": "params",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Params"
+											}
+										},
+										{
+											"id": 287,
+											"name": "quality",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "union",
+												"types": [
+													{
+														"type": "intrinsic",
+														"name": "number"
+													},
+													{
+														"type": "intrinsic",
+														"name": "undefined"
+													}
+												]
+											}
+										},
+										{
+											"id": 288,
+											"name": "req",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Request"
+											}
+										},
+										{
+											"id": 289,
+											"name": "res",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "MutableResponse"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " unsupported('saturation', 'absolute saturation adjustment')"
+				},
+				{
+					"id": 290,
+					"name": "sharpen",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 49,
+							"character": 9
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 291,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 292,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 293,
+											"name": "sharp",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										},
+										{
+											"id": 294,
+											"name": "params",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Params"
+											}
+										},
+										{
+											"id": 295,
+											"name": "quality",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "union",
+												"types": [
+													{
+														"type": "intrinsic",
+														"name": "number"
+													},
+													{
+														"type": "intrinsic",
+														"name": "undefined"
+													}
+												]
+											}
+										},
+										{
+											"id": 296,
+											"name": "req",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Request"
+											}
+										},
+										{
+											"id": 297,
+											"name": "res",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "MutableResponse"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " unsupported('sharpen', 'unsharp mask')"
+				},
+				{
+					"id": 298,
+					"name": "trim",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 50,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 299,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 300,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 301,
+											"name": "sharp",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										},
+										{
+											"id": 302,
+											"name": "params",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Params"
+											}
+										},
+										{
+											"id": 303,
+											"name": "quality",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "union",
+												"types": [
+													{
+														"type": "intrinsic",
+														"name": "number"
+													},
+													{
+														"type": "intrinsic",
+														"name": "undefined"
+													}
+												]
+											}
+										},
+										{
+											"id": 304,
+											"name": "req",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Request"
+											}
+										},
+										{
+											"id": 305,
+											"name": "res",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "MutableResponse"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " unsupported('trim', 'relative trimming from all four sides')"
+				},
+				{
+					"id": 306,
+					"name": "width",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/map-options.ts",
+							"line": 51,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 307,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 308,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 309,
+											"name": "sharp",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										},
+										{
+											"id": 310,
+											"name": "params",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Params"
+											}
+										},
+										{
+											"id": 311,
+											"name": "quality",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "union",
+												"types": [
+													{
+														"type": "intrinsic",
+														"name": "number"
+													},
+													{
+														"type": "intrinsic",
+														"name": "undefined"
+													}
+												]
+											}
+										},
+										{
+											"id": 312,
+											"name": "req",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Request"
+											}
+										},
+										{
+											"id": 313,
+											"name": "res",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "MutableResponse"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " resize"
+				}
+			],
+			"groups": [
+				{
+					"title": "Variables",
+					"kind": 32,
+					"children": [
+						170,
+						178,
+						186,
+						194,
+						202,
+						210,
+						218,
+						226,
+						234,
+						242,
+						250,
+						258,
+						266,
+						274,
+						282,
+						290,
+						298,
+						306
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/lib/map-options.ts",
+					"line": 33,
+					"character": 13
+				}
+			],
+			"type": {
+				"type": "intrinsic",
+				"name": "object"
+			}
+		},
+		{
+			"id": 144,
+			"name": "optoFitToSharp",
+			"kind": 2097152,
+			"kindString": "Object literal",
+			"flags": {
+				"isConst": true
+			},
+			"children": [
+				{
+					"id": 145,
+					"name": "bounds",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/resize.ts",
+							"line": 10,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "stringLiteral",
+						"value": "contain"
+					},
+					"defaultValue": "\"contain\""
+				},
+				{
+					"id": 146,
+					"name": "cover",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/resize.ts",
+							"line": 11,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "stringLiteral",
+						"value": "outside"
+					},
+					"defaultValue": "\"outside\""
+				},
+				{
+					"id": 147,
+					"name": "crop",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/resize.ts",
+							"line": 12,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "stringLiteral",
+						"value": "cover"
+					},
+					"defaultValue": "\"cover\""
+				}
+			],
+			"groups": [
+				{
+					"title": "Variables",
+					"kind": 32,
+					"children": [
+						145,
+						146,
+						147
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/lib/mappers/resize.ts",
+					"line": 9,
+					"character": 20
+				}
+			],
+			"type": {
+				"type": "intrinsic",
+				"name": "object"
+			}
+		},
+		{
+			"id": 148,
+			"name": "optoResizeFilterToSharp",
+			"kind": 2097152,
+			"kindString": "Object literal",
+			"flags": {
+				"isConst": true
+			},
+			"children": [
+				{
+					"id": 149,
+					"name": "bicubic",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/resize.ts",
+							"line": 18,
+							"character": 9
+						}
+					],
+					"type": {
+						"type": "stringLiteral",
+						"value": "cubic"
+					},
+					"defaultValue": "\"cubic\""
+				},
+				{
+					"id": 150,
+					"name": "bilinear",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/resize.ts",
+							"line": 19,
+							"character": 10
+						}
+					],
+					"type": {
+						"type": "stringLiteral",
+						"value": "mitchell"
+					},
+					"defaultValue": "\"mitchell\""
+				},
+				{
+					"id": 151,
+					"name": "cubic",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/resize.ts",
+							"line": 20,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "stringLiteral",
+						"value": "cubic"
+					},
+					"defaultValue": "\"cubic\""
+				},
+				{
+					"id": 152,
+					"name": "lanczos",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/resize.ts",
+							"line": 21,
+							"character": 9
+						}
+					],
+					"type": {
+						"type": "stringLiteral",
+						"value": "lanczos3"
+					},
+					"defaultValue": "\"lanczos3\""
+				},
+				{
+					"id": 153,
+					"name": "lanczos2",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/resize.ts",
+							"line": 22,
+							"character": 10
+						}
+					],
+					"type": {
+						"type": "stringLiteral",
+						"value": "lanczos2"
+					},
+					"defaultValue": "\"lanczos2\""
+				},
+				{
+					"id": 154,
+					"name": "lanczos3",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/resize.ts",
+							"line": 23,
+							"character": 10
+						}
+					],
+					"type": {
+						"type": "stringLiteral",
+						"value": "lanczos3"
+					},
+					"defaultValue": "\"lanczos3\""
+				},
+				{
+					"id": 155,
+					"name": "linear",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/resize.ts",
+							"line": 24,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "stringLiteral",
+						"value": "mitchell"
+					},
+					"defaultValue": "\"mitchell\""
+				},
+				{
+					"id": 156,
+					"name": "nearest",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/resize.ts",
+							"line": 25,
+							"character": 9
+						}
+					],
+					"type": {
+						"type": "stringLiteral",
+						"value": "nearest"
+					},
+					"defaultValue": "\"nearest\""
+				}
+			],
+			"groups": [
+				{
+					"title": "Variables",
+					"kind": 32,
+					"children": [
+						149,
+						150,
+						151,
+						152,
+						153,
+						154,
+						155,
+						156
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/lib/mappers/resize.ts",
+					"line": 17,
+					"character": 29
+				}
+			],
+			"type": {
+				"type": "intrinsic",
+				"name": "object"
+			}
+		},
+		{
+			"id": 84,
+			"name": "orienters",
+			"kind": 2097152,
+			"kindString": "Object literal",
+			"flags": {
+				"isConst": true
+			},
+			"children": [
+				{
+					"id": 85,
+					"name": "1",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/orient.ts",
+							"line": 14,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 86,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 87,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 88,
+											"name": "x",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " exif"
+				},
+				{
+					"id": 89,
+					"name": "2",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/orient.ts",
+							"line": 15,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 90,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 91,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 92,
+											"name": "x",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " flipH"
+				},
+				{
+					"id": 93,
+					"name": "3",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/orient.ts",
+							"line": 16,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 94,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 95,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 96,
+											"name": "x",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " flipHV"
+				},
+				{
+					"id": 97,
+					"name": "4",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/orient.ts",
+							"line": 17,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 98,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 99,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 100,
+											"name": "x",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " flipV"
+				},
+				{
+					"id": 104,
+					"name": "6",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/orient.ts",
+							"line": 19,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 105,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 106,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 107,
+											"name": "x",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " right"
+				},
+				{
+					"id": 111,
+					"name": "8",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/orient.ts",
+							"line": 21,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 112,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 113,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 114,
+											"name": "x",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " left"
+				},
+				{
+					"id": 115,
+					"name": "h",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/orient.ts",
+							"line": 22,
+							"character": 3
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 116,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 117,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 118,
+											"name": "x",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " flipH"
+				},
+				{
+					"id": 119,
+					"name": "hv",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/orient.ts",
+							"line": 23,
+							"character": 4
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 120,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 121,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 122,
+											"name": "x",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " flipHV"
+				},
+				{
+					"id": 123,
+					"name": "l",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/orient.ts",
+							"line": 24,
+							"character": 3
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 124,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 125,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 126,
+											"name": "x",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " left"
+				},
+				{
+					"id": 127,
+					"name": "r",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/orient.ts",
+							"line": 25,
+							"character": 3
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 128,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 129,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 130,
+											"name": "x",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " right"
+				},
+				{
+					"id": 131,
+					"name": "v",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/orient.ts",
+							"line": 26,
+							"character": 3
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 132,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 133,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 134,
+											"name": "x",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " flipV"
+				},
+				{
+					"id": 135,
+					"name": "vh",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/orient.ts",
+							"line": 27,
+							"character": 4
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 136,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 137,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 138,
+											"name": "x",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sharp"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " flipHV"
+				},
+				{
+					"id": 101,
+					"name": "5",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"signatures": [
+						{
+							"id": 102,
+							"name": "5",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 103,
+									"name": "sharp",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sharp"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/orient.ts",
+							"line": 18,
+							"character": 5
+						}
+					]
+				},
+				{
+					"id": 108,
+					"name": "7",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"signatures": [
+						{
+							"id": 109,
+							"name": "7",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 110,
+									"name": "sharp",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Sharp"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sharp"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/lib/mappers/orient.ts",
+							"line": 20,
+							"character": 5
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Variables",
+					"kind": 32,
+					"children": [
+						85,
+						89,
+						93,
+						97,
+						104,
+						111,
+						115,
+						119,
+						123,
+						127,
+						131,
+						135
+					]
+				},
+				{
+					"title": "Functions",
+					"kind": 64,
+					"children": [
+						101,
+						108
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/lib/mappers/orient.ts",
+					"line": 13,
+					"character": 15
+				}
+			],
+			"type": {
+				"type": "intrinsic",
+				"name": "object"
+			}
+		}
+	],
+	"groups": [
+		{
+			"title": "Type aliases",
+			"kind": 4194304,
+			"children": [
+				62,
+				384
+			]
+		},
+		{
+			"title": "Variables",
+			"kind": 32,
+			"children": [
+				406,
+				143,
+				392,
+				28,
+				391
+			]
+		},
+		{
+			"title": "Functions",
+			"kind": 64,
+			"children": [
+				375,
+				380,
+				66,
+				75,
+				81,
+				78,
+				393,
+				396,
+				72,
+				69,
+				407
+			]
+		},
+		{
+			"title": "Object literals",
+			"kind": 2097152,
+			"children": [
+				388,
+				314,
+				169,
+				144,
+				148,
+				84
+			]
+		}
+	]
+}

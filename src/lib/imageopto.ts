@@ -18,7 +18,7 @@ import splice from './splice-response';
  * The default implementation tests the file extension for files supported as
  * input formats by `sharp`.
  */
-type RequestFilter = (request: Request) => boolean;
+export type RequestFilter = (request: Request) => boolean;
 
 const HASTILY_HEADER = {
   NAME: 'X-Optimized',
