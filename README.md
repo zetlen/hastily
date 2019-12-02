@@ -29,11 +29,7 @@ You now have an app which can serve any image from `/www/images`, and optimize i
 
 ## API
 
-<!-- doc -->
-
-<!-- doc -->
-
-### [`hastily.imageopto()`](build/docs/globals.html#imageopto)
+zetlen.github.io/hastily
 
 ## TODO
 

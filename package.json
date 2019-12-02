@@ -32,7 +32,7 @@
     "cov:unit": "run-s clean build:main && nyc --reporter=lcov ava",
     "cov:check": "nyc report && nyc check-coverage --lines 100 --functions 100 --branches 100",
     "doc": "run-s doc:html doc:json && open-cli docs/index.html",
-    "doc:html": "typedoc src/ --exclude **/*.spec.ts,**/__*.ts,**/*-types.ts --target ES6 --mode file --out docs --readme none --theme minimal --excludeExternals",
+    "doc:html": "typedoc src/ --exclude **/*.spec.ts,**/__*.ts,**/*-types.ts --target ES6 --mode file --out docs --theme minimal --excludeExternals",
     "doc:json": "typedoc src/ --exclude **/*.spec.ts,**/__*.ts,**/*-types.ts --target ES6 --mode file --json docs/typedoc.json",
     "doc:add": "git add docs",
     "version": "standard-version -a",
