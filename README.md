@@ -6,7 +6,6 @@
 ![snyk](https://img.shields.io/snyk/vulnerabilities/npm/hastily)
 ![peer dependency](https://img.shields.io/npm/dependency-version/hastily/peer/sharp)
 [![npm downloads](https://img.shields.io/npm/dt/hastily?logo=npm)](https://npmjs.com/package/hastily)
-![github activity](https://img.shields.io/github/commit-activity/y/zetlen/hastily?logo=github)
 
 ### Drop-in compatible Express middleware to replicate the [Fastly Image Optimization API][fastly-api]
 
