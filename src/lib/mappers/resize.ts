@@ -25,6 +25,9 @@ const optoResizeFilterToSharp: Record<string, keyof KernelEnum> = {
   nearest: 'nearest'
 };
 
+/**
+ * @hidden
+ */
 const resize: Mapper = (sharp, params) => {
   if (!params.has('width')) {
     debug('resize called without width param');

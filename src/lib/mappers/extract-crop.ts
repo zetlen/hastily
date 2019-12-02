@@ -3,6 +3,9 @@ import { FastlyCompatError } from '../errors';
 import { regionFromParam } from '../helpers';
 import { Mapper } from '../imageopto-types';
 
+/**
+ * @hidden
+ */
 const extractCrop: Mapper = (sharp, params) => {
   const region = regionFromParam(params, 'crop');
   if (region.left === undefined || region.top === undefined) {

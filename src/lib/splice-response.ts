@@ -10,6 +10,9 @@ import {
   WorkStream
 } from './imageopto-types';
 
+/**
+ * @hidden
+ */
 export default function splice(
   req: Request,
   res: MutableResponse,

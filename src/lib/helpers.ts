@@ -2,6 +2,9 @@ import { Color, ExtendOptions, Region, RGBA } from 'sharp';
 import { FastlyCompatError, FastlyParamError } from './errors';
 import { NumericParams, Param, Params } from './imageopto-types';
 
+/**
+ * @hidden
+ */
 export function paramsToNumbers(params: Params, names: Param[]): NumericParams {
   const nums: NumericParams = [];
   for (const name of names) {
@@ -22,6 +25,10 @@ export function paramsToNumbers(params: Params, names: Param[]): NumericParams {
   }
   return nums;
 }
+
+/**
+ * @hidden
+ */
 export const cssBoxFromParam = (params: Params, name: Param): ExtendOptions => {
   const csv = params.get(name) as string;
   const values: string[] = csv.split(',');
@@ -76,6 +83,10 @@ export const cssBoxFromParam = (params: Params, name: Param): ExtendOptions => {
 };
 
 const rgbRE = /^(?:[0-9a-fA-F]{3}){1,2}$/;
+
+/**
+ * @hidden
+ */
 export const colorFromParam = (params: Params, name: Param): Color => {
   const die = () => {
     throw new FastlyParamError(
@@ -113,6 +124,9 @@ export const colorFromParam = (params: Params, name: Param): Color => {
   return die();
 };
 
+/**
+ * @hidden
+ */
 export function getTaggedValues(
   params: Params,
   name: Param,
@@ -146,6 +160,9 @@ export function getTaggedValues(
   return tagged;
 }
 
+/**
+ * @hidden
+ */
 export const regionFromParam = (
   params: Params,
   name: Param

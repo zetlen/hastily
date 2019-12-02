@@ -64,6 +64,9 @@ const formatters: Record<Format, Mapper> = {
   webply: (transform, _, quality) => transform.webp({ quality })
 };
 
+/**
+ * @hidden
+ */
 export default function optoToSharp(
   options: Partial<Record<Param, string>>,
   transform: Sharp,

@@ -27,6 +27,9 @@ const orienters: Record<Orientation, Orienter> = {
   vh: flipHV
 };
 
+/**
+ * @hidden
+ */
 const orient: Mapper = (sharp, params) => {
   const orienter = orienters[params.get('orient') as Orientation];
   if (!orienter) {
