@@ -27,9 +27,7 @@ app.listen(8000);
 
 You now have an app which can serve any image from `/www/images`, and optimize it with URL parameters from the [Fastly Image Optimization API][fastly-api].
 
-## API
-
-zetlen.github.io/hastily
+### [Full API doc at zetlen.github.io/hastily](https://zetlen.github.io/hastily)
 
 ## TODO
 
