@@ -34,10 +34,11 @@
     "doc": "run-s doc:html doc:json && open-cli docs/index.html",
     "doc:html": "typedoc src/ --exclude **/*.spec.ts,**/__*.ts,**/*-types.ts --target ES6 --mode file --out docs --readme none --theme minimal --excludeExternals",
     "doc:json": "typedoc src/ --exclude **/*.spec.ts,**/__*.ts,**/*-types.ts --target ES6 --mode file --json docs/typedoc.json",
-    "version": "standard-version",
+    "doc:add": "git add docs",
+    "version": "standard-version -a",
     "reset": "git clean -dfx && git reset --hard && npm i",
     "clean": "trash build test",
-    "prepare-release": "run-s reset test cov:check doc:html doc:json version"
+    "prepare-release": "run-s reset test cov:check doc:html doc:json doc:add version"
   },
   "scripts-info": {
     "info": "Display information about the package scripts",
