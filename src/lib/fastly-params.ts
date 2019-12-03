@@ -56,7 +56,7 @@ export default class FastlyParams implements IFastlyParams {
 
   public warn(type: WarnType, param: Param, msg?: string): void {
     this.warnings.push({
-      msg: `Parameter "${param}=${this.get(param)} is ${type}${
+      msg: `Parameter "${param}=${this.get(param)}" is ${type}${
         msg ? ' -- ' + msg : ''
       }`,
       type

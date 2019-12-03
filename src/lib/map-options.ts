@@ -23,26 +23,26 @@ import unsupported from './mappers/unsupported';
 
 const debug = makeDebug('hastily:options');
 
-const mappers: Record<Param, Mapper> = {
-  'bg-color': bgFlatten,
-  blur,
-  brightness: unsupported('brightness', 'absolute brightness adjustment'),
-  canvas: resizeCanvas,
-  contrast: unsupported('contrast', 'absolute contrast adjustment'),
-  crop: extractCrop,
-  disable: resize,
-  dpr: resize,
-  enable: resize,
-  fit: resize,
-  height: resize,
-  orient,
-  pad: extend,
-  'resize-filter': resize,
-  saturation: unsupported('saturation', 'absolute saturation adjustment'),
-  sharpen: unsupported('sharpen', 'unsharp mask'),
-  trim: unsupported('trim', 'relative trimming from all four sides'),
-  width: resize
-};
+const mappers: Array<[Param, Mapper]> = [
+  ['width', resize],
+  ['height', resize],
+  ['dpr', resize],
+  ['fit', resize],
+  ['disable', resize],
+  ['enable', resize],
+  ['resize-filter', resize],
+  ['crop', extractCrop],
+  ['canvas', resizeCanvas],
+  ['pad', extend],
+  ['orient', orient],
+  ['bg-color', bgFlatten],
+  ['blur', blur],
+  ['brightness', unsupported('brightness', 'absolute brightness adjustment')],
+  ['contrast', unsupported('contrast', 'absolute contrast adjustment')],
+  ['saturation', unsupported('saturation', 'absolute saturation adjustment')],
+  ['sharpen', unsupported('sharpen', 'unsharp mask')],
+  ['trim', unsupported('trim', 'relative trimming from all four sides')]
+];
 
 const formatters: Record<Format, Mapper> = {
   gif: unsupported('format' as Param, 'GIF output unsupported by node-hastily'),
@@ -65,12 +65,10 @@ export default function optoToSharp(params: IFastlyParams) {
   const applied = new Set();
   const { req, res } = params;
   const { query } = req;
-  const paramKeys = Object.keys(query);
   let transform = sharp();
-  for (const param of paramKeys) {
-    const mapper = mappers[param as Param];
-    if (mapper && !applied.has(mapper)) {
-      debug('running mapper for %s', param);
+  for (const [name, mapper] of mappers) {
+    if (query.hasOwnProperty(name) && !applied.has(mapper)) {
+      debug('running mapper for %s', name);
       const out = mapper(transform, params);
       if (out) {
         applied.add(mapper);

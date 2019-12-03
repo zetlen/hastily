@@ -25,6 +25,7 @@ const valid: Array<[
       720,
       540,
       {
+        fit: 'fill',
         withoutEnlargement: true
       }
     ]
@@ -45,7 +46,7 @@ const valid: Array<[
       4,
       6,
       {
-        fit: 'contain',
+        fit: 'inside',
         withoutEnlargement: true
       }
     ]
@@ -56,6 +57,7 @@ const valid: Array<[
       4,
       6,
       {
+        fit: 'fill',
         withoutEnlargement: false
       }
     ]
@@ -66,6 +68,7 @@ const valid: Array<[
       4,
       6,
       {
+        fit: 'fill',
         withoutEnlargement: false
       }
     ]
@@ -76,6 +79,7 @@ const valid: Array<[
       4,
       6,
       {
+        fit: 'fill',
         kernel: 'cubic',
         withoutEnlargement: true
       }
@@ -86,7 +90,8 @@ const valid: Array<[
 type BadCase = [string, boolean];
 const invalid: BadCase[] = [
   ['width=asgakshd', true],
-  ['width=15&dpr=-5', false]
+  ['width=15&dpr=-5', false],
+  ['width=15&dpr=iuahsdk', false]
 ];
 const unsupported: BadCase[] = [
   ['width=0.5', true],

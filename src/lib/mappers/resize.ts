@@ -4,15 +4,15 @@ import { Mapper, Param } from '../imageopto-types';
 
 const debug = makeDebug('hastily:resize');
 
-const optoFitToSharp: Record<string, keyof FitEnum> = {
-  bounds: 'contain',
+export const optoFitToSharp: Record<string, keyof FitEnum> = {
+  bounds: 'inside',
   cover: 'outside',
   crop: 'cover'
 };
 
 // sharp supports mitchell interpolation and not bilinear,
 // but who's gonna notice?
-const optoResizeFilterToSharp: Record<string, keyof KernelEnum> = {
+export const optoResizeFilterToSharp: Record<string, keyof KernelEnum> = {
   bicubic: 'cubic',
   bilinear: 'mitchell',
   cubic: 'cubic',
@@ -61,8 +61,8 @@ const resize: Mapper = (sharp, params) => {
   }
   debug('width %s, height %s, dpr %s', width, height, dpr);
   if (dpr) {
-    if (dpr < 1) {
-      params.warn('invalid', 'dpr', 'less than 1');
+    if (!(dpr > 0)) {
+      params.warn('invalid', 'dpr', 'must be a number above 0');
     } else {
       width *= dpr;
       debug('width *= dpr == %s', width);
@@ -84,6 +84,8 @@ const resize: Mapper = (sharp, params) => {
       params.warn('unsupported', 'fit');
     }
     debug('mapped options.fit from %s -> %s', fitOpt, options.fit);
+  } else if (typeof height === 'number' && height > 0) {
+    options.fit = 'fill';
   }
   if (params.get('enable') === 'true' || params.get('disable') === 'false') {
     debug('overriding withoutEnlargement to false, yucky enlargement enabled');

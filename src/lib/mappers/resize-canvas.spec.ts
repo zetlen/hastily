@@ -16,7 +16,7 @@ const valid: Array<[string, ResizeArgs]> = [
         background: 'white',
         fit: 'contain',
         position: 'left top',
-        withoutEnlargement: true
+        withoutEnlargement: false
       }
     ]
   ],
@@ -28,7 +28,31 @@ const valid: Array<[string, ResizeArgs]> = [
       {
         background: '#cef345',
         fit: 'contain',
-        withoutEnlargement: true
+        withoutEnlargement: false
+      }
+    ]
+  ],
+  [
+    'canvas=400,200&bg-color=cef345&fit=bounds',
+    [
+      400,
+      200,
+      {
+        background: '#cef345',
+        fit: 'inside',
+        withoutEnlargement: false
+      }
+    ]
+  ],
+  [
+    'canvas=400,200&bg-color=cef345&fit=wrong',
+    [
+      400,
+      200,
+      {
+        background: '#cef345',
+        fit: 'contain',
+        withoutEnlargement: false
       }
     ]
   ]
