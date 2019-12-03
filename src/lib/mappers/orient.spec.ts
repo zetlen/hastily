@@ -1,7 +1,6 @@
 // tslint:disable:no-expression-statement
 import test from 'ava';
 import { Sharp } from 'sharp';
-import { FastlyParamError } from '../errors';
 import { Orientation } from '../imageopto-types';
 import { runMapperWithParams } from './__testhelpers';
 import orient from './orient';
@@ -33,11 +32,22 @@ const valid: Case[] = [
 
 valid.forEach(([orientation, calls]) => {
   test(`calls extract with orient=${orientation}`, t => {
-    const mockSharp = runMapperWithParams(orient, `orient=${orientation}`);
-    t.deepEqual(mockSharp.calls, calls);
+    const { mock, mapped } = runMapperWithParams(
+      orient,
+      `orient=${orientation}`
+    );
+    t.true(mock === mapped, 'returns sharp');
+    t.deepEqual(mock.calls, calls, 'calls orient methods');
   });
 });
 
-test(`throws exception for bad orient=wrong`, t => {
-  t.throws(() => runMapperWithParams(orient, `orient=wrong`), FastlyParamError);
+test(`warns for bad orient=wrong`, t => {
+  const { mock, mapped, warnings } = runMapperWithParams(
+    orient,
+    `orient=wrong`
+  );
+  t.false(mapped, 'returns false');
+  t.is(mock.calls.length, 0, 'does not call sharp');
+  t.true(warnings.length > 0, 'logs warning');
+  t.is(warnings[0].type, 'invalid', 'warning is for invalid parameter');
 });

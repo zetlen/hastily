@@ -1,5 +1,4 @@
 import { Sharp } from 'sharp';
-import { FastlyParamError } from '../errors';
 import { Mapper, Orientation } from '../imageopto-types';
 
 type Orienter = (x: Sharp) => Sharp;
@@ -31,13 +30,15 @@ const orienters: Record<Orientation, Orienter> = {
  * @hidden
  */
 const orient: Mapper = (sharp, params) => {
-  const orienter = orienters[params.get('orient') as Orientation];
+  const orientation = params.get('orient') as Orientation;
+  const orienter = orienters[orientation];
   if (!orienter) {
-    throw new FastlyParamError(
-      params,
+    params.warn(
+      'invalid',
       'orient',
-      `legal values are ${Object.keys(orienters)}`
+      `legal values are ${Object.keys(orienters)}. Will not orient.`
     );
+    return false;
   }
   return orienter(sharp);
 };

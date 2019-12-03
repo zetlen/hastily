@@ -1,14 +1,12 @@
 // tslint:disable:no-expression-statement
 import test from 'ava';
 import { ResizeOptions } from 'sharp';
-import { FastlyCompatError, FastlyParamError } from '../errors';
+import { WarnType } from '../imageopto-types';
 import { runMapperWithParams } from './__testhelpers';
 import resizeCanvas from './resize-canvas';
 
-const valid: Array<[
-  string,
-  [number | undefined, number | undefined, ResizeOptions]
-]> = [
+type ResizeArgs = [number | undefined, number | undefined, ResizeOptions];
+const valid: Array<[string, ResizeArgs]> = [
   [
     'canvas=400,200,x0,y0',
     [
@@ -18,7 +16,7 @@ const valid: Array<[
         background: 'white',
         fit: 'contain',
         position: 'left top',
-        withoutEnlargement: true
+        withoutEnlargement: false
       }
     ]
   ],
@@ -30,7 +28,31 @@ const valid: Array<[
       {
         background: '#cef345',
         fit: 'contain',
-        withoutEnlargement: true
+        withoutEnlargement: false
+      }
+    ]
+  ],
+  [
+    'canvas=400,200&bg-color=cef345&fit=bounds',
+    [
+      400,
+      200,
+      {
+        background: '#cef345',
+        fit: 'inside',
+        withoutEnlargement: false
+      }
+    ]
+  ],
+  [
+    'canvas=400,200&bg-color=cef345&fit=wrong',
+    [
+      400,
+      200,
+      {
+        background: '#cef345',
+        fit: 'contain',
+        withoutEnlargement: false
       }
     ]
   ]
@@ -41,19 +63,28 @@ const unsupported: string[] = ['canvas=300,300,x90,y10'];
 
 valid.forEach(([query, [width, height, options]]) => {
   test(`calls extend with ${query}`, t => {
-    const mockSharp = runMapperWithParams(resizeCanvas, query);
-    t.deepEqual(mockSharp.calls[0], ['resize', [width, height, options]]);
+    const { mock, mapped } = runMapperWithParams(resizeCanvas, query);
+    t.true(mock === mapped, 'returns sharp');
+    t.deepEqual(
+      mock.calls[0],
+      ['resize', [width, height, options]],
+      'calls sharp.resize'
+    );
   });
 });
 
-invalid.forEach(query => {
-  test(`throws exception for bad arguments ${query}`, t => {
-    t.throws(() => runMapperWithParams(resizeCanvas, query), FastlyParamError);
+const testWarning = (query: string, warningType: WarnType): void => {
+  test(`warns for ${warningType} arguments ${query}`, t => {
+    const { mock, mapped, warnings } = runMapperWithParams(resizeCanvas, query);
+    t.false(mapped, 'returns false');
+    t.is(mock.calls.length, 0, 'does not call sharp');
+    t.true(warnings.length > 0, 'logs warning');
+    t.true(
+      warnings.some(({ type }) => type === warningType),
+      `warning is for ${warningType} parameter`
+    );
   });
-});
+};
 
-unsupported.forEach(query => {
-  test(`throws exception for unsupported arguments ${query}`, t => {
-    t.throws(() => runMapperWithParams(resizeCanvas, query), FastlyCompatError);
-  });
-});
+invalid.forEach(query => testWarning(query, 'invalid'));
+unsupported.forEach(query => testWarning(query, 'unsupported'));

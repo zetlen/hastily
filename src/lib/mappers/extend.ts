@@ -1,16 +1,25 @@
 import { Mapper } from '../imageopto-types';
 
 import { ExtendOptions } from 'sharp';
-import { colorFromParam, cssBoxFromParam } from '../helpers';
 
 /**
  * @hidden
  */
 const extend: Mapper = (sharp, params) => {
-  const options = cssBoxFromParam(params, 'pad') as ExtendOptions;
-  options.background = params.has('bg-color')
-    ? colorFromParam(params, 'bg-color')
-    : 'white';
+  let options;
+  try {
+    options = params.toCssBox('pad') as ExtendOptions;
+  } catch (e) {
+    return false;
+  }
+  options.background = 'white';
+  if (params.has('bg-color')) {
+    try {
+      options.background = params.toColor('bg-color');
+    } catch (e) {
+      // continue no prob
+    }
+  }
   return sharp.extend(options);
 };
 
