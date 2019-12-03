@@ -5,9 +5,9 @@ import { Request } from 'express';
 import onHeaders from 'on-headers';
 import {
   Handler,
-  Listener,
-  MutableResponse,
-  WorkStream
+  IMutableResponse,
+  IWorkStream,
+  Listener
 } from './imageopto-types';
 
 /**
@@ -15,15 +15,15 @@ import {
  */
 export default function splice(
   req: Request,
-  res: MutableResponse,
+  res: IMutableResponse,
   next: (e?: Error) => any,
-  makeStream: () => WorkStream | false
+  makeStream: () => IWorkStream | false
 ) {
   const debug = makeDebug('hastily:splice:' + req.url);
   let ended = false;
   let length;
   const listeners: Listener[] = [];
-  let stream: WorkStream | false;
+  let stream: IWorkStream | false;
 
   const resEnd = res.end.bind(res);
   const resOn = res.on.bind(res);
@@ -31,7 +31,7 @@ export default function splice(
   const resFlush =
     typeof res.flush === 'function' ? res.flush.bind(res) : () => null;
 
-  const tryImplicitHeader = (instance: MutableResponse): boolean => {
+  const tryImplicitHeader = (instance: IMutableResponse): boolean => {
     try {
       instance._implicitHeader();
       return true;
@@ -80,7 +80,7 @@ export default function splice(
     return resWrite.call(this, chunk, encoding);
   };
 
-  res.end = function end(this: MutableResponse, chunk: any, encoding: any) {
+  res.end = function end(this: IMutableResponse, chunk: any, encoding: any) {
     debug('outgoing response.end() called');
     if (ended) {
       debug('response.end(): ended is already true, returning');
@@ -98,7 +98,7 @@ export default function splice(
       }
       debug('response.end(): calling this._implicitHeader()');
       if (tryImplicitHeader(this)) {
-        return false;
+        debug('tryImplicitHeader succeeded');
       }
     }
 
@@ -121,13 +121,13 @@ export default function splice(
       debug('no chunk exists in .end, ending stream clean');
       stream.end();
     }
-  } as MutableResponse['end'];
+  } as IMutableResponse['end'];
 
   function addBufferedListener(
-    this: MutableResponse,
+    this: IMutableResponse,
     type: string | symbol,
     listener: Handler
-  ): MutableResponse {
+  ): IMutableResponse {
     debug('res.on called for "%s" event', type);
     if (!listeners || type !== 'drain') {
       debug(
@@ -140,7 +140,7 @@ export default function splice(
 
     if (stream) {
       debug('res.on() has access to stream, passing listener');
-      return (stream.on(type, listener) as unknown) as MutableResponse;
+      return (stream.on(type, listener) as unknown) as IMutableResponse;
     }
 
     debug('stream does not exist; buffering listeners for future stream');
@@ -177,14 +177,14 @@ export default function splice(
       // compression
       stream.on('data', function onStreamData(chunk) {
         if (resWrite(chunk) === false) {
-          (stream as WorkStream).pause();
+          (stream as IWorkStream).pause();
         }
       });
 
       stream.on('end', resEnd);
 
       resOn.call(res, 'drain', function onResponseDrain() {
-        (stream as WorkStream).resume();
+        (stream as IWorkStream).resume();
       });
     } catch (e) {
       console.error(e);
@@ -203,7 +203,7 @@ export default function splice(
  */
 
 function addListeners(
-  stream: MutableResponse | WorkStream,
+  stream: IMutableResponse | IWorkStream,
   on: any,
   listeners: Listener[]
 ): void {

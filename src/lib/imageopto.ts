@@ -7,18 +7,31 @@ import makeDebug from 'debug';
 import { Request } from 'express';
 import mime from 'mime-types';
 import sharp, { FormatEnum } from 'sharp';
+import { URLSearchParams } from 'url';
 import vary from 'vary';
-import { DebugLogger, MutableResponse, WorkStream } from './imageopto-types';
+import RequestErrors from './errors';
+import FastlyParams from './fastly-params';
+import {
+  DebugLogger,
+  ErrorLogger,
+  IMutableResponse,
+  IWorkStream,
+  Middleware,
+  Param,
+  RequestFilter
+} from './imageopto-types';
 import mapOptions from './map-options';
 import splice from './splice-response';
 
-/**
- * Receives an [express Request](https://expressjs.com/en/api.html#req) and
- * returns `true` if hastily should attempt to optimize the current request.
- * The default implementation tests the file extension for files supported as
- * input formats by `sharp`.
- */
-export type RequestFilter = (request: Request) => boolean;
+export interface ImageOptoOptions {
+  filter: RequestFilter;
+  errorLog: ErrorLogger;
+  /**
+   * Set true to disable error logging; the errorLog function will never be
+   * called.
+   */
+  quiet?: boolean;
+}
 
 const HASTILY_HEADER = {
   NAME: 'X-Optimized',
@@ -50,16 +63,26 @@ export const hasSupportedExtension: RequestFilter = req =>
  * Returns a new imageopto middleware for use in Express `app.use()`.
  * Won't do anything if the Express app isn't already serving images!
  *
- * @param filter {RequestFilter} Optionally, supply a {@link RequestFilter}
- * function here to filter requests.
  */
 export function imageopto(
-  filter: RequestFilter = hasSupportedExtension
-): (req: Request, res: MutableResponse, next: () => any) => any {
+  filterOrOpts: RequestFilter | ImageOptoOptions
+): Middleware {
+  const options: ImageOptoOptions = {
+    errorLog: errors => console.error(errors.toString()),
+    filter: hasSupportedExtension
+  };
+  if (typeof filterOrOpts === 'function') {
+    options.filter = filterOrOpts;
+  } else if (typeof filterOrOpts === 'object') {
+    options.filter = filterOrOpts.filter || options.filter;
+    options.errorLog = options.quiet
+      ? _ => void 0
+      : filterOrOpts.errorLog || options.errorLog;
+  }
   makeDebug('hastily:middleware:construct')('creating new middleware');
   return function hastily(req, res, next) {
     const debug = makeDebug('hastily:middleware:' + req.path);
-    if (!filter(req)) {
+    if (!options.filter(req)) {
       return next();
     }
     debug('testing hastily for %s', req.rawHeaders);
@@ -76,9 +99,23 @@ export function imageopto(
       res.setHeader(HASTILY_HEADER.NAME, HASTILY_HEADER.VALUE);
 
       // image opto stream
-      const sharpStream = mapOptions(req.query, sharp(), req, res);
+      const params = new FastlyParams(
+        new Map<Param, string>(
+          (new URLSearchParams(req.query).entries() as unknown) as Map<
+            Param,
+            string
+          >
+        ),
+        req,
+        res
+      );
+      const sharpStream = mapOptions(params);
+      const warnings = params.getWarnings();
+      if (warnings.length > 0) {
+        options.errorLog(new RequestErrors(req.url, warnings));
+      }
       debug('mapped options and created sharp stream');
-      return (sharpStream as unknown) as WorkStream;
+      return (sharpStream as unknown) as IWorkStream;
     });
   };
 }
@@ -91,11 +128,16 @@ const cacheControlNoTransformRegExp = /(?:^|,)\s*?no-transform\s*?(?:,|$)/;
 
 function shouldTransform(
   req: Request,
-  res: MutableResponse,
+  res: IMutableResponse,
   debug: DebugLogger
 ) {
   if (req.method === 'HEAD') {
     debug('no transform: request method is HEAD');
+    return false;
+  }
+
+  if (res.statusCode > 299 || res.statusCode < 200) {
+    debug('no transform: res.statusCode is %s', res.statusCode);
     return false;
   }
 

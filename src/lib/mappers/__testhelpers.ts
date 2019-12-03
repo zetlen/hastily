@@ -3,7 +3,14 @@ import { Request } from 'express';
 import sharp, { OutputInfo, Sharp } from 'sharp';
 import { Duplex } from 'stream';
 import { URLSearchParams } from 'url';
-import { Mapper, MutableResponse, Param, Params } from '../imageopto-types';
+import FastlyParams from '../fastly-params';
+import {
+  IFastlyParams,
+  IMutableResponse,
+  Mapper,
+  Param,
+  Warning
+} from '../imageopto-types';
 
 type SharpCall = [keyof Sharp, any[]];
 
@@ -239,18 +246,25 @@ class MockSharp extends Duplex implements Sharp {
   }
 }
 
-function queryToMap(query: string): Params {
-  return new Map<Param, string>(
-    (new URLSearchParams(query).entries() as unknown) as Map<Param, string>
+export function mockParams(query: string): IFastlyParams {
+  return new FastlyParams(
+    new Map<Param, string>(
+      (new URLSearchParams(query).entries() as unknown) as Map<Param, string>
+    ),
+    ({} as unknown) as Request,
+    ({} as unknown) as IMutableResponse
   );
 }
 
-export function runMapperWithParams(mapper: Mapper, query: string): MockSharp {
-  return mapper(
-    new MockSharp(),
-    queryToMap(query),
-    undefined,
-    ({} as unknown) as Request,
-    ({} as unknown) as MutableResponse
-  ) as MockSharp;
+export function runMapperWithParams(
+  mapper: Mapper,
+  query: string
+): { mock: MockSharp; warnings: Warning[]; mapped: MockSharp | false } {
+  const mock = new MockSharp();
+  const params = mockParams(query);
+  return {
+    mapped: mapper(mock, params) as MockSharp | false,
+    mock,
+    warnings: params.getWarnings()
+  };
 }

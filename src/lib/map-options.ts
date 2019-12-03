@@ -9,16 +9,9 @@
 
 import accepts from 'accepts';
 import makeDebug from 'debug';
-import { Request } from 'express';
-import { Sharp } from 'sharp';
-import { FastlyParamError } from './errors';
-import {
-  Format,
-  Mapper,
-  MutableResponse,
-  Param,
-  Params
-} from './imageopto-types';
+import sharp from 'sharp';
+import { Format, IFastlyParams, Mapper, Param } from './imageopto-types';
+
 import bgFlatten from './mappers/background-flatten';
 import blur from './mappers/blur';
 import extend from './mappers/extend';
@@ -53,73 +46,70 @@ const mappers: Record<Param, Mapper> = {
 
 const formatters: Record<Format, Mapper> = {
   gif: unsupported('format' as Param, 'GIF output unsupported by node-hastily'),
-  jpg: (transform, _, quality) => transform.jpeg({ quality }),
-  pjpg: (transform, _, quality) =>
-    transform.jpeg({ quality, progressive: true }),
-  png: (transform, _, quality) => transform.png({ quality }),
-  png8: (transform, _, quality) => transform.png({ palette: true, quality }),
-  webp: (transform, _, quality) => transform.webp({ quality }),
-  webpll: (transform, _, quality) =>
-    transform.webp({ quality, lossless: true }),
-  webply: (transform, _, quality) => transform.webp({ quality })
+  jpg: (transform, params) => transform.jpeg({ quality: params.quality }),
+  pjpg: (transform, params) =>
+    transform.jpeg({ quality: params.quality, progressive: true }),
+  png: (transform, params) => transform.png({ quality: params.quality }),
+  png8: (transform, params) =>
+    transform.png({ palette: true, quality: params.quality }),
+  webp: (transform, params) => transform.webp({ quality: params.quality }),
+  webpll: (transform, params) =>
+    transform.webp({ quality: params.quality, lossless: true }),
+  webply: (transform, params) => transform.webp({ quality: params.quality })
 };
 
 /**
  * @hidden
  */
-export default function optoToSharp(
-  options: Partial<Record<Param, string>>,
-  transform: Sharp,
-  req: Request,
-  res: MutableResponse
-) {
-  debug('starting with %o', options);
-  const params = new Map(Object.entries(options));
-
-  let quality: number | undefined;
-  if (params.has('quality')) {
-    quality = Number(params.get('quality'));
-    if (isNaN(quality)) {
-      quality = undefined;
-    }
-  }
-
+export default function optoToSharp(params: IFastlyParams) {
   const applied = new Set();
-  const paramKeys = params.keys();
+  const { req, res } = params;
+  const { query } = req;
+  const paramKeys = Object.keys(query);
+  let transform = sharp();
   for (const param of paramKeys) {
     const mapper = mappers[param as Param];
     if (mapper && !applied.has(mapper)) {
       debug('running mapper for %s', param);
-      applied.add(mapper);
-      transform = mapper(transform, params as Params, quality, req, res);
+      const out = mapper(transform, params);
+      if (out) {
+        applied.add(mapper);
+        transform = out;
+      }
     }
   }
 
-  if (params.get('auto') === 'webp' && accepts(req).type('image/webp')) {
+  if (query.auto === 'webp' && accepts(req).type('image/webp')) {
     debug('returning webp');
     res.type('image/webp');
-    return transform.webp({
-      quality
-    });
+    return formatters.webp(transform, params);
   }
 
-  const arguedFormat = params.get('format') as Format;
+  const arguedFormat = query.format as Format;
+  const tryJpeg: Mapper = (xform, { quality }) => {
+    if (applied.size === 0) {
+      debug('no mappers or formatters applied, doing nothing');
+      return false;
+    }
+    return xform.jpeg({
+      force: false,
+      quality
+    });
+  };
 
   if (!arguedFormat) {
     debug('no format argument, returning jpeg or whatever');
     res.type('image/jpeg');
-    return transform.jpeg({
-      force: false,
-      quality
-    });
+    return tryJpeg(transform, params);
   }
 
   const mapFormat = formatters[arguedFormat];
 
   if (typeof mapFormat !== 'function') {
-    throw new FastlyParamError(params as Params, 'format' as Param);
+    debug('bad format argument %s, returning jpeg', arguedFormat);
+    return tryJpeg(transform, params);
   }
   debug('attempting "%s" transform', arguedFormat);
   res.type(`image/${arguedFormat}`);
-  return mapFormat(transform, params as Params, quality, req, res);
+  return mapFormat(transform, params);
 }

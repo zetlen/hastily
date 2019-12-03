@@ -1,6 +1,5 @@
 // tslint:disable:no-expression-statement
 import test from 'ava';
-import { FastlyParamError } from '../errors';
 import { runMapperWithParams } from './__testhelpers';
 import backgroundFlatten from './background-flatten';
 
@@ -23,19 +22,28 @@ const invalid: string[] = ['300,300,-04', 'fb98n', '2,3,4,9'];
 
 valid.forEach(([input, background]) =>
   test(`flattens with bg-color=${input}`, t => {
-    const mockSharp = runMapperWithParams(
+    const { mock, mapped } = runMapperWithParams(
       backgroundFlatten,
       `bg-color=${input}`
     );
-    t.deepEqual(mockSharp.calls[0], ['flatten', [{ background }]]);
+    t.true(mock === mapped, 'returns sharp instance');
+    t.deepEqual(
+      mock.calls[0],
+      ['flatten', [{ background }]],
+      'calls sharp.flatten'
+    );
   })
 );
 
 invalid.forEach(input =>
-  test(`throws exception for out of range bg-color=${input}`, t => {
-    t.throws(
-      () => runMapperWithParams(backgroundFlatten, `bg-color=${input}`),
-      FastlyParamError
+  test(`returns false and warns for out of range bg-color=${input}`, t => {
+    const { mock, warnings, mapped } = runMapperWithParams(
+      backgroundFlatten,
+      `bg-color=${input}`
     );
+    t.false(mapped, 'returns false');
+    t.is(mock.calls.length, 0, 'does not call sharp');
+    t.true(warnings.length > 0, 'logs warning');
+    t.is(warnings[0].type, 'invalid', 'warning is for invalid parameter');
   })
 );

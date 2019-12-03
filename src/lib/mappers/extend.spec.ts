@@ -1,7 +1,7 @@
 // tslint:disable:no-expression-statement
 import test from 'ava';
 import { ExtendOptions } from 'sharp';
-import { FastlyParamError } from '../errors';
+import { WarnType } from '../imageopto-types';
 import { runMapperWithParams } from './__testhelpers';
 import extend from './extend';
 
@@ -39,21 +39,37 @@ const valid: Array<[string, ExtendOptions]> = [
 
 const invalid: string[] = [
   'pad=klajshdlajsh',
-  'pad=4&bg-color=kajhsdladh89',
   'pad=5,5,5,5,5,5,5',
-  'pad=0.5,bg-color=666',
   'pad=20,bg-color=5,6,7,8'
 ];
 
+const unsupported: string[] = ['pad=0.5,bg-color=666'];
+
 valid.forEach(([query, output]) => {
   test(`calls extend with ${query}`, t => {
-    const mockSharp = runMapperWithParams(extend, query);
-    t.deepEqual(mockSharp.calls[0], ['extend', [output]]);
+    const { mock, mapped } = runMapperWithParams(extend, query);
+    t.true(mock === mapped, 'returns sharp');
+    t.deepEqual(mock.calls[0], ['extend', [output]], 'runs sharp.extend');
   });
 });
 
-invalid.forEach(query => {
-  test(`throws exception for bad arguments ${query}`, t => {
-    t.throws(() => runMapperWithParams(extend, query), FastlyParamError);
+function testWarn(query: string, warnType: WarnType) {
+  test(`warns for ${warnType} ${query}`, t => {
+    const { mock, mapped, warnings } = runMapperWithParams(extend, query);
+    t.false(mapped, 'returns false');
+    t.is(mock.calls.length, 0, 'does not call sharp');
+    t.true(warnings.length > 0, 'logs warning');
+    t.true(
+      warnings.some(({ type }) => type === warnType),
+      `warning is for ${warnType} parameter`
+    );
   });
+}
+
+invalid.forEach(query => {
+  testWarn(query, 'invalid');
+});
+
+unsupported.forEach(query => {
+  testWarn(query, 'unsupported');
 });

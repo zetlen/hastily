@@ -1,14 +1,9 @@
 // tslint:disable:no-expression-statement
 import test from 'ava';
 import { ResizeOptions } from 'sharp';
-import { FastlyCompatError, FastlyParamError } from '../errors';
+import { WarnType } from '../imageopto-types';
 import { runMapperWithParams } from './__testhelpers';
 import resize from './resize';
-
-test('does nothing without width', t => {
-  const mockSharp = runMapperWithParams(resize, 'height=100');
-  t.is(mockSharp.calls.length, 0);
-});
 
 const valid: Array<[
   string,
@@ -88,29 +83,54 @@ const valid: Array<[
   ]
 ];
 
-const invalid: string[] = [
-  'width=asgakshd',
-  'width=15&dpr=-5',
-  'width=9&fit=blorf',
-  'width=29&resize-filter=blurf'
+type BadCase = [string, boolean];
+const invalid: BadCase[] = [
+  ['width=asgakshd', true],
+  ['width=15&dpr=-5', false]
 ];
-const unsupported: string[] = ['width=0.5'];
+const unsupported: BadCase[] = [
+  ['width=0.5', true],
+  ['height=50', true],
+  ['width=9&fit=blorf', false],
+  ['width=29&resize-filter=blurf', false]
+];
 
 valid.forEach(([query, [width, height, options]]) => {
   test(`calls extend with ${query}`, t => {
-    const mockSharp = runMapperWithParams(resize, query);
-    t.deepEqual(mockSharp.calls[0], ['resize', [width, height, options]]);
+    const { mock, mapped } = runMapperWithParams(resize, query);
+    t.true(mock === mapped, 'returns sharp');
+    t.deepEqual(
+      mock.calls[0],
+      ['resize', [width, height, options]],
+      'calls sharp.resize'
+    );
   });
 });
 
-invalid.forEach(query => {
-  test(`throws exception for bad arguments ${query}`, t => {
-    t.throws(() => runMapperWithParams(resize, query), FastlyParamError);
+function testWarning(
+  query: string,
+  cancelled: boolean,
+  warningType: WarnType
+): void {
+  test(`warns for ${warningType} arguments ${query}`, t => {
+    const { mock, mapped, warnings } = runMapperWithParams(resize, query);
+    if (cancelled) {
+      t.false(mapped, 'returns false');
+      t.is(mock.calls.length, 0, 'does not call sharp');
+    } else {
+      t.true(mock === mapped);
+    }
+    t.true(warnings.length > 0, 'logs warning');
+    t.true(
+      warnings.some(({ type }) => type === warningType),
+      `warning is for ${warningType} parameter`
+    );
   });
-});
+}
 
-unsupported.forEach(query => {
-  test(`throws exception for unsupported arguments ${query}`, t => {
-    t.throws(() => runMapperWithParams(resize, query), FastlyCompatError);
-  });
-});
+invalid.forEach(([query, cancelled]) =>
+  testWarning(query, cancelled, 'invalid')
+);
+unsupported.forEach(([query, cancelled]) =>
+  testWarning(query, cancelled, 'unsupported')
+);

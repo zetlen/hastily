@@ -13,13 +13,21 @@ const invalid: string[] = ['-70', '3000'];
 
 valid.forEach(([input, output]) =>
   test(`calls blur with sigma=${input}`, t => {
-    const mockSharp = runMapperWithParams(blur, `blur=${input}`);
-    t.deepEqual(mockSharp.calls[0], ['blur', [output]]);
+    const { mock, mapped } = runMapperWithParams(blur, `blur=${input}`);
+    t.true(mock === mapped, 'returns sharp');
+    t.deepEqual(mock.calls[0], ['blur', [output]], 'runs sharp.blur');
   })
 );
 
 invalid.forEach(input =>
   test(`throws exception for out of range sigma=${input}`, t => {
-    t.throws(() => runMapperWithParams(blur, `blur=${input}`));
+    const { mock, mapped, warnings } = runMapperWithParams(
+      blur,
+      `blur=${input}`
+    );
+    t.false(mapped, 'returns false');
+    t.is(mock.calls.length, 0, 'does not call sharp');
+    t.true(warnings.length > 0, 'logs warning');
+    t.is(warnings[0].type, 'invalid', 'warning is for invalid parameter');
   })
 );

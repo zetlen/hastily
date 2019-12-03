@@ -1,19 +1,23 @@
 import { Region } from 'sharp';
-import { FastlyCompatError } from '../errors';
-import { regionFromParam } from '../helpers';
 import { Mapper } from '../imageopto-types';
 
 /**
  * @hidden
  */
 const extractCrop: Mapper = (sharp, params) => {
-  const region = regionFromParam(params, 'crop');
+  let region;
+  try {
+    region = params.toRegion('crop');
+  } catch (e) {
+    return false;
+  }
   if (region.left === undefined || region.top === undefined) {
-    throw new FastlyCompatError(
-      params,
+    params.warn(
+      'unsupported',
       'crop',
-      'relative image cropping to center without absolute x and y params'
+      'relative image cropping to center without absolute x and y params. Will not crop.'
     );
+    return false;
   }
   return sharp.extract(region as Region);
 };

@@ -1,26 +1,36 @@
-import { ResizeOptions } from 'sharp';
-import { FastlyCompatError } from '../errors';
-import { colorFromParam, regionFromParam } from '../helpers';
+import { Color, ResizeOptions } from 'sharp';
 import { Mapper } from '../imageopto-types';
 
 /**
  * @hidden
  */
 const resizeCanvas: Mapper = (sharp, params) => {
+  let background: Color = 'white';
+  if (params.has('bg-color')) {
+    try {
+      background = params.toColor('bg-color');
+    } catch (e) {
+      // let it be the original;
+    }
+  }
   const options = ({
-    background: params.has('bg-color')
-      ? colorFromParam(params, 'bg-color')
-      : 'white',
+    background,
     fit: 'contain',
     withoutEnlargement: true
   } as unknown) as ResizeOptions;
-  const region = regionFromParam(params, 'canvas');
+  let region;
+  try {
+    region = params.toRegion('canvas');
+  } catch (e) {
+    return false;
+  }
   if (Number(region.left) > 0 || Number(region.top) > 0) {
-    throw new FastlyCompatError(
-      params,
+    params.warn(
+      'unsupported',
       'canvas',
-      'pixel-specific canvas offsets'
+      'pixel-specific (greater than 0) canvas offsets. Will not apply canvas.'
     );
+    return false;
   }
   const positions: string[] = [];
   if (region.left === 0) {
