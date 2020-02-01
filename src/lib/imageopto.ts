@@ -24,8 +24,15 @@ import mapOptions from './map-options';
 import splice from './splice-response';
 
 export interface ImageOptoOptions {
-  filter: RequestFilter;
   errorLog: ErrorLogger;
+  filter: RequestFilter;
+  /**
+   * Hastily detects when the served image has already been optimized by
+   * Hastily or the real Fastly API, by looking for headers. By default, it
+   * disables its own optimizer for such images. Set this to `false` explicitly
+   * to force hastily to re-optimize those images anyway.
+   */
+  force?: boolean;
   /**
    * Set true to disable error logging; the errorLog function will never be
    * called.
@@ -69,12 +76,14 @@ export function imageopto(
 ): Middleware {
   const options: ImageOptoOptions = {
     errorLog: errors => console.error(errors.toString()),
-    filter: hasSupportedExtension
+    filter: hasSupportedExtension,
+    force: false
   };
   if (typeof filterOrOpts === 'function') {
     options.filter = filterOrOpts;
   } else if (typeof filterOrOpts === 'object') {
     options.filter = filterOrOpts.filter || options.filter;
+    options.force = filterOrOpts.force;
     options.errorLog = options.quiet
       ? _ => void 0
       : filterOrOpts.errorLog || options.errorLog;
@@ -88,7 +97,7 @@ export function imageopto(
     debug('testing hastily for %s', req.rawHeaders);
     splice(req, res, next, () => {
       // determine if the entity should be transformed
-      if (!shouldTransform(req, res, debug)) {
+      if (!shouldTransform(req, res, options, debug)) {
         return false;
       }
 
@@ -129,6 +138,7 @@ const cacheControlNoTransformRegExp = /(?:^|,)\s*?no-transform\s*?(?:,|$)/;
 function shouldTransform(
   req: Request,
   res: IMutableResponse,
+  options: ImageOptoOptions,
   debug: DebugLogger
 ) {
   if (req.method === 'HEAD') {
@@ -153,24 +163,26 @@ function shouldTransform(
     return false;
   }
 
-  // Don't optimize if we've already done it somewhere
-  const hastilyHeader = res.getHeader(HASTILY_HEADER.NAME);
-  if (hastilyHeader === HASTILY_HEADER.VALUE) {
-    debug(
-      'no transform: header %o, hastily alrady transformed this earlier',
-      HASTILY_HEADER
-    );
-    return false;
-  }
+  if (!options.force) {
+    // Don't optimize if we've already done it somewhere
+    const hastilyHeader = res.getHeader(HASTILY_HEADER.NAME);
+    if (hastilyHeader === HASTILY_HEADER.VALUE) {
+      debug(
+        'no transform: header %o, hastily alrady transformed this earlier',
+        HASTILY_HEADER
+      );
+      return false;
+    }
 
-  // Don't optimize if Fastly has already done it for us
-  const fastlyHeader = res.getHeader('fastly-io-info');
-  if (fastlyHeader) {
-    debug(
-      'no transform: fastly already transformed according to fastly-io-info header: "%s"',
-      fastlyHeader
-    );
-    return false;
+    // Don't optimize if Fastly has already done it for us
+    const fastlyHeader = res.getHeader('fastly-io-info');
+    if (fastlyHeader) {
+      debug(
+        'no transform: fastly already transformed according to fastly-io-info header: "%s"',
+        fastlyHeader
+      );
+      return false;
+    }
   }
 
   const contentType = res.getHeader('content-type');
