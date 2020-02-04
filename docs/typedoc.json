@@ -1519,7 +1519,7 @@
 			"sources": [
 				{
 					"fileName": "lib/imageopto.ts",
-					"line": 132,
+					"line": 139,
 					"character": 35
 				}
 			],
@@ -1642,7 +1642,7 @@
 					}
 				]
 			},
-			"defaultValue": " new Set(\n  ...Object.keys(sharp.format).filter(\n    ext => sharp.format[ext as keyof FormatEnum].input.stream\n  )\n)"
+			"defaultValue": " new Set(\n  Object.keys(sharp.format).filter(\n    ext => sharp.format[ext as keyof FormatEnum].input.stream\n  )\n)"
 		},
 		{
 			"id": 241,
@@ -2220,7 +2220,7 @@
 			"sources": [
 				{
 					"fileName": "lib/imageopto.ts",
-					"line": 138,
+					"line": 145,
 					"character": 24
 				}
 			]
