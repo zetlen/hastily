@@ -1193,7 +1193,7 @@
 			]
 		},
 		{
-			"id": 247,
+			"id": 250,
 			"name": "ImageOptoOptions",
 			"kind": 256,
 			"kindString": "Interface",
@@ -1202,7 +1202,7 @@
 			},
 			"children": [
 				{
-					"id": 248,
+					"id": 251,
 					"name": "errorLog",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1222,7 +1222,7 @@
 					}
 				},
 				{
-					"id": 249,
+					"id": 252,
 					"name": "filter",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1242,7 +1242,7 @@
 					}
 				},
 				{
-					"id": 250,
+					"id": 253,
 					"name": "force",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1279,7 +1279,7 @@
 					}
 				},
 				{
-					"id": 251,
+					"id": 254,
 					"name": "quiet",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1321,10 +1321,10 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						248,
-						249,
-						250,
-						251
+						251,
+						252,
+						253,
+						254
 					]
 				}
 			],
@@ -1509,7 +1509,7 @@
 			"defaultValue": " Symbol('unset')"
 		},
 		{
-			"id": 263,
+			"id": 266,
 			"name": "cacheControlNoTransformRegExp",
 			"kind": 32,
 			"kindString": "Variable",
@@ -1550,7 +1550,7 @@
 				},
 				{
 					"fileName": "lib/map-options.ts",
-					"line": 24,
+					"line": 25,
 					"character": 11
 				}
 			],
@@ -1561,7 +1561,7 @@
 			"defaultValue": " makeDebug('hastily:options')"
 		},
 		{
-			"id": 256,
+			"id": 259,
 			"name": "imageExtensionRE",
 			"kind": 32,
 			"kindString": "Variable",
@@ -1592,7 +1592,7 @@
 			"sources": [
 				{
 					"fileName": "lib/map-options.ts",
-					"line": 26,
+					"line": 27,
 					"character": 13
 				}
 			],
@@ -1618,7 +1618,7 @@
 			"defaultValue": " [\n  ['width', resize],\n  ['height', resize],\n  ['dpr', resize],\n  ['fit', resize],\n  ['disable', resize],\n  ['enable', resize],\n  ['resize-filter', resize],\n  ['crop', extractCrop],\n  ['canvas', resizeCanvas],\n  ['pad', extend],\n  ['orient', orient],\n  ['bg-color', bgFlatten],\n  ['blur', blur],\n  ['brightness', unsupported('brightness', 'absolute brightness adjustment')],\n  ['contrast', unsupported('contrast', 'absolute contrast adjustment')],\n  ['saturation', unsupported('saturation', 'absolute saturation adjustment')],\n  ['sharpen', unsupported('sharpen', 'unsharp mask')],\n  ['trim', unsupported('trim', 'relative trimming from all four sides')]\n]"
 		},
 		{
-			"id": 255,
+			"id": 258,
 			"name": "streamableFileExtensions",
 			"kind": 32,
 			"kindString": "Variable",
@@ -1645,7 +1645,7 @@
 			"defaultValue": " new Set(\n  ...Object.keys(sharp.format).filter(\n    ext => sharp.format[ext as keyof FormatEnum].input.stream\n  )\n)"
 		},
 		{
-			"id": 238,
+			"id": 241,
 			"name": "addListeners",
 			"kind": 64,
 			"kindString": "Function",
@@ -1654,7 +1654,7 @@
 			},
 			"signatures": [
 				{
-					"id": 239,
+					"id": 242,
 					"name": "addListeners",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -1666,7 +1666,7 @@
 					},
 					"parameters": [
 						{
-							"id": 240,
+							"id": 243,
 							"name": "stream",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -1686,7 +1686,7 @@
 							}
 						},
 						{
-							"id": 241,
+							"id": 244,
 							"name": "on",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -1697,7 +1697,7 @@
 							}
 						},
 						{
-							"id": 242,
+							"id": 245,
 							"name": "listeners",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -1726,14 +1726,14 @@
 			]
 		},
 		{
-			"id": 243,
+			"id": 246,
 			"name": "chunkLength",
 			"kind": 64,
 			"kindString": "Function",
 			"flags": {},
 			"signatures": [
 				{
-					"id": 244,
+					"id": 247,
 					"name": "chunkLength",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -1743,7 +1743,7 @@
 					},
 					"parameters": [
 						{
-							"id": 245,
+							"id": 248,
 							"name": "chunk",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -1754,7 +1754,7 @@
 							}
 						},
 						{
-							"id": 246,
+							"id": 249,
 							"name": "encoding",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -1948,7 +1948,7 @@
 			]
 		},
 		{
-			"id": 257,
+			"id": 260,
 			"name": "hasSupportedExtension",
 			"kind": 64,
 			"kindString": "Function",
@@ -1961,7 +1961,7 @@
 			},
 			"signatures": [
 				{
-					"id": 258,
+					"id": 261,
 					"name": "hasSupportedExtension",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -1971,7 +1971,7 @@
 					},
 					"parameters": [
 						{
-							"id": 259,
+							"id": 262,
 							"name": "req",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -2006,7 +2006,7 @@
 			]
 		},
 		{
-			"id": 260,
+			"id": 263,
 			"name": "imageopto",
 			"kind": 64,
 			"kindString": "Function",
@@ -2015,7 +2015,7 @@
 			},
 			"signatures": [
 				{
-					"id": 261,
+					"id": 264,
 					"name": "imageopto",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -2025,7 +2025,7 @@
 					},
 					"parameters": [
 						{
-							"id": 262,
+							"id": 265,
 							"name": "filterOrOpts",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -2040,7 +2040,7 @@
 									{
 										"type": "reference",
 										"name": "ImageOptoOptions",
-										"id": 247
+										"id": 250
 									}
 								]
 							}
@@ -2145,7 +2145,7 @@
 			]
 		},
 		{
-			"id": 264,
+			"id": 267,
 			"name": "shouldTransform",
 			"kind": 64,
 			"kindString": "Function",
@@ -2154,7 +2154,7 @@
 			},
 			"signatures": [
 				{
-					"id": 265,
+					"id": 268,
 					"name": "shouldTransform",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -2166,7 +2166,7 @@
 					},
 					"parameters": [
 						{
-							"id": 266,
+							"id": 269,
 							"name": "req",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -2177,7 +2177,7 @@
 							}
 						},
 						{
-							"id": 267,
+							"id": 270,
 							"name": "res",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -2188,7 +2188,7 @@
 							}
 						},
 						{
-							"id": 268,
+							"id": 271,
 							"name": "options",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -2196,11 +2196,11 @@
 							"type": {
 								"type": "reference",
 								"name": "ImageOptoOptions",
-								"id": 247
+								"id": 250
 							}
 						},
 						{
-							"id": 269,
+							"id": 272,
 							"name": "debug",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -2226,7 +2226,7 @@
 			]
 		},
 		{
-			"id": 252,
+			"id": 255,
 			"name": "HASTILY_HEADER",
 			"kind": 2097152,
 			"kindString": "Object literal",
@@ -2235,7 +2235,7 @@
 			},
 			"children": [
 				{
-					"id": 253,
+					"id": 256,
 					"name": "NAME",
 					"kind": 32,
 					"kindString": "Variable",
@@ -2254,7 +2254,7 @@
 					"defaultValue": "\"X-Optimized\""
 				},
 				{
-					"id": 254,
+					"id": 257,
 					"name": "VALUE",
 					"kind": 32,
 					"kindString": "Variable",
@@ -2278,8 +2278,8 @@
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						253,
-						254
+						256,
+						257
 					]
 				}
 			],
@@ -2313,7 +2313,7 @@
 					"sources": [
 						{
 							"fileName": "lib/map-options.ts",
-							"line": 48,
+							"line": 49,
 							"character": 5
 						}
 					],
@@ -2421,7 +2421,7 @@
 					"sources": [
 						{
 							"fileName": "lib/map-options.ts",
-							"line": 49,
+							"line": 50,
 							"character": 5
 						}
 					]
@@ -2472,7 +2472,7 @@
 					"sources": [
 						{
 							"fileName": "lib/map-options.ts",
-							"line": 50,
+							"line": 51,
 							"character": 6
 						}
 					]
@@ -2523,7 +2523,7 @@
 					"sources": [
 						{
 							"fileName": "lib/map-options.ts",
-							"line": 52,
+							"line": 53,
 							"character": 5
 						}
 					]
@@ -2574,7 +2574,7 @@
 					"sources": [
 						{
 							"fileName": "lib/map-options.ts",
-							"line": 53,
+							"line": 54,
 							"character": 6
 						}
 					]
@@ -2625,7 +2625,7 @@
 					"sources": [
 						{
 							"fileName": "lib/map-options.ts",
-							"line": 55,
+							"line": 56,
 							"character": 6
 						}
 					]
@@ -2676,7 +2676,7 @@
 					"sources": [
 						{
 							"fileName": "lib/map-options.ts",
-							"line": 56,
+							"line": 57,
 							"character": 8
 						}
 					]
@@ -2727,7 +2727,7 @@
 					"sources": [
 						{
 							"fileName": "lib/map-options.ts",
-							"line": 58,
+							"line": 59,
 							"character": 8
 						}
 					]
@@ -2758,7 +2758,7 @@
 			"sources": [
 				{
 					"fileName": "lib/map-options.ts",
-					"line": 47,
+					"line": 48,
 					"character": 16
 				}
 			],
@@ -3827,7 +3827,7 @@
 			"title": "Interfaces",
 			"kind": 256,
 			"children": [
-				247
+				250
 			]
 		},
 		{
@@ -3843,35 +3843,35 @@
 			"children": [
 				64,
 				65,
-				263,
+				266,
 				163,
-				256,
+				259,
 				189,
-				255
+				258
 			]
 		},
 		{
 			"title": "Functions",
 			"kind": 64,
 			"children": [
-				238,
-				243,
+				241,
+				246,
 				86,
 				95,
 				101,
 				98,
-				257,
 				260,
+				263,
 				92,
 				89,
-				264
+				267
 			]
 		},
 		{
 			"title": "Object literals",
 			"kind": 2097152,
 			"children": [
-				252,
+				255,
 				190,
 				164,
 				168,

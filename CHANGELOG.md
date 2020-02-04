@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1](https://github.com/zetlen/hastily/compare/v0.4.0...v0.4.1) (2020-02-04)
+
+
+### Bug Fixes
+
+* stricter webp support detection ([9abb2cb](https://github.com/zetlen/hastily/commit/9abb2cb))
+
+
+### Tests
+
+* remove wrong dpr impl ([a9f8724](https://github.com/zetlen/hastily/commit/a9f8724))
+
+
+
 ## [0.4.0](https://github.com/zetlen/hastily/compare/v0.3.0...v0.4.0) (2020-02-01)
 
 
