@@ -1,6 +1,7 @@
 const path = require('path');
 const http = require('http');
 const fs = require('fs');
+const nocache = require('nocache');
 const express = require('express');
 
 const hastily = require('../');
@@ -18,6 +19,7 @@ function serve(middleware) {
   return new Promise((resolve, reject) => {
     try {
       const app = express();
+      app.use(nocache());
       app.use(middleware);
       const server = http.createServer(app);
       server.on('error', reject);
@@ -33,7 +35,11 @@ function serve(middleware) {
 
 async function main() {
   const demo = express();
-  const static = express.static(imageDir);
+  const static = express.static(imageDir, {
+    cacheControl: false,
+    etag: false,
+    lastModified: false
+  });
   demo.use('/original', static);
   demo.use('/hastily', hastily.imageopto(), static);
   demo.get('/fastly-compare', (req, res) => {
@@ -44,6 +50,7 @@ async function main() {
     <!doctype html>
 <html charset="utf-8">
   <head>
+    <meta http-equiv="Accept-CH" content="DPR, Width, Viewport-Width">
     <title>fastly/hastily compare</title>
     <style>
     body {
@@ -112,6 +119,7 @@ async function main() {
 
 <html>
   <head>
+    <meta http-equiv="Accept-CH" content="DPR, Width, Viewport-Width">
     <title>hastily demo</title>
     <style>
       body {

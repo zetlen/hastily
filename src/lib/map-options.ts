@@ -9,6 +9,7 @@
 
 import accepts from 'accepts';
 import makeDebug from 'debug';
+import { Request } from 'express';
 import sharp from 'sharp';
 import { Format, IFastlyParams, Mapper, Param } from './imageopto-types';
 
@@ -61,6 +62,17 @@ const formatters: Record<Format, Mapper> = {
 /**
  * @hidden
  */
+function supportsWebP(req: Request): boolean {
+  const types = accepts(req).types();
+  if (!types || (typeof types === 'string' && types !== 'image/webp')) {
+    return false;
+  }
+  return types.includes('image/webp');
+}
+
+/**
+ * @hidden
+ */
 export default function optoToSharp(params: IFastlyParams) {
   const applied = new Set();
   const { req, res } = params;
@@ -77,7 +89,7 @@ export default function optoToSharp(params: IFastlyParams) {
     }
   }
 
-  if (query.auto === 'webp' && accepts(req).type('image/webp')) {
+  if (query.auto === 'webp' && supportsWebP(req)) {
     debug('returning webp');
     res.type('image/webp');
     return formatters.webp(transform, params);

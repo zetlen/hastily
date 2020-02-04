@@ -36,7 +36,7 @@ const resize: Mapper = (sharp, params) => {
     return false;
   }
   const nums = params.toNumbers(['width', 'height', 'dpr']);
-  let width: number = nums[0] as number;
+  const width: number = nums[0] as number;
   let height: number | undefined = nums[1] as number;
   const dpr = nums[2];
   for (const [name, param] of [
@@ -56,22 +56,11 @@ const resize: Mapper = (sharp, params) => {
     params.warn('invalid', 'width', 'resize with non-numeric width param');
     return false;
   }
-  if (isNaN(height)) {
+  if (nums[1] && isNaN(height)) {
+    params.warn('invalid', 'height', 'resize with non-numeric height param');
     height = undefined;
   }
   debug('width %s, height %s, dpr %s', width, height, dpr);
-  if (dpr) {
-    if (!(dpr > 0)) {
-      params.warn('invalid', 'dpr', 'must be a number above 0');
-    } else {
-      width *= dpr;
-      debug('width *= dpr == %s', width);
-      if (typeof height === 'number') {
-        height *= dpr;
-        debug('height *= dpr == %s', height);
-      }
-    }
-  }
   const options: ResizeOptions = {
     withoutEnlargement: true
   };

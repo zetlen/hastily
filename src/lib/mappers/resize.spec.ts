@@ -22,20 +22,10 @@ const valid: Array<[
   [
     'width=400&height=300&dpr=1.8',
     [
-      720,
-      540,
+      400,
+      300,
       {
         fit: 'fill',
-        withoutEnlargement: true
-      }
-    ]
-  ],
-  [
-    'width=400&dpr=2',
-    [
-      800,
-      undefined,
-      {
         withoutEnlargement: true
       }
     ]
@@ -90,8 +80,7 @@ const valid: Array<[
 type BadCase = [string, boolean];
 const invalid: BadCase[] = [
   ['width=asgakshd', true],
-  ['width=15&dpr=-5', false],
-  ['width=15&dpr=iuahsdk', false]
+  ['width=15&height=aosiygdkj', false]
 ];
 const unsupported: BadCase[] = [
   ['width=0.5', true],
