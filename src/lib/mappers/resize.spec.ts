@@ -78,10 +78,7 @@ const valid: Array<[
 ];
 
 type BadCase = [string, boolean];
-const invalid: BadCase[] = [
-  ['width=asgakshd', true],
-  ['width=15&height=aosiygdkj', false]
-];
+const invalid: BadCase[] = [['width=asgakshd', true]];
 const unsupported: BadCase[] = [
   ['width=0.5', true],
   ['height=50', true],

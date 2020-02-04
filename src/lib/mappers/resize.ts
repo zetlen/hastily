@@ -56,8 +56,7 @@ const resize: Mapper = (sharp, params) => {
     params.warn('invalid', 'width', 'resize with non-numeric width param');
     return false;
   }
-  if (nums[1] && isNaN(height)) {
-    params.warn('invalid', 'height', 'resize with non-numeric height param');
+  if (isNaN(height)) {
     height = undefined;
   }
   debug('width %s, height %s, dpr %s', width, height, dpr);
