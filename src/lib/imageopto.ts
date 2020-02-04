@@ -46,7 +46,7 @@ const HASTILY_HEADER = {
 };
 
 const streamableFileExtensions = new Set(
-  ...Object.keys(sharp.format).filter(
+  Object.keys(sharp.format).filter(
     ext => sharp.format[ext as keyof FormatEnum].input.stream
   )
 );
@@ -88,7 +88,14 @@ export function imageopto(
       ? _ => void 0
       : filterOrOpts.errorLog || options.errorLog;
   }
-  makeDebug('hastily:middleware:construct')('creating new middleware');
+  const constructorDebug = makeDebug('hastily:middleware:construct');
+  constructorDebug('creating new middleware');
+  if (options.filter === hasSupportedExtension) {
+    constructorDebug(
+      'middleware filtering req.path for %s',
+      imageExtensionRE.source
+    );
+  }
   return function hastily(req, res, next) {
     const debug = makeDebug('hastily:middleware:' + req.path);
     if (!options.filter(req)) {
