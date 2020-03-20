@@ -1,6 +1,6 @@
 /* tslint:disable:variable-name */
 import { Request } from 'express';
-import sharp, { OutputInfo, Sharp } from 'sharp';
+import sharp, { OutputInfo, Sharp, Matrix3x3 } from 'sharp';
 import { Duplex } from 'stream';
 import { URLSearchParams } from 'url';
 import FastlyParams from '../fastly-params';
@@ -137,15 +137,18 @@ class MockSharp extends Duplex implements Sharp {
   ): sharp.Sharp {
     return this.track('linear', arguments);
   }
-  public recomb(
-    _inputMatrix: [
-      [number, number, number],
-      [number, number, number],
-      [number, number, number]
-    ]
-  ) {
+  public recomb(_matrix: Matrix3x3) {
     return this.track('recomb', arguments);
   }
+  // public recomb(
+  //   _inputMatrix: [
+  //     [number, number, number],
+  //     [number, number, number],
+  //     [number, number, number]
+  //   ]
+  // ) {
+  //   return this.track('recomb', arguments);
+  // }
   public modulate(..._: any[]): sharp.Sharp {
     throw new Error('Method not implemented.');
   }
@@ -225,7 +228,7 @@ class MockSharp extends Duplex implements Sharp {
     return this.track('tile', arguments);
   }
   public resize(
-    _width?: number | null | undefined,
+    _width?: sharp.ResizeOptions | number | null | undefined,
     _height?: number | null | undefined,
     _options?: sharp.ResizeOptions | undefined
   ): sharp.Sharp {

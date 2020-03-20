@@ -51,7 +51,7 @@ export type Param =
   | 'width';
 
 export type ParamMap = Map<Param, string>;
-export type NumericParams = Array<number | undefined>;
+export type NumericParams = (number | undefined)[];
 
 export type Mapper = (transform: Sharp, params: IFastlyParams) => Sharp | false;
 

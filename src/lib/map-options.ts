@@ -24,7 +24,7 @@ import unsupported from './mappers/unsupported';
 
 const debug = makeDebug('hastily:options');
 
-const mappers: Array<[Param, Mapper]> = [
+const mappers: [Param, Mapper][] = [
   ['width', resize],
   ['height', resize],
   ['dpr', resize],
