@@ -3,7 +3,7 @@ import test from 'ava';
 import { runMapperWithParams } from './__testhelpers';
 import blur from './blur';
 
-const valid: Array<[string, number]> = [
+const valid: [string, number][] = [
   ['1', 1],
   ['4.923', 4.923],
   ['1000', 1000]

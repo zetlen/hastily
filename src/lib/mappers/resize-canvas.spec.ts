@@ -6,7 +6,7 @@ import { runMapperWithParams } from './__testhelpers';
 import resizeCanvas from './resize-canvas';
 
 type ResizeArgs = [number | undefined, number | undefined, ResizeOptions];
-const valid: Array<[string, ResizeArgs]> = [
+const valid: [string, ResizeArgs][] = [
   [
     'canvas=400,200,x0,y0',
     [

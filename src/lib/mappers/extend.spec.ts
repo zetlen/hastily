@@ -5,7 +5,7 @@ import { WarnType } from '../imageopto-types';
 import { runMapperWithParams } from './__testhelpers';
 import extend from './extend';
 
-const valid: Array<[string, ExtendOptions]> = [
+const valid: [string, ExtendOptions][] = [
   [
     'pad=10,25,35,45',
     { background: 'white', bottom: 35, left: 45, right: 25, top: 10 }

@@ -4,7 +4,7 @@ import { Region } from 'sharp';
 import { runMapperWithParams } from './__testhelpers';
 import extractCrop from './extract-crop';
 
-const valid: Array<[string, Partial<Region>]> = [
+const valid: [string, Partial<Region>][] = [
   ['250,500,x40,y6', { height: 500, left: 40, top: 6, width: 250 }],
   ['500,250,y34,x100', { height: 250, left: 100, top: 34, width: 500 }]
 ];

@@ -5,10 +5,10 @@ import { WarnType } from '../imageopto-types';
 import { runMapperWithParams } from './__testhelpers';
 import resize from './resize';
 
-const valid: Array<[
+const valid: [
   string,
   [number | undefined, number | undefined, ResizeOptions]
-]> = [
+][] = [
   [
     'width=400',
     [
