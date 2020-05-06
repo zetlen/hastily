@@ -1,6 +1,6 @@
 {
   "name": "hastily",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "express middleware to simulate fastly cdn",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
