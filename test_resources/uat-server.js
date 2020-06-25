@@ -3,9 +3,12 @@ const http = require('http');
 const fs = require('fs');
 const nocache = require('nocache');
 const express = require('express');
+const { spawn } = require('child_process');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const hastily = require('../');
 
+const root = path.resolve(__dirname, '..');
 const imageDir = path.resolve(__dirname, 'images');
 const files = fs.readdirSync(imageDir);
 
@@ -15,6 +18,21 @@ function paramsFrom(dict) {
   return params;
 }
 
+const nginx = {
+  start() {
+    nginx.proc = spawn(
+      'nginx',
+      ['-c', 'test_resources/nginx.proxy.conf', '-p', root],
+      { cwd: root, stdio: 'inherit' }
+    );
+  },
+  stop() {
+    if (nginx.proc) {
+      nginx.proc.kill();
+    }
+  }
+};
+
 function serve(middleware) {
   return new Promise((resolve, reject) => {
     try {
@@ -23,7 +41,7 @@ function serve(middleware) {
       app.use(middleware);
       const server = http.createServer(app);
       server.on('error', reject);
-      server.listen(process.env.PORT || 3002, '0.0.0.0', () => {
+      server.listen(3002, '0.0.0.0', () => {
         const { address, port } = server.address();
         resolve(`http://${address}:${port}`);
       });
@@ -34,14 +52,22 @@ function serve(middleware) {
 }
 
 async function main() {
+  nginx.start();
   const demo = express();
   const static = express.static(imageDir, {
     cacheControl: false,
     etag: false,
     lastModified: false
   });
+  const nginxStatic = createProxyMiddleware({
+    target: 'http://localhost:3003/',
+    pathRewrite: {
+      '^/hastily-nginx-static': '/'
+    }
+  });
   demo.use('/original', static);
   demo.use('/hastily', hastily.imageopto(), static);
+  demo.use('/hastily-nginx-static', hastily.imageopto(), nginxStatic);
   demo.get('/fastly-compare', (req, res) => {
     const search = paramsFrom(req.query).toString();
     const theirs = `https://www.fastly.io/image.jpg?${search}`;
@@ -113,7 +139,18 @@ async function main() {
     demo.get(`/${filename}.html`, (req, res) => {
       const original = `/original/${filename}`;
       const params = paramsFrom(req.query);
-      const resized = `/hastily/${filename}?${params.toString()}`;
+      let base;
+      switch (req.query.nginx) {
+        case 'static':
+          base = '/hastily-nginx-static/';
+          break;
+        case 'proxy':
+          base = 'http://localhost:3003/hastily/';
+          break;
+        default:
+          base = '/hastily/';
+      }
+      const resized = `${base}${filename}?${params.toString()}`;
       res.status(200).send(
         `
 
@@ -156,4 +193,8 @@ async function main() {
   });
 }
 
-main();
+main().catch(e => {
+  console.error(e);
+  nginx.stop();
+  process.exit();
+});
