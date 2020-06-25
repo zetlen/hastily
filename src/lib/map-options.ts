@@ -42,7 +42,7 @@ const mappers: [Param, Mapper][] = [
   ['contrast', unsupported('contrast', 'absolute contrast adjustment')],
   ['saturation', unsupported('saturation', 'absolute saturation adjustment')],
   ['sharpen', unsupported('sharpen', 'unsharp mask')],
-  ['trim', unsupported('trim', 'relative trimming from all four sides')]
+  ['trim', unsupported('trim', 'relative trimming from all four sides')],
 ];
 
 const formatters: Record<Format, Mapper> = {
@@ -56,7 +56,7 @@ const formatters: Record<Format, Mapper> = {
   webp: (transform, params) => transform.webp({ quality: params.quality }),
   webpll: (transform, params) =>
     transform.webp({ quality: params.quality, lossless: true }),
-  webply: (transform, params) => transform.webp({ quality: params.quality })
+  webply: (transform, params) => transform.webp({ quality: params.quality }),
 };
 
 /**
@@ -103,7 +103,7 @@ export default function optoToSharp(params: IFastlyParams) {
     }
     return xform.jpeg({
       force: false,
-      quality
+      quality,
     });
   };
 

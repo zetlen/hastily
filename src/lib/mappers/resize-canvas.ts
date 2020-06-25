@@ -19,7 +19,7 @@ const resizeCanvas: Mapper = (sharp, params) => {
   const options: Partial<ResizeOptions> = {
     background,
     fit: 'contain',
-    withoutEnlargement: false
+    withoutEnlargement: false,
   };
   let region;
   try {

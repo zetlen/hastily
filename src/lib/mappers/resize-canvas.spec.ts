@@ -16,9 +16,9 @@ const valid: [string, ResizeArgs][] = [
         background: 'white',
         fit: 'contain',
         position: 'left top',
-        withoutEnlargement: false
-      }
-    ]
+        withoutEnlargement: false,
+      },
+    ],
   ],
   [
     'canvas=400,200&bg-color=cef345',
@@ -28,9 +28,9 @@ const valid: [string, ResizeArgs][] = [
       {
         background: '#cef345',
         fit: 'contain',
-        withoutEnlargement: false
-      }
-    ]
+        withoutEnlargement: false,
+      },
+    ],
   ],
   [
     'canvas=400,200&bg-color=cef345&fit=bounds',
@@ -40,9 +40,9 @@ const valid: [string, ResizeArgs][] = [
       {
         background: '#cef345',
         fit: 'inside',
-        withoutEnlargement: false
-      }
-    ]
+        withoutEnlargement: false,
+      },
+    ],
   ],
   [
     'canvas=400,200&bg-color=cef345&fit=wrong',
@@ -52,17 +52,17 @@ const valid: [string, ResizeArgs][] = [
       {
         background: '#cef345',
         fit: 'contain',
-        withoutEnlargement: false
-      }
-    ]
-  ]
+        withoutEnlargement: false,
+      },
+    ],
+  ],
 ];
 
 const invalid: string[] = ['canvas=iyuakgsjhd'];
 const unsupported: string[] = ['canvas=300,300,x90,y10'];
 
 valid.forEach(([query, [width, height, options]]) => {
-  test(`calls extend with ${query}`, t => {
+  test(`calls extend with ${query}`, (t) => {
     const { mock, mapped } = runMapperWithParams(resizeCanvas, query);
     t.true(mock === mapped, 'returns sharp');
     t.deepEqual(
@@ -74,7 +74,7 @@ valid.forEach(([query, [width, height, options]]) => {
 });
 
 const testWarning = (query: string, warningType: WarnType): void => {
-  test(`warns for ${warningType} arguments ${query}`, t => {
+  test(`warns for ${warningType} arguments ${query}`, (t) => {
     const { mock, mapped, warnings } = runMapperWithParams(resizeCanvas, query);
     t.false(mapped, 'returns false');
     t.is(mock.calls.length, 0, 'does not call sharp');
@@ -86,5 +86,5 @@ const testWarning = (query: string, warningType: WarnType): void => {
   });
 };
 
-invalid.forEach(query => testWarning(query, 'invalid'));
-unsupported.forEach(query => testWarning(query, 'unsupported'));
+invalid.forEach((query) => testWarning(query, 'invalid'));
+unsupported.forEach((query) => testWarning(query, 'unsupported'));

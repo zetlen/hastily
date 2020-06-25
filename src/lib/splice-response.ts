@@ -7,7 +7,7 @@ import {
   Handler,
   IMutableResponse,
   IWorkStream,
-  Listener
+  Listener,
 } from './imageopto-types';
 
 /**

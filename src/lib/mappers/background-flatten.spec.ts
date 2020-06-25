@@ -15,13 +15,13 @@ const valid: Case[] = [
   ['abc', '#abc'],
   ['aabbcc', '#aabbcc'],
   ['c0ffee', '#c0ffee'],
-  ['30,140,200,0.5', { b: 200, g: 140, r: 30, alpha: 0.5 }]
+  ['30,140,200,0.5', { b: 200, g: 140, r: 30, alpha: 0.5 }],
 ];
 
 const invalid: string[] = ['300,300,-04', 'fb98n', '2,3,4,9'];
 
 valid.forEach(([input, background]) =>
-  test(`flattens with bg-color=${input}`, t => {
+  test(`flattens with bg-color=${input}`, (t) => {
     const { mock, mapped } = runMapperWithParams(
       backgroundFlatten,
       `bg-color=${input}`
@@ -35,8 +35,8 @@ valid.forEach(([input, background]) =>
   })
 );
 
-invalid.forEach(input =>
-  test(`returns false and warns for out of range bg-color=${input}`, t => {
+invalid.forEach((input) =>
+  test(`returns false and warns for out of range bg-color=${input}`, (t) => {
     const { mock, warnings, mapped } = runMapperWithParams(
       backgroundFlatten,
       `bg-color=${input}`

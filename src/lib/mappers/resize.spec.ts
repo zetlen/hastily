@@ -15,9 +15,9 @@ const valid: [
       400,
       undefined,
       {
-        withoutEnlargement: true
-      }
-    ]
+        withoutEnlargement: true,
+      },
+    ],
   ],
   [
     'width=400&height=300&dpr=1.8',
@@ -26,9 +26,9 @@ const valid: [
       300,
       {
         fit: 'fill',
-        withoutEnlargement: true
-      }
-    ]
+        withoutEnlargement: true,
+      },
+    ],
   ],
   [
     'width=4&height=6&fit=bounds',
@@ -37,9 +37,9 @@ const valid: [
       6,
       {
         fit: 'inside',
-        withoutEnlargement: true
-      }
-    ]
+        withoutEnlargement: true,
+      },
+    ],
   ],
   [
     'width=4&height=6&enable=true',
@@ -48,9 +48,9 @@ const valid: [
       6,
       {
         fit: 'fill',
-        withoutEnlargement: false
-      }
-    ]
+        withoutEnlargement: false,
+      },
+    ],
   ],
   [
     'width=4&height=6&disable=false',
@@ -59,9 +59,9 @@ const valid: [
       6,
       {
         fit: 'fill',
-        withoutEnlargement: false
-      }
-    ]
+        withoutEnlargement: false,
+      },
+    ],
   ],
   [
     'width=4&height=6&resize-filter=bicubic',
@@ -71,10 +71,10 @@ const valid: [
       {
         fit: 'fill',
         kernel: 'cubic',
-        withoutEnlargement: true
-      }
-    ]
-  ]
+        withoutEnlargement: true,
+      },
+    ],
+  ],
 ];
 
 type BadCase = [string, boolean];
@@ -83,11 +83,11 @@ const unsupported: BadCase[] = [
   ['width=0.5', true],
   ['height=50', true],
   ['width=9&fit=blorf', false],
-  ['width=29&resize-filter=blurf', false]
+  ['width=29&resize-filter=blurf', false],
 ];
 
 valid.forEach(([query, [width, height, options]]) => {
-  test(`calls extend with ${query}`, t => {
+  test(`calls extend with ${query}`, (t) => {
     const { mock, mapped } = runMapperWithParams(resize, query);
     t.true(mock === mapped, 'returns sharp');
     t.deepEqual(
@@ -103,7 +103,7 @@ function testWarning(
   cancelled: boolean,
   warningType: WarnType
 ): void {
-  test(`warns for ${warningType} arguments ${query}`, t => {
+  test(`warns for ${warningType} arguments ${query}`, (t) => {
     const { mock, mapped, warnings } = runMapperWithParams(resize, query);
     if (cancelled) {
       t.false(mapped, 'returns false');

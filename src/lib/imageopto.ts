@@ -18,7 +18,7 @@ import {
   IWorkStream,
   Middleware,
   Param,
-  RequestFilter
+  RequestFilter,
 } from './imageopto-types';
 import mapOptions from './map-options';
 import splice from './splice-response';
@@ -42,12 +42,12 @@ export interface ImageOptoOptions {
 
 const HASTILY_HEADER = {
   NAME: 'X-Optimized',
-  VALUE: 'hastily'
+  VALUE: 'hastily',
 };
 
 const streamableFileExtensions = new Set(
   Object.keys(sharp.format).filter(
-    ext => sharp.format[ext as keyof FormatEnum].input.stream
+    (ext) => sharp.format[ext as keyof FormatEnum].input.stream
   )
 );
 // plus the one sharp doesn't mention outright, the alias to jpeg...
@@ -63,7 +63,7 @@ const imageExtensionRE = new RegExp(
  * extension matches a format that sharp can stream in to optimize.
  * @param req {Request}
  */
-export const hasSupportedExtension: RequestFilter = req =>
+export const hasSupportedExtension: RequestFilter = (req) =>
   imageExtensionRE.test(req.path);
 
 /**
@@ -75,9 +75,9 @@ export function imageopto(
   filterOrOpts: RequestFilter | ImageOptoOptions
 ): Middleware {
   const options: ImageOptoOptions = {
-    errorLog: errors => console.error(errors.toString()),
+    errorLog: (errors) => console.error(errors.toString()),
     filter: hasSupportedExtension,
-    force: false
+    force: false,
   };
   if (typeof filterOrOpts === 'function') {
     options.filter = filterOrOpts;
@@ -85,7 +85,7 @@ export function imageopto(
     options.filter = filterOrOpts.filter || options.filter;
     options.force = filterOrOpts.force;
     options.errorLog = options.quiet
-      ? _ => void 0
+      ? (_) => void 0
       : filterOrOpts.errorLog || options.errorLog;
   }
   const constructorDebug = makeDebug('hastily:middleware:construct');
@@ -117,10 +117,9 @@ export function imageopto(
       // image opto stream
       const params = new FastlyParams(
         new Map<Param, string>(
-          (new URLSearchParams(req.query).entries() as unknown) as Map<
-            Param,
-            string
-          >
+          (new URLSearchParams(
+            req.query as { [key: string]: string | string[] }
+          ).entries() as unknown) as Map<Param, string>
         ),
         req,
         res

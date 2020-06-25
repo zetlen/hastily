@@ -7,7 +7,7 @@ import {
   Param,
   ParamMap,
   Warning,
-  WarnType
+  WarnType,
 } from './imageopto-types';
 
 const QUALITY = 'quality' as Param;
@@ -59,7 +59,7 @@ export default class FastlyParams implements IFastlyParams {
       msg: `Parameter "${param}=${this.get(param)}" is ${type}${
         msg ? ' -- ' + msg : ''
       }`,
-      type
+      type,
     });
   }
 
@@ -110,7 +110,7 @@ export default class FastlyParams implements IFastlyParams {
         bottom: nums[2],
         left: nums[3],
         right: nums[1],
-        top: nums[0]
+        top: nums[0],
       };
     }
     if (nums.length === 3) {
@@ -118,7 +118,7 @@ export default class FastlyParams implements IFastlyParams {
         bottom: nums[2],
         left: nums[1],
         right: nums[1],
-        top: nums[0]
+        top: nums[0],
       };
     }
     if (nums.length === 2) {
@@ -126,14 +126,14 @@ export default class FastlyParams implements IFastlyParams {
         bottom: nums[0],
         left: nums[1],
         right: nums[1],
-        top: nums[0]
+        top: nums[0],
       };
     }
     return {
       bottom: nums[0],
       left: nums[0],
       right: nums[0],
-      top: nums[0]
+      top: nums[0],
     };
   }
 
@@ -152,7 +152,7 @@ export default class FastlyParams implements IFastlyParams {
     }
     const values: string[] = param.split(',');
     const toRgb = (nums: number[]): RGBA => {
-      if (nums.some(num => num < 0 || num > 255)) {
+      if (nums.some((num) => num < 0 || num > 255)) {
         die();
       }
       const [r, g, b] = nums;
@@ -180,10 +180,10 @@ export default class FastlyParams implements IFastlyParams {
     named: string[]
   ): { [key: string]: string | null } {
     const csv = this.get(name) as string;
-    const values = csv.split(',').map(v => v.toLowerCase().trim());
+    const values = csv.split(',').map((v) => v.toLowerCase().trim());
     const tagged: { [key: string]: string | null } = {};
-    named.forEach(n => {
-      const valueIndex = values.findIndex(value => value.startsWith(n));
+    named.forEach((n) => {
+      const valueIndex = values.findIndex((value) => value.startsWith(n));
       if (valueIndex > -1) {
         tagged[n] = values[valueIndex].slice(n.length);
         values.splice(valueIndex, 1);
@@ -242,7 +242,7 @@ export default class FastlyParams implements IFastlyParams {
     };
     const region: Partial<Region> = {
       height: validate('height'),
-      width: validate('width')
+      width: validate('width'),
     };
     const left = validate('x', true);
     if (left !== undefined) {
