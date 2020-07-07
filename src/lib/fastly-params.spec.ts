@@ -1,7 +1,7 @@
 import test from 'ava';
 import { mockParams } from './mappers/__testhelpers';
 
-test('quality getter works', t => {
+test('quality getter works', (t) => {
   const noQuality = mockParams('');
   t.is(noQuality.quality, undefined, 'unset quality is undefined');
   t.is(noQuality.quality, undefined, 'cached quality');
@@ -13,7 +13,7 @@ test('quality getter works', t => {
   t.is(mockParams('quality=50').quality, 50, 'numeric quality is stored');
 });
 
-test('toTaggedValues honors positionals', t => {
+test('toTaggedValues honors positionals', (t) => {
   t.deepEqual(
     mockParams('canvas=a,b,ccee,ddee,feff,eeee').toTaggedValues(
       'canvas',
@@ -26,12 +26,12 @@ test('toTaggedValues honors positionals', t => {
       c: 'cee',
       d: 'dee',
       e: 'eee',
-      f: 'eff'
+      f: 'eff',
     }
   );
 });
 
-test('toTaggedValues honors positionals 2 s', t => {
+test('toTaggedValues honors positionals 2 s', (t) => {
   t.deepEqual(
     mockParams('canvas=300,300,x90,y10').toTaggedValues(
       'canvas',
@@ -42,12 +42,12 @@ test('toTaggedValues honors positionals 2 s', t => {
       height: '300',
       width: '300',
       x: '90',
-      y: '10'
+      y: '10',
     }
   );
 });
 
-test('toTaggedValues does not put named params in positionals', t => {
+test('toTaggedValues does not put named params in positionals', (t) => {
   t.throws(() =>
     mockParams('canvas=400,gutter5').toTaggedValues(
       'canvas',

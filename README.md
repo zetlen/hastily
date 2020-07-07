@@ -27,6 +27,44 @@ app.listen(8000);
 
 You now have an app which can serve any image from `/www/images`, and optimize it with URL parameters from the [Fastly Image Optimization API][fastly-api].
 
+## Behavior
+
+### Request Filtering
+
+Hastily is meant to be registered as a middleware within an app that may be handling non-image requests as well as image requests. By default, it will only attempt to transform responses that appear to be uncompressed images. Hastily verifies this in several steps.
+
+1. **By URL:** The default `filter` function for the imageopto middleware is `hastily.hasSupportedExtension(req: Request)` It. checks a request's URL path for an extension that indicates a Sharp-supported file type. It reads the supported extensions from Sharp itself. If a file does not have an image-file extension, it will do nothing.
+
+   **Supply an alternative function as the `filter` property of imageopto options to override this behavior.**
+
+   ```js
+   import { imageopto, hasSupportedExtension } from 'hastily';
+   // Don't require an extension. Require a certain base directory and query param.
+   imageopto({
+     filter: (req) => req.path.startsWith('/media/') && 'optimize' in req.query,
+   });
+   // Require an extension, OR an 'imageServer' path.
+   hastily.imageopto({
+     filter: (req) => hasSupportedExtension(req) || req.path === '/imageServer',
+   });
+   ```
+
+1. **By method and status:** Hastily will not transform any response unless the request was a `GET` and the response code is in the `2xx` range.
+
+1. **By Cache-control:** If the response has a `Cache-Control` header containing `no-transform`, Hastily will respect that.
+
+1. **By dedupe:** Both Hastily and Fastly (which Hastily emulates) set telltale headers on responses after processing them. If a `fastly-io-info` header is present, OR an `X-Optimized: hastily` header is present, Hastily will assume a transform has already occurred and won't attempt another. **This behavior can be overridden by `options.force`**, but you shouldn't do that.
+
+1. **By content type:** Hastily will try to get the `Content-Type` header of the response. If it cannot detect a content type, OR if Sharp does not support the content type, Hastily will not attempt to transform.
+
+1. **By content encoding:** Hastily will not attempt to decompress gzipped responses. **Images shouldn't be gzipped** (or deflated, or brotli'd, or what have you) and it's a mistake to configure a server to do so by default. The available gzip algorithms are designed for text data, and they don't compress binary data hardly at all. If your server is gzipping images before Hastily handles them, **fix this configuration** for the highest speeds.
+
+### Debugging
+
+The Hastily middleware logs debugs, warnings and errors to standard error, which is what web server stacks expect. When `NODE_ENV` is `production`, only warnings will be logged, as parseable JSON lines.
+
+When `NODE_ENV` is _not_ `production`, Hastily respects the Node convention of path syntax in the `DEBUG` environment variable to determine log level. `DEBUG=hastily:*` will show all debug data in a pretty format. You can limit logging to subject areas by using paths like `DEBUG=hastily:request,hastily:params,hastily:splice` instead.
+
 ### [Full API doc at zetlen.github.io/hastily](https://zetlen.github.io/hastily)
 
 ## TODO

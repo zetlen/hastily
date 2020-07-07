@@ -9,7 +9,7 @@ import {
   IMutableResponse,
   Mapper,
   Param,
-  Warning
+  Warning,
 } from '../imageopto-types';
 
 type SharpCall = [keyof Sharp, any[]];
@@ -189,8 +189,8 @@ class MockSharp extends Duplex implements Sharp {
         height: 10,
         premultiplied: false,
         size: 10,
-        width: 10
-      }
+        width: 10,
+      },
     };
     return Promise.resolve(resolved);
   }
@@ -268,6 +268,6 @@ export function runMapperWithParams(
   return {
     mapped: mapper(mock, params) as MockSharp | false,
     mock,
-    warnings: params.getWarnings()
+    warnings: params.getWarnings(),
   };
 }

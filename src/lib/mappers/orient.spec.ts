@@ -27,11 +27,11 @@ const valid: Case[] = [
   ['l', [call('rotate', 90)]],
   ['r', [call('rotate', 270)]],
   ['v', [call('flip')]],
-  ['vh', [call('flop'), call('flip')]]
+  ['vh', [call('flop'), call('flip')]],
 ];
 
 valid.forEach(([orientation, calls]) => {
-  test(`calls extract with orient=${orientation}`, t => {
+  test(`calls extract with orient=${orientation}`, (t) => {
     const { mock, mapped } = runMapperWithParams(
       orient,
       `orient=${orientation}`
@@ -41,7 +41,7 @@ valid.forEach(([orientation, calls]) => {
   });
 });
 
-test(`warns for bad orient=wrong`, t => {
+test(`warns for bad orient=wrong`, (t) => {
   const { mock, mapped, warnings } = runMapperWithParams(
     orient,
     `orient=wrong`

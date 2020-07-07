@@ -6,7 +6,7 @@ import extractCrop from './extract-crop';
 
 const valid: [string, Partial<Region>][] = [
   ['250,500,x40,y6', { height: 500, left: 40, top: 6, width: 250 }],
-  ['500,250,y34,x100', { height: 250, left: 100, top: 34, width: 500 }]
+  ['500,250,y34,x100', { height: 250, left: 100, top: 34, width: 500 }],
 ];
 
 const invalid: string[] = [
@@ -18,7 +18,7 @@ const invalid: string[] = [
   '500,x6,y0.2',
   '40,50,x0,ykjabsd',
   '50,x9',
-  'a9oh'
+  'a9oh',
 ];
 
 const unsupported: string[] = [
@@ -30,19 +30,19 @@ const unsupported: string[] = [
   '500,-1000,x',
   '20,50,y23,x98,offset-x0.2',
   '20,40,x39,y0.2',
-  '20,300,smart'
+  '20,300,smart',
 ];
 
 valid.forEach(([crop, expected]) => {
-  test(`calls extract with crop=${crop}`, t => {
+  test(`calls extract with crop=${crop}`, (t) => {
     const { mock, mapped } = runMapperWithParams(extractCrop, `crop=${crop}`);
     t.true(mock === mapped, 'returns sharp');
     t.deepEqual(mock.calls[0], ['extract', [expected]], 'calls sharp.extract');
   });
 });
 
-invalid.forEach(input =>
-  test(`warns for invalid crop=${input}`, t => {
+invalid.forEach((input) =>
+  test(`warns for invalid crop=${input}`, (t) => {
     const { mock, mapped, warnings } = runMapperWithParams(
       extractCrop,
       `crop=${input}`
@@ -57,8 +57,8 @@ invalid.forEach(input =>
   })
 );
 
-unsupported.forEach(crop => {
-  test(`warns for unsupported crop=${crop}`, t => {
+unsupported.forEach((crop) => {
+  test(`warns for unsupported crop=${crop}`, (t) => {
     const { mock, mapped, warnings } = runMapperWithParams(
       extractCrop,
       `crop=${crop}`

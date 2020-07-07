@@ -1,13 +1,10 @@
-import makeDebug from 'debug';
 import { FitEnum, KernelEnum, ResizeOptions } from 'sharp';
 import { Mapper, Param } from '../imageopto-types';
-
-const debug = makeDebug('hastily:resize');
 
 export const optoFitToSharp: Record<string, keyof FitEnum> = {
   bounds: 'inside',
   cover: 'outside',
-  crop: 'cover'
+  crop: 'cover',
 };
 
 // sharp supports mitchell interpolation and not bilinear,
@@ -20,7 +17,7 @@ export const optoResizeFilterToSharp: Record<string, keyof KernelEnum> = {
   lanczos2: 'lanczos2',
   lanczos3: 'lanczos3',
   linear: 'mitchell',
-  nearest: 'nearest'
+  nearest: 'nearest',
 };
 
 /**
@@ -41,7 +38,7 @@ const resize: Mapper = (sharp, params) => {
   const dpr = nums[2];
   for (const [name, param] of [
     ['width', width],
-    ['height', height]
+    ['height', height],
   ]) {
     if (param < 1 && param > 0) {
       params.warn(
@@ -59,9 +56,12 @@ const resize: Mapper = (sharp, params) => {
   if (isNaN(height)) {
     height = undefined;
   }
-  debug('width %s, height %s, dpr %s', width, height, dpr);
+
+  const { log } = params;
+
+  log.debug('width %s, height %s, dpr %s', width, height, dpr);
   const options: ResizeOptions = {
-    withoutEnlargement: true
+    withoutEnlargement: true,
   };
   if (params.has('fit')) {
     const fitOpt = params.get('fit') as string;
@@ -71,12 +71,14 @@ const resize: Mapper = (sharp, params) => {
     } else {
       params.warn('unsupported', 'fit');
     }
-    debug('mapped options.fit from %s -> %s', fitOpt, options.fit);
+    log.debug('mapped options.fit from %s -> %s', fitOpt, options.fit);
   } else if (typeof height === 'number' && height > 0) {
     options.fit = 'fill';
   }
   if (params.get('enable') === 'true' || params.get('disable') === 'false') {
-    debug('overriding withoutEnlargement to false, yucky enlargement enabled');
+    log.debug(
+      'overriding withoutEnlargement to false, yucky enlargement enabled'
+    );
     options.withoutEnlargement = false;
   }
   if (params.has('resize-filter')) {
@@ -87,13 +89,13 @@ const resize: Mapper = (sharp, params) => {
     } else {
       params.warn('unsupported', 'fit');
     }
-    debug(
+    log.debug(
       'mapped options.resize-filter from %s -> %s',
       filterOpt,
       options.kernel
     );
   }
-  debug('sharp.resize(%s, %s, %o)', width, height, options);
+  log.debug('sharp.resize(%s, %s, %o)', width, height, options);
   return sharp.resize(width, height, options);
 };
 
