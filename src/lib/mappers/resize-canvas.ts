@@ -1,9 +1,7 @@
-import makeDebug from 'debug';
 import { Color, ResizeOptions } from 'sharp';
 import { Mapper } from '../imageopto-types';
 import { optoFitToSharp } from './resize';
 
-const debug = makeDebug('hastily:resize-canvas');
 /**
  * @hidden
  */
@@ -54,7 +52,12 @@ const resizeCanvas: Mapper = (sharp, params) => {
       params.warn('unsupported', 'fit');
     }
   }
-  debug('sharp.resize(%s, %s, %o)', region.width, region.height, options);
+  params.log.debug(
+    'sharp.resize(%s, %s, %o)',
+    region.width,
+    region.height,
+    options
+  );
   return sharp.resize(region.width, region.height, options);
 };
 

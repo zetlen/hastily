@@ -27,6 +27,28 @@ app.listen(8000);
 
 You now have an app which can serve any image from `/www/images`, and optimize it with URL parameters from the [Fastly Image Optimization API][fastly-api].
 
+## Behavior
+
+### Request Filtering
+
+Hastily is meant to be registered as a middleware within an app that may be handling non-image requests as well as image requests. By default, it will only attempt to transform responses that appear to be uncompressed images. Hastily verifies this in several steps.
+
+1. **By URL:** The default `filter` function for the imageopto middleware is `hastily.hasSupportedExtension(req: Request)` It. checks a request's URL path for an extension that indicates a Sharp-supported file type. It reads the supported extensions from Sharp itself. If a file does not have an image-file extension, it will do nothing.
+
+   **Supply an alternative function as the `filter` property of imageopto options to override this behavior.**
+
+   ```js
+   import { imageopto, hasSupportedExtension } from 'hastily';
+   // Don't require an extension. Require a certain base directory and query param.
+   imageopto({
+     filter: (req) => req.path.startsWith('/media/') && 'optimize' in req.query,
+   });
+   // Require an extension, OR an 'imageServer' path.
+   hastily.imageopto({
+     filter: (req) => hasSupportedExtension(req) || req.path === '/imageServer',
+   });
+   ```
+
 ### [Full API doc at zetlen.github.io/hastily](https://zetlen.github.io/hastily)
 
 ## TODO

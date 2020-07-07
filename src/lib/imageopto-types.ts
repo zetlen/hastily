@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { ServerResponse } from 'http';
 import { Color, ExtendOptions, Region, Sharp } from 'sharp';
 import { Duplex } from 'stream';
+import { Logger } from 'pino';
 
 export type Middleware = (
   req: Request,
@@ -17,8 +18,6 @@ export type Middleware = (
  */
 export type RequestFilter = (request: Request) => boolean;
 
-export type DebugLogger = (message: string, ...args: readonly any[]) => any;
-
 export interface IRequestErrors {
   url: string;
   warnings: Warning[];
@@ -26,7 +25,7 @@ export interface IRequestErrors {
 
 /**
  * Receives a {@link RequestErrors} object to do side effects such as logging.
- * Default is a console log.
+ * Default prints to stderr.
  */
 export type ErrorLogger = (errors: IRequestErrors) => any;
 
@@ -114,6 +113,11 @@ export interface IFastlyParams {
    * The Express.Response being transformed.
    */
   res: IMutableResponse;
+
+  /**
+   * Logger object for the context of this request.
+   */
+  log: Logger;
 
   /**
    * The requested output quality, from 1-100 (optional, default 85 from sharp)

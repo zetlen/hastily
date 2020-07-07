@@ -1,14 +1,16 @@
 'use strict';
 
-import makeDebug from 'debug';
 import { Request } from 'express';
 import onHeaders from 'on-headers';
+import { createLogger } from './logging';
 import {
   Handler,
   IMutableResponse,
   IWorkStream,
   Listener,
 } from './imageopto-types';
+
+const log = createLogger('splice');
 
 /**
  * @hidden
@@ -19,7 +21,7 @@ export default function splice(
   next: (e?: Error) => any,
   makeStream: () => IWorkStream | false
 ) {
-  const debug = makeDebug('hastily:splice:' + req.url);
+  log.debug({ res }, 'splicing hastily into response for %s', req.originalUrl);
   let ended = false;
   let length;
   const listeners: Listener[] = [];
@@ -42,7 +44,7 @@ export default function splice(
 
   // flush
   res.flush = function flush() {
-    debug('response.flush() called');
+    log.debug('response.flush() called');
     if (stream) {
       stream.flush();
     } else {
@@ -53,17 +55,17 @@ export default function splice(
   // proxy
 
   res.write = function write(chunk: any, encoding: any) {
-    debug(
+    log.debug(
       'outgoing response.write() called with chunk of length %s',
       chunk.length
     );
     if (ended) {
-      debug('response.write(): ended flag is true, returning');
+      log.debug('response.write(): ended flag is true, returning');
       return false;
     }
 
     if (!this._header) {
-      debug(
+      log.debug(
         'response.write(): this._header is false, calling this._implicitHeader()'
       );
       if (!tryImplicitHeader(this)) {
@@ -71,54 +73,56 @@ export default function splice(
       }
     }
     if (stream) {
-      debug('res.write() has access to stream! writing buffer');
+      log.debug('res.write() has access to stream! writing buffer');
       return stream.write(Buffer.from(chunk, encoding));
     }
-    debug(
+    log.debug(
       'res.write() has no access to stream yet. calling underlying response'
     );
     return resWrite.call(this, chunk, encoding);
   };
 
   res.end = function end(this: IMutableResponse, chunk: any, encoding: any) {
-    debug('outgoing response.end() called');
+    log.debug('outgoing response.end() called');
     if (ended) {
-      debug('response.end(): ended is already true, returning');
+      log.debug('response.end(): ended is already true, returning');
       return false;
     }
 
     if (!this._header) {
-      debug('response.end(): this._header is false, checking content length');
+      log.debug(
+        'response.end(): this._header is false, checking content length'
+      );
       if (!this.getHeader('Content-Length')) {
         length = chunkLength(chunk, encoding);
-        debug(
+        log.debug(
           'response.end(): no Content-Length, %s bytes and counting',
           length
         );
       }
-      debug('response.end(): calling this._implicitHeader()');
+      log.debug('response.end(): calling this._implicitHeader()');
       if (tryImplicitHeader(this)) {
-        debug('tryImplicitHeader succeeded');
+        log.debug('tryImplicitHeader succeeded');
       }
     }
 
     if (!stream) {
-      debug('response.end(): stream never became available');
+      log.debug('response.end(): stream never became available');
       return resEnd.call(this, chunk, encoding);
     }
-    debug('response.end(): stream is available, flushing? %s', chunk);
+    log.debug('response.end(): stream is available, flushing? %s', chunk);
     // mark ended
     ended = true;
 
     // write Buffer for Node.js 0.8
     if (chunk) {
-      debug(
+      log.debug(
         'chunk of length %s exists in .end, writing it to stream',
         chunk.length
       );
       stream.end(Buffer.from(chunk, encoding));
     } else {
-      debug('no chunk exists in .end, ending stream clean');
+      log.debug({ res }, 'no chunk exists in .end, ending stream clean');
       stream.end();
     }
   } as IMutableResponse['end'];
@@ -128,9 +132,9 @@ export default function splice(
     type: string | symbol,
     listener: Handler
   ): IMutableResponse {
-    debug('res.on called for "%s" event', type);
+    log.debug('res.on called for "%s" event', type);
     if (!listeners || type !== 'drain') {
-      debug(
+      log.debug(
         '%s listeners, eventType %s, calling underlying res.on',
         listeners.length,
         type
@@ -139,11 +143,11 @@ export default function splice(
     }
 
     if (stream) {
-      debug('res.on() has access to stream, passing listener');
+      log.debug('res.on() has access to stream, passing listener');
       return (stream.on(type, listener) as unknown) as IMutableResponse;
     }
 
-    debug('stream does not exist; buffering listeners for future stream');
+    log.debug('stream does not exist; buffering listeners for future stream');
     listeners.push([type, listener]);
 
     return this;

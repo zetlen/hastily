@@ -8,7 +8,6 @@
 'use strict';
 
 import accepts from 'accepts';
-import makeDebug from 'debug';
 import { Request } from 'express';
 import sharp from 'sharp';
 import { Format, IFastlyParams, Mapper, Param } from './imageopto-types';
@@ -21,8 +20,6 @@ import orient from './mappers/orient';
 import resize from './mappers/resize';
 import resizeCanvas from './mappers/resize-canvas';
 import unsupported from './mappers/unsupported';
-
-const debug = makeDebug('hastily:options');
 
 const mappers: [Param, Mapper][] = [
   ['width', resize],
@@ -75,12 +72,12 @@ function supportsWebP(req: Request): boolean {
  */
 export default function optoToSharp(params: IFastlyParams) {
   const applied = new Set();
-  const { req, res } = params;
+  const { req, res, log } = params;
   const { query } = req;
   let transform = sharp();
   for (const [name, mapper] of mappers) {
     if (query.hasOwnProperty(name) && !applied.has(mapper)) {
-      debug('running mapper for %s', name);
+      log.debug('running mapper for %s', name);
       const out = mapper(transform, params);
       if (out) {
         applied.add(mapper);
@@ -90,7 +87,7 @@ export default function optoToSharp(params: IFastlyParams) {
   }
 
   if (query.auto === 'webp' && supportsWebP(req)) {
-    debug('returning webp');
+    log.debug('returning webp');
     res.type('image/webp');
     return formatters.webp(transform, params);
   }
@@ -98,7 +95,7 @@ export default function optoToSharp(params: IFastlyParams) {
   const arguedFormat = query.format as Format;
   const tryJpeg: Mapper = (xform, { quality }) => {
     if (applied.size === 0) {
-      debug('no mappers or formatters applied, doing nothing');
+      log.debug('no mappers or formatters applied, doing nothing');
       return false;
     }
     return xform.jpeg({
@@ -108,7 +105,7 @@ export default function optoToSharp(params: IFastlyParams) {
   };
 
   if (!arguedFormat) {
-    debug('no format argument, returning jpeg or whatever');
+    log.debug('no format argument, returning jpeg or whatever');
     res.type('image/jpeg');
     return tryJpeg(transform, params);
   }
@@ -116,10 +113,10 @@ export default function optoToSharp(params: IFastlyParams) {
   const mapFormat = formatters[arguedFormat];
 
   if (typeof mapFormat !== 'function') {
-    debug('bad format argument %s, returning jpeg', arguedFormat);
+    log.debug('bad format argument %s, returning jpeg', arguedFormat);
     return tryJpeg(transform, params);
   }
-  debug('attempting "%s" transform', arguedFormat);
+  log.debug('attempting "%s" transform', arguedFormat);
   res.type(`image/${arguedFormat}`);
   return mapFormat(transform, params);
 }

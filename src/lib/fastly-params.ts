@@ -9,6 +9,10 @@ import {
   Warning,
   WarnType,
 } from './imageopto-types';
+import { Logger } from 'pino';
+import { createLogger } from './logging';
+
+const paramsLogger = createLogger('params');
 
 const QUALITY = 'quality' as Param;
 const UNSET = Symbol('unset');
@@ -30,6 +34,7 @@ export default class FastlyParams implements IFastlyParams {
   }
   public req: Request;
   public res: IMutableResponse;
+  public log: Logger;
   private raw: ParamMap;
   private warnings: Warning[] = [];
   private cachedQuality: number | undefined | symbol = UNSET;
@@ -44,6 +49,7 @@ export default class FastlyParams implements IFastlyParams {
     this.raw = params as ParamMap;
     this.req = req;
     this.res = res;
+    this.log = paramsLogger.child({ req });
   }
 
   public get(param: Param) {
