@@ -1289,7 +1289,7 @@
 			]
 		},
 		{
-			"id": 261,
+			"id": 262,
 			"name": "ImageOptoOptions",
 			"kind": 256,
 			"kindString": "Interface",
@@ -1298,7 +1298,7 @@
 			},
 			"children": [
 				{
-					"id": 262,
+					"id": 263,
 					"name": "errorLog",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1319,7 +1319,7 @@
 					}
 				},
 				{
-					"id": 263,
+					"id": 264,
 					"name": "filter",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1339,7 +1339,7 @@
 					}
 				},
 				{
-					"id": 264,
+					"id": 265,
 					"name": "force",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1376,7 +1376,7 @@
 					}
 				},
 				{
-					"id": 265,
+					"id": 266,
 					"name": "quiet",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1418,10 +1418,10 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						262,
 						263,
 						264,
-						265
+						265,
+						266
 					]
 				}
 			],
@@ -1616,7 +1616,7 @@
 			"defaultValue": "Symbol('unset')"
 		},
 		{
-			"id": 277,
+			"id": 278,
 			"name": "cacheControlNoTransformRegExp",
 			"kind": 32,
 			"kindString": "Variable",
@@ -1627,7 +1627,7 @@
 			"sources": [
 				{
 					"fileName": "src/lib/imageopto.ts",
-					"line": 141,
+					"line": 155,
 					"character": 35
 				}
 			],
@@ -1638,7 +1638,7 @@
 			"defaultValue": "/(?:^|,)\\s*?no-transform\\s*?(?:,|$)/"
 		},
 		{
-			"id": 270,
+			"id": 271,
 			"name": "imageExtensionRE",
 			"kind": 32,
 			"kindString": "Variable",
@@ -1660,7 +1660,7 @@
 			"defaultValue": "new RegExp(\n  `\\\\.(?:${[...streamableFileExtensions].join('|')})$`\n)"
 		},
 		{
-			"id": 237,
+			"id": 238,
 			"name": "log",
 			"kind": 32,
 			"kindString": "Variable",
@@ -1685,7 +1685,7 @@
 					{
 						"type": "reflection",
 						"declaration": {
-							"id": 238,
+							"id": 239,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
@@ -1694,7 +1694,7 @@
 							},
 							"indexSignature": [
 								{
-									"id": 239,
+									"id": 240,
 									"name": "__index",
 									"kind": 8192,
 									"kindString": "Index signature",
@@ -1703,7 +1703,7 @@
 									},
 									"parameters": [
 										{
-											"id": 240,
+											"id": 241,
 											"name": "key",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1832,7 +1832,7 @@
 			"defaultValue": "createLogger('params')"
 		},
 		{
-			"id": 269,
+			"id": 270,
 			"name": "streamableFileExtensions",
 			"kind": 32,
 			"kindString": "Variable",
@@ -1860,7 +1860,7 @@
 			"defaultValue": "new Set(\n  Object.keys(sharp.format).filter(\n    (ext) => sharp.format[ext as keyof FormatEnum].input.stream\n  )\n)"
 		},
 		{
-			"id": 252,
+			"id": 253,
 			"name": "addListeners",
 			"kind": 64,
 			"kindString": "Function",
@@ -1870,7 +1870,7 @@
 			},
 			"signatures": [
 				{
-					"id": 253,
+					"id": 254,
 					"name": "addListeners",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -1883,7 +1883,7 @@
 					},
 					"parameters": [
 						{
-							"id": 254,
+							"id": 255,
 							"name": "stream",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -1905,7 +1905,7 @@
 							}
 						},
 						{
-							"id": 255,
+							"id": 256,
 							"name": "on",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -1918,7 +1918,7 @@
 							}
 						},
 						{
-							"id": 256,
+							"id": 257,
 							"name": "listeners",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -1943,13 +1943,13 @@
 			"sources": [
 				{
 					"fileName": "src/lib/splice-response.ts",
-					"line": 209,
+					"line": 218,
 					"character": 21
 				}
 			]
 		},
 		{
-			"id": 257,
+			"id": 258,
 			"name": "chunkLength",
 			"kind": 64,
 			"kindString": "Function",
@@ -1958,7 +1958,7 @@
 			},
 			"signatures": [
 				{
-					"id": 258,
+					"id": 259,
 					"name": "chunkLength",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -1970,7 +1970,7 @@
 					},
 					"parameters": [
 						{
-							"id": 259,
+							"id": 260,
 							"name": "chunk",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -1983,7 +1983,7 @@
 							}
 						},
 						{
-							"id": 260,
+							"id": 261,
 							"name": "encoding",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -2005,7 +2005,7 @@
 			"sources": [
 				{
 					"fileName": "src/lib/splice-response.ts",
-					"line": 223,
+					"line": 232,
 					"character": 20
 				}
 			]
@@ -2245,7 +2245,7 @@
 			]
 		},
 		{
-			"id": 271,
+			"id": 272,
 			"name": "hasSupportedExtension",
 			"kind": 64,
 			"kindString": "Function",
@@ -2258,7 +2258,7 @@
 			},
 			"signatures": [
 				{
-					"id": 272,
+					"id": 273,
 					"name": "hasSupportedExtension",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -2270,7 +2270,7 @@
 					},
 					"parameters": [
 						{
-							"id": 273,
+							"id": 274,
 							"name": "req",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -2319,7 +2319,7 @@
 			]
 		},
 		{
-			"id": 274,
+			"id": 275,
 			"name": "imageopto",
 			"kind": 64,
 			"kindString": "Function",
@@ -2328,7 +2328,7 @@
 			},
 			"signatures": [
 				{
-					"id": 275,
+					"id": 276,
 					"name": "imageopto",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -2340,7 +2340,7 @@
 					},
 					"parameters": [
 						{
-							"id": 276,
+							"id": 277,
 							"name": "filterOrOpts",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -2356,7 +2356,7 @@
 									},
 									{
 										"type": "reference",
-										"id": 261,
+										"id": 262,
 										"name": "ImageOptoOptions"
 									}
 								]
@@ -2472,7 +2472,7 @@
 			]
 		},
 		{
-			"id": 278,
+			"id": 279,
 			"name": "shouldTransform",
 			"kind": 64,
 			"kindString": "Function",
@@ -2482,7 +2482,7 @@
 			},
 			"signatures": [
 				{
-					"id": 279,
+					"id": 280,
 					"name": "shouldTransform",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -2495,7 +2495,7 @@
 					},
 					"parameters": [
 						{
-							"id": 280,
+							"id": 281,
 							"name": "req",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -2508,7 +2508,7 @@
 							}
 						},
 						{
-							"id": 281,
+							"id": 282,
 							"name": "res",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -2521,7 +2521,7 @@
 							}
 						},
 						{
-							"id": 282,
+							"id": 283,
 							"name": "reqLog",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -2534,7 +2534,7 @@
 							}
 						},
 						{
-							"id": 283,
+							"id": 284,
 							"name": "options",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -2543,7 +2543,7 @@
 							},
 							"type": {
 								"type": "reference",
-								"id": 261,
+								"id": 262,
 								"name": "ImageOptoOptions"
 							}
 						}
@@ -2557,13 +2557,13 @@
 			"sources": [
 				{
 					"fileName": "src/lib/imageopto.ts",
-					"line": 147,
+					"line": 161,
 					"character": 24
 				}
 			]
 		},
 		{
-			"id": 266,
+			"id": 267,
 			"name": "HASTILY_HEADER",
 			"kind": 2097152,
 			"kindString": "Object literal",
@@ -2573,7 +2573,7 @@
 			},
 			"children": [
 				{
-					"id": 267,
+					"id": 268,
 					"name": "NAME",
 					"kind": 32,
 					"kindString": "Variable",
@@ -2594,7 +2594,7 @@
 					"defaultValue": "\"X-Optimized\""
 				},
 				{
-					"id": 268,
+					"id": 269,
 					"name": "VALUE",
 					"kind": 32,
 					"kindString": "Variable",
@@ -2620,8 +2620,8 @@
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						267,
-						268
+						268,
+						269
 					]
 				}
 			],
@@ -4345,7 +4345,7 @@
 			"title": "Interfaces",
 			"kind": 256,
 			"children": [
-				261
+				262
 			]
 		},
 		{
@@ -4361,37 +4361,37 @@
 			"children": [
 				72,
 				73,
-				277,
-				270,
-				237,
+				278,
+				271,
+				238,
 				196,
 				68,
-				269
+				270
 			]
 		},
 		{
 			"title": "Functions",
 			"kind": 64,
 			"children": [
-				252,
-				257,
+				253,
+				258,
 				1,
 				94,
 				103,
 				109,
 				106,
-				271,
-				274,
+				272,
+				275,
 				100,
 				97,
-				278
+				279
 			]
 		},
 		{
 			"title": "Object literals",
 			"kind": 2097152,
 			"children": [
-				266,
+				267,
 				197,
 				171,
 				175,

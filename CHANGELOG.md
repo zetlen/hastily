@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.7](https://github.com/zetlen/hastily/compare/v0.4.6...v0.4.7) (2020-07-14)
+
+
+### Bug Fixes
+
+* recover from errors thrown or emitted by sharp stream ([#14](https://github.com/zetlen/hastily/issues/14)) ([43a175a](https://github.com/zetlen/hastily/commit/43a175a3025525fd1ee3f213a9df1fb7f8435317))
+
 ### [0.4.6](https://github.com/zetlen/hastily/compare/v0.4.5...v0.4.6) (2020-07-07)
 
 ### [0.4.5](https://github.com/zetlen/hastily/compare/v0.4.4...v0.4.5) (2020-05-06)
