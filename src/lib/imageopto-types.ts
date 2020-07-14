@@ -27,7 +27,7 @@ export interface IRequestErrors {
  * Receives a {@link RequestErrors} object to do side effects such as logging.
  * Default prints to stderr.
  */
-export type ErrorLogger = (errors: IRequestErrors) => any;
+export type ErrorLogger = (errors: IRequestErrors | Error) => any;
 
 export type Param =
   | 'bg-color'

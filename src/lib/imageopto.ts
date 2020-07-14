@@ -122,18 +122,32 @@ export function imageopto(
         req,
         res
       );
-      const sharpStream = mapOptions(params);
-      const warnings = params.getWarnings();
-      if (warnings.length > 0) {
-        const requestErrors = new RequestErrors(req.url, warnings);
+      const sharpStream = sharp();
+      const emitSharpError = (error: Error) => {
         if (options.errorLog) {
-          options.errorLog(requestErrors);
+          options.errorLog(error);
         } else {
-          reqLog.warn(requestErrors.toString());
+          reqLog.error('Image processing failed: %s', error.toString());
         }
+      };
+      sharpStream.on('error', emitSharpError);
+      try {
+        const transformStream = mapOptions(params, sharpStream);
+        const warnings = params.getWarnings();
+        if (warnings.length > 0) {
+          const requestErrors = new RequestErrors(req.url, warnings);
+          if (options.errorLog) {
+            options.errorLog(requestErrors);
+          } else {
+            reqLog.warn(requestErrors.toString());
+          }
+        }
+        reqLog.debug('mapped options and created sharp stream');
+        return (transformStream as unknown) as IWorkStream;
+      } catch (e) {
+        emitSharpError(e);
+        return false;
       }
-      reqLog.debug('mapped options and created sharp stream');
-      return (sharpStream as unknown) as IWorkStream;
     });
   };
 }
