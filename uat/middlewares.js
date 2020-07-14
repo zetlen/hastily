@@ -1,5 +1,5 @@
-const { Agent: HTTPSAgent, globalAgent } = require('https');
 const { createProxyMiddleware } = require('http-proxy-middleware');
+const toxy = require('toxy');
 
 function paramsFrom(dict) {
   const params = new URLSearchParams();
@@ -128,8 +128,6 @@ function createExampleImageHandler({ filename, bases }) {
 function createForgivingProxyMiddleware({ name, target }) {
   const { origin, pathname } = new URL(target);
   return createProxyMiddleware({
-    // agent: new HTTPSAgent({ rejectUnauthorized: false }),
-    // changeOrigin: true,
     target: origin,
     pathRewrite: {
       [`^/${name}`]: pathname,
@@ -137,8 +135,19 @@ function createForgivingProxyMiddleware({ name, target }) {
   });
 }
 
+function createBadConnectionMiddleware() {
+  const latency = toxy.poisons.latency({ jitter: 1000 });
+  const throttle = toxy.poisons.throttle({ chunk: 1024, delay: 1000 });
+  const middleware = toxy()
+    .outgoingPoison(latency)
+    .outgoingPoison(throttle)
+    .middleware();
+  return middleware;
+}
+
 module.exports = {
   createCompareMiddleware,
   createExampleImageHandler,
   createForgivingProxyMiddleware,
+  createBadConnectionMiddleware,
 };
