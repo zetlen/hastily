@@ -155,6 +155,14 @@ export default function splice(
 
   res.on = addBufferedListener;
 
+  const unsplice = () => {
+    res.on = resOn;
+    res.end = resEnd;
+    res.write = resWrite;
+    addListeners(res, resOn, listeners);
+    listeners.length = 0;
+  };
+
   onHeaders(res, function onResponseHeaders() {
     try {
       if (ended) {
@@ -164,12 +172,13 @@ export default function splice(
 
       if (!stream) {
         // request is filtered
-        res.on = resOn;
-        res.end = resEnd;
-        res.write = resWrite;
-        addListeners(res, resOn, listeners);
-        listeners.length = 0;
+        unsplice();
         return;
+      } else {
+        stream.on('error', () => {
+          log.debug('stream error, unsplicing');
+          unsplice();
+        });
       }
 
       // add buffered listeners to stream

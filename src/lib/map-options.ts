@@ -9,7 +9,7 @@
 
 import accepts from 'accepts';
 import { Request } from 'express';
-import sharp from 'sharp';
+import { Sharp } from 'sharp';
 import { Format, IFastlyParams, Mapper, Param } from './imageopto-types';
 
 import bgFlatten from './mappers/background-flatten';
@@ -70,11 +70,11 @@ function supportsWebP(req: Request): boolean {
 /**
  * @hidden
  */
-export default function optoToSharp(params: IFastlyParams) {
+export default function optoToSharp(params: IFastlyParams, sharpStream: Sharp) {
   const applied = new Set();
   const { req, res, log } = params;
   const { query } = req;
-  let transform = sharp();
+  let transform = sharpStream;
   for (const [name, mapper] of mappers) {
     if (query.hasOwnProperty(name) && !applied.has(mapper)) {
       log.debug('running mapper for %s', name);
