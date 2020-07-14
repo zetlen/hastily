@@ -5,13 +5,13 @@ const tmpDir = require('os').tmpdir();
 const confPath = path.resolve(tmpDir, 'nginx-hastily-test.conf');
 
 const getConf = ({ listen, proxy, imageDir }) => `master_process off;
-error_log stderr warn;
+error_log stderr notice;
 pid ${path.join(tmpDir, 'nginx-hastily-test.pid')};
 daemon off;
 
 http {
+  access_log /dev/stdout combined;
   server {
-    access_log off;
     listen ${listen};
     root ${imageDir};
     location / {
@@ -70,8 +70,15 @@ const Nginx = {
   async stop() {
     return new Promise((res) => {
       if (Nginx.running && Nginx.proc) {
-        Nginx.proc.on('close', res);
-        Nginx.proc.kill();
+        Nginx.proc.on('exit', () => {
+          console.log('Nginx exited.');
+          res();
+        });
+        const signal = 'SIGTERM';
+        const status = Nginx.proc.kill(signal);
+        if (!status) {
+          console.error('Nginx.proc.kill("%s") returned %s', signal, status);
+        }
       } else {
         res();
       }
