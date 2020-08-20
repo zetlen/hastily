@@ -100,7 +100,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/fastly-params.ts",
+							"fileName": "lib/fastly-params.ts",
 							"line": 42,
 							"character": 46
 						}
@@ -117,7 +117,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/fastly-params.ts",
+							"fileName": "lib/fastly-params.ts",
 							"line": 40,
 							"character": 23
 						}
@@ -152,7 +152,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/fastly-params.ts",
+							"fileName": "lib/fastly-params.ts",
 							"line": 37,
 							"character": 12
 						}
@@ -173,7 +173,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/fastly-params.ts",
+							"fileName": "lib/fastly-params.ts",
 							"line": 38,
 							"character": 13
 						}
@@ -194,7 +194,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/fastly-params.ts",
+							"fileName": "lib/fastly-params.ts",
 							"line": 35,
 							"character": 12
 						}
@@ -215,7 +215,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/fastly-params.ts",
+							"fileName": "lib/fastly-params.ts",
 							"line": 36,
 							"character": 12
 						}
@@ -236,7 +236,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/fastly-params.ts",
+							"fileName": "lib/fastly-params.ts",
 							"line": 42,
 							"character": 15
 						}
@@ -258,7 +258,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/fastly-params.ts",
+							"fileName": "lib/fastly-params.ts",
 							"line": 39,
 							"character": 18
 						}
@@ -306,7 +306,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/fastly-params.ts",
+							"fileName": "lib/fastly-params.ts",
 							"line": 21,
 							"character": 13
 						}
@@ -346,87 +346,14 @@
 								}
 							],
 							"type": {
-								"type": "union",
-								"types": [
-									{
-										"type": "stringLiteral",
-										"value": "bg-color"
-									},
-									{
-										"type": "stringLiteral",
-										"value": "blur"
-									},
-									{
-										"type": "stringLiteral",
-										"value": "brightness"
-									},
-									{
-										"type": "stringLiteral",
-										"value": "canvas"
-									},
-									{
-										"type": "stringLiteral",
-										"value": "crop"
-									},
-									{
-										"type": "stringLiteral",
-										"value": "contrast"
-									},
-									{
-										"type": "stringLiteral",
-										"value": "disable"
-									},
-									{
-										"type": "stringLiteral",
-										"value": "dpr"
-									},
-									{
-										"type": "stringLiteral",
-										"value": "enable"
-									},
-									{
-										"type": "stringLiteral",
-										"value": "fit"
-									},
-									{
-										"type": "stringLiteral",
-										"value": "height"
-									},
-									{
-										"type": "stringLiteral",
-										"value": "orient"
-									},
-									{
-										"type": "stringLiteral",
-										"value": "pad"
-									},
-									{
-										"type": "stringLiteral",
-										"value": "resize-filter"
-									},
-									{
-										"type": "stringLiteral",
-										"value": "saturation"
-									},
-									{
-										"type": "stringLiteral",
-										"value": "sharpen"
-									},
-									{
-										"type": "stringLiteral",
-										"value": "trim"
-									},
-									{
-										"type": "stringLiteral",
-										"value": "width"
-									}
-								]
+								"type": "reference",
+								"name": "Param"
 							}
 						}
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/fastly-params.ts",
+							"fileName": "lib/fastly-params.ts",
 							"line": 55,
 							"character": 12
 						}
@@ -461,7 +388,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/fastly-params.ts",
+							"fileName": "lib/fastly-params.ts",
 							"line": 72,
 							"character": 20
 						}
@@ -508,7 +435,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/fastly-params.ts",
+							"fileName": "lib/fastly-params.ts",
 							"line": 59,
 							"character": 12
 						}
@@ -555,7 +482,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/fastly-params.ts",
+							"fileName": "lib/fastly-params.ts",
 							"line": 146,
 							"character": 16
 						}
@@ -602,7 +529,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/fastly-params.ts",
+							"fileName": "lib/fastly-params.ts",
 							"line": 93,
 							"character": 17
 						}
@@ -652,7 +579,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/fastly-params.ts",
+							"fileName": "lib/fastly-params.ts",
 							"line": 76,
 							"character": 18
 						}
@@ -705,7 +632,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/fastly-params.ts",
+							"fileName": "lib/fastly-params.ts",
 							"line": 213,
 							"character": 17
 						}
@@ -827,7 +754,7 @@
 									],
 									"sources": [
 										{
-											"fileName": "src/lib/fastly-params.ts",
+											"fileName": "lib/fastly-params.ts",
 											"line": 187,
 											"character": 4
 										}
@@ -838,7 +765,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/fastly-params.ts",
+							"fileName": "lib/fastly-params.ts",
 							"line": 183,
 							"character": 23
 						}
@@ -921,7 +848,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/fastly-params.ts",
+							"fileName": "lib/fastly-params.ts",
 							"line": 63,
 							"character": 13
 						}
@@ -1001,7 +928,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/fastly-params.ts",
+							"fileName": "lib/fastly-params.ts",
 							"line": 264,
 							"character": 18
 						}
@@ -1055,7 +982,7 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/lib/fastly-params.ts",
+					"fileName": "lib/fastly-params.ts",
 					"line": 20,
 					"character": 33
 				}
@@ -1133,7 +1060,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/errors.ts",
+							"fileName": "lib/errors.ts",
 							"line": 5,
 							"character": 29
 						}
@@ -1150,7 +1077,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/errors.ts",
+							"fileName": "lib/errors.ts",
 							"line": 4,
 							"character": 12
 						}
@@ -1171,7 +1098,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/errors.ts",
+							"fileName": "lib/errors.ts",
 							"line": 5,
 							"character": 17
 						}
@@ -1210,7 +1137,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/errors.ts",
+							"fileName": "lib/errors.ts",
 							"line": 10,
 							"character": 15
 						}
@@ -1242,7 +1169,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/errors.ts",
+							"fileName": "lib/errors.ts",
 							"line": 13,
 							"character": 17
 						}
@@ -1276,7 +1203,7 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/lib/errors.ts",
+					"fileName": "lib/errors.ts",
 					"line": 3,
 					"character": 34
 				}
@@ -1289,7 +1216,7 @@
 			]
 		},
 		{
-			"id": 262,
+			"id": 216,
 			"name": "ImageOptoOptions",
 			"kind": 256,
 			"kindString": "Interface",
@@ -1298,7 +1225,7 @@
 			},
 			"children": [
 				{
-					"id": 263,
+					"id": 217,
 					"name": "errorLog",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1308,7 +1235,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/imageopto.ts",
+							"fileName": "lib/imageopto.ts",
 							"line": 27,
 							"character": 10
 						}
@@ -1319,7 +1246,7 @@
 					}
 				},
 				{
-					"id": 264,
+					"id": 218,
 					"name": "filter",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1328,7 +1255,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/imageopto.ts",
+							"fileName": "lib/imageopto.ts",
 							"line": 28,
 							"character": 8
 						}
@@ -1339,7 +1266,7 @@
 					}
 				},
 				{
-					"id": 265,
+					"id": 219,
 					"name": "force",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1352,7 +1279,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/imageopto.ts",
+							"fileName": "lib/imageopto.ts",
 							"line": 35,
 							"character": 7
 						}
@@ -1376,7 +1303,7 @@
 					}
 				},
 				{
-					"id": 266,
+					"id": 220,
 					"name": "quiet",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1389,7 +1316,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/imageopto.ts",
+							"fileName": "lib/imageopto.ts",
 							"line": 40,
 							"character": 7
 						}
@@ -1418,23 +1345,23 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						263,
-						264,
-						265,
-						266
+						217,
+						218,
+						219,
+						220
 					]
 				}
 			],
 			"sources": [
 				{
-					"fileName": "src/lib/imageopto.ts",
+					"fileName": "lib/imageopto.ts",
 					"line": 26,
 					"character": 33
 				}
 			]
 		},
 		{
-			"id": 90,
+			"id": 87,
 			"name": "Orienter",
 			"kind": 4194304,
 			"kindString": "Type alias",
@@ -1443,7 +1370,7 @@
 			},
 			"sources": [
 				{
-					"fileName": "src/lib/mappers/orient.ts",
+					"fileName": "lib/mappers/orient.ts",
 					"line": 4,
 					"character": 13
 				}
@@ -1451,7 +1378,7 @@
 			"type": {
 				"type": "reflection",
 				"declaration": {
-					"id": 91,
+					"id": 88,
 					"name": "__type",
 					"kind": 65536,
 					"kindString": "Type literal",
@@ -1460,7 +1387,7 @@
 					},
 					"signatures": [
 						{
-							"id": 92,
+							"id": 89,
 							"name": "__call",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1469,7 +1396,7 @@
 							},
 							"parameters": [
 								{
-									"id": 93,
+									"id": 90,
 									"name": "x",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1490,7 +1417,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/orient.ts",
+							"fileName": "lib/mappers/orient.ts",
 							"line": 4,
 							"character": 15
 						}
@@ -1499,7 +1426,7 @@
 			}
 		},
 		{
-			"id": 72,
+			"id": 69,
 			"name": "QUALITY",
 			"kind": 32,
 			"kindString": "Variable",
@@ -1509,92 +1436,19 @@
 			},
 			"sources": [
 				{
-					"fileName": "src/lib/fastly-params.ts",
+					"fileName": "lib/fastly-params.ts",
 					"line": 17,
 					"character": 13
 				}
 			],
 			"type": {
-				"type": "union",
-				"types": [
-					{
-						"type": "stringLiteral",
-						"value": "bg-color"
-					},
-					{
-						"type": "stringLiteral",
-						"value": "blur"
-					},
-					{
-						"type": "stringLiteral",
-						"value": "brightness"
-					},
-					{
-						"type": "stringLiteral",
-						"value": "canvas"
-					},
-					{
-						"type": "stringLiteral",
-						"value": "crop"
-					},
-					{
-						"type": "stringLiteral",
-						"value": "contrast"
-					},
-					{
-						"type": "stringLiteral",
-						"value": "disable"
-					},
-					{
-						"type": "stringLiteral",
-						"value": "dpr"
-					},
-					{
-						"type": "stringLiteral",
-						"value": "enable"
-					},
-					{
-						"type": "stringLiteral",
-						"value": "fit"
-					},
-					{
-						"type": "stringLiteral",
-						"value": "height"
-					},
-					{
-						"type": "stringLiteral",
-						"value": "orient"
-					},
-					{
-						"type": "stringLiteral",
-						"value": "pad"
-					},
-					{
-						"type": "stringLiteral",
-						"value": "resize-filter"
-					},
-					{
-						"type": "stringLiteral",
-						"value": "saturation"
-					},
-					{
-						"type": "stringLiteral",
-						"value": "sharpen"
-					},
-					{
-						"type": "stringLiteral",
-						"value": "trim"
-					},
-					{
-						"type": "stringLiteral",
-						"value": "width"
-					}
-				]
+				"type": "reference",
+				"name": "Param"
 			},
 			"defaultValue": "'quality' as Param"
 		},
 		{
-			"id": 73,
+			"id": 70,
 			"name": "UNSET",
 			"kind": 32,
 			"kindString": "Variable",
@@ -1604,7 +1458,7 @@
 			},
 			"sources": [
 				{
-					"fileName": "src/lib/fastly-params.ts",
+					"fileName": "lib/fastly-params.ts",
 					"line": 18,
 					"character": 11
 				}
@@ -1616,7 +1470,7 @@
 			"defaultValue": "Symbol('unset')"
 		},
 		{
-			"id": 278,
+			"id": 232,
 			"name": "cacheControlNoTransformRegExp",
 			"kind": 32,
 			"kindString": "Variable",
@@ -1626,7 +1480,7 @@
 			},
 			"sources": [
 				{
-					"fileName": "src/lib/imageopto.ts",
+					"fileName": "lib/imageopto.ts",
 					"line": 155,
 					"character": 35
 				}
@@ -1638,7 +1492,7 @@
 			"defaultValue": "/(?:^|,)\\s*?no-transform\\s*?(?:,|$)/"
 		},
 		{
-			"id": 271,
+			"id": 225,
 			"name": "imageExtensionRE",
 			"kind": 32,
 			"kindString": "Variable",
@@ -1648,7 +1502,7 @@
 			},
 			"sources": [
 				{
-					"fileName": "src/lib/imageopto.ts",
+					"fileName": "lib/imageopto.ts",
 					"line": 57,
 					"character": 22
 				}
@@ -1660,7 +1514,7 @@
 			"defaultValue": "new RegExp(\n  `\\\\.(?:${[...streamableFileExtensions].join('|')})$`\n)"
 		},
 		{
-			"id": 238,
+			"id": 195,
 			"name": "log",
 			"kind": 32,
 			"kindString": "Variable",
@@ -1670,66 +1524,19 @@
 			},
 			"sources": [
 				{
-					"fileName": "src/lib/splice-response.ts",
+					"fileName": "lib/splice-response.ts",
 					"line": 13,
 					"character": 9
 				}
 			],
 			"type": {
-				"type": "intersection",
-				"types": [
-					{
-						"type": "reference",
-						"name": "BaseLogger"
-					},
-					{
-						"type": "reflection",
-						"declaration": {
-							"id": 239,
-							"name": "__type",
-							"kind": 65536,
-							"kindString": "Type literal",
-							"flags": {
-								"isExported": true
-							},
-							"indexSignature": [
-								{
-									"id": 240,
-									"name": "__index",
-									"kind": 8192,
-									"kindString": "Index signature",
-									"flags": {
-										"isExported": true
-									},
-									"parameters": [
-										{
-											"id": 241,
-											"name": "key",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {
-												"isExported": true
-											},
-											"type": {
-												"type": "intrinsic",
-												"name": "string"
-											}
-										}
-									],
-									"type": {
-										"type": "reference",
-										"name": "LogFn"
-									}
-								}
-							]
-						}
-					}
-				]
+				"type": "reference",
+				"name": "Logger"
 			},
 			"defaultValue": "createLogger('splice')"
 		},
 		{
-			"id": 196,
+			"id": 157,
 			"name": "mappers",
 			"kind": 32,
 			"kindString": "Variable",
@@ -1739,7 +1546,7 @@
 			},
 			"sources": [
 				{
-					"fileName": "src/lib/map-options.ts",
+					"fileName": "lib/map-options.ts",
 					"line": 24,
 					"character": 13
 				}
@@ -1747,17 +1554,7 @@
 			"type": {
 				"type": "array",
 				"elementType": {
-					"type": "tuple",
-					"elements": [
-						{
-							"type": "reference",
-							"name": "Param"
-						},
-						{
-							"type": "reference",
-							"name": "Mapper"
-						}
-					]
+					"type": "tuple"
 				}
 			},
 			"defaultValue": "[\n  ['width', resize],\n  ['height', resize],\n  ['dpr', resize],\n  ['fit', resize],\n  ['disable', resize],\n  ['enable', resize],\n  ['resize-filter', resize],\n  ['crop', extractCrop],\n  ['canvas', resizeCanvas],\n  ['pad', extend],\n  ['orient', orient],\n  ['bg-color', bgFlatten],\n  ['blur', blur],\n  ['brightness', unsupported('brightness', 'absolute brightness adjustment')],\n  ['contrast', unsupported('contrast', 'absolute contrast adjustment')],\n  ['saturation', unsupported('saturation', 'absolute saturation adjustment')],\n  ['sharpen', unsupported('sharpen', 'unsharp mask')],\n  ['trim', unsupported('trim', 'relative trimming from all four sides')],\n]"
@@ -1773,66 +1570,19 @@
 			},
 			"sources": [
 				{
-					"fileName": "src/lib/fastly-params.ts",
+					"fileName": "lib/fastly-params.ts",
 					"line": 15,
 					"character": 18
 				}
 			],
 			"type": {
-				"type": "intersection",
-				"types": [
-					{
-						"type": "reference",
-						"name": "BaseLogger"
-					},
-					{
-						"type": "reflection",
-						"declaration": {
-							"id": 69,
-							"name": "__type",
-							"kind": 65536,
-							"kindString": "Type literal",
-							"flags": {
-								"isExported": true
-							},
-							"indexSignature": [
-								{
-									"id": 70,
-									"name": "__index",
-									"kind": 8192,
-									"kindString": "Index signature",
-									"flags": {
-										"isExported": true
-									},
-									"parameters": [
-										{
-											"id": 71,
-											"name": "key",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {
-												"isExported": true
-											},
-											"type": {
-												"type": "intrinsic",
-												"name": "string"
-											}
-										}
-									],
-									"type": {
-										"type": "reference",
-										"name": "LogFn"
-									}
-								}
-							]
-						}
-					}
-				]
+				"type": "reference",
+				"name": "Logger"
 			},
 			"defaultValue": "createLogger('params')"
 		},
 		{
-			"id": 270,
+			"id": 224,
 			"name": "streamableFileExtensions",
 			"kind": 32,
 			"kindString": "Variable",
@@ -1842,7 +1592,7 @@
 			},
 			"sources": [
 				{
-					"fileName": "src/lib/imageopto.ts",
+					"fileName": "lib/imageopto.ts",
 					"line": 48,
 					"character": 30
 				}
@@ -1860,7 +1610,7 @@
 			"defaultValue": "new Set(\n  Object.keys(sharp.format).filter(\n    (ext) => sharp.format[ext as keyof FormatEnum].input.stream\n  )\n)"
 		},
 		{
-			"id": 253,
+			"id": 207,
 			"name": "addListeners",
 			"kind": 64,
 			"kindString": "Function",
@@ -1870,7 +1620,7 @@
 			},
 			"signatures": [
 				{
-					"id": 254,
+					"id": 208,
 					"name": "addListeners",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -1883,7 +1633,7 @@
 					},
 					"parameters": [
 						{
-							"id": 255,
+							"id": 209,
 							"name": "stream",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -1905,7 +1655,7 @@
 							}
 						},
 						{
-							"id": 256,
+							"id": 210,
 							"name": "on",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -1918,7 +1668,7 @@
 							}
 						},
 						{
-							"id": 257,
+							"id": 211,
 							"name": "listeners",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -1942,14 +1692,14 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/lib/splice-response.ts",
+					"fileName": "lib/splice-response.ts",
 					"line": 218,
 					"character": 21
 				}
 			]
 		},
 		{
-			"id": 258,
+			"id": 212,
 			"name": "chunkLength",
 			"kind": 64,
 			"kindString": "Function",
@@ -1958,7 +1708,7 @@
 			},
 			"signatures": [
 				{
-					"id": 259,
+					"id": 213,
 					"name": "chunkLength",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -1970,7 +1720,7 @@
 					},
 					"parameters": [
 						{
-							"id": 260,
+							"id": 214,
 							"name": "chunk",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -1983,7 +1733,7 @@
 							}
 						},
 						{
-							"id": 261,
+							"id": 215,
 							"name": "encoding",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -2004,7 +1754,7 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/lib/splice-response.ts",
+					"fileName": "lib/splice-response.ts",
 					"line": 232,
 					"character": 20
 				}
@@ -2050,14 +1800,14 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/lib/logging.ts",
+					"fileName": "lib/logging.ts",
 					"line": 5,
 					"character": 28
 				}
 			]
 		},
 		{
-			"id": 94,
+			"id": 91,
 			"name": "exif",
 			"kind": 64,
 			"kindString": "Function",
@@ -2067,7 +1817,7 @@
 			},
 			"signatures": [
 				{
-					"id": 95,
+					"id": 92,
 					"name": "exif",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -2076,7 +1826,7 @@
 					},
 					"parameters": [
 						{
-							"id": 96,
+							"id": 93,
 							"name": "sharp",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -2097,14 +1847,14 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/lib/mappers/orient.ts",
+					"fileName": "lib/mappers/orient.ts",
 					"line": 5,
 					"character": 10
 				}
 			]
 		},
 		{
-			"id": 103,
+			"id": 100,
 			"name": "flipH",
 			"kind": 64,
 			"kindString": "Function",
@@ -2114,7 +1864,7 @@
 			},
 			"signatures": [
 				{
-					"id": 104,
+					"id": 101,
 					"name": "flipH",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -2123,7 +1873,7 @@
 					},
 					"parameters": [
 						{
-							"id": 105,
+							"id": 102,
 							"name": "sharp",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -2144,14 +1894,14 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/lib/mappers/orient.ts",
+					"fileName": "lib/mappers/orient.ts",
 					"line": 8,
 					"character": 11
 				}
 			]
 		},
 		{
-			"id": 109,
+			"id": 106,
 			"name": "flipHV",
 			"kind": 64,
 			"kindString": "Function",
@@ -2161,55 +1911,8 @@
 			},
 			"signatures": [
 				{
-					"id": 110,
-					"name": "flipHV",
-					"kind": 4096,
-					"kindString": "Call signature",
-					"flags": {
-						"isExported": true
-					},
-					"parameters": [
-						{
-							"id": 111,
-							"name": "sharp",
-							"kind": 32768,
-							"kindString": "Parameter",
-							"flags": {
-								"isExported": true
-							},
-							"type": {
-								"type": "reference",
-								"name": "Sharp"
-							}
-						}
-					],
-					"type": {
-						"type": "reference",
-						"name": "Sharp"
-					}
-				}
-			],
-			"sources": [
-				{
-					"fileName": "src/lib/mappers/orient.ts",
-					"line": 10,
-					"character": 12
-				}
-			]
-		},
-		{
-			"id": 106,
-			"name": "flipV",
-			"kind": 64,
-			"kindString": "Function",
-			"flags": {
-				"isExported": true,
-				"isConst": true
-			},
-			"signatures": [
-				{
 					"id": 107,
-					"name": "flipV",
+					"name": "flipHV",
 					"kind": 4096,
 					"kindString": "Call signature",
 					"flags": {
@@ -2238,14 +1941,61 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/lib/mappers/orient.ts",
+					"fileName": "lib/mappers/orient.ts",
+					"line": 10,
+					"character": 12
+				}
+			]
+		},
+		{
+			"id": 103,
+			"name": "flipV",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true,
+				"isConst": true
+			},
+			"signatures": [
+				{
+					"id": 104,
+					"name": "flipV",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {
+						"isExported": true
+					},
+					"parameters": [
+						{
+							"id": 105,
+							"name": "sharp",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {
+								"isExported": true
+							},
+							"type": {
+								"type": "reference",
+								"name": "Sharp"
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "Sharp"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "lib/mappers/orient.ts",
 					"line": 9,
 					"character": 11
 				}
 			]
 		},
 		{
-			"id": 272,
+			"id": 226,
 			"name": "hasSupportedExtension",
 			"kind": 64,
 			"kindString": "Function",
@@ -2258,7 +2008,7 @@
 			},
 			"signatures": [
 				{
-					"id": 273,
+					"id": 227,
 					"name": "hasSupportedExtension",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -2270,7 +2020,7 @@
 					},
 					"parameters": [
 						{
-							"id": 274,
+							"id": 228,
 							"name": "req",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -2312,14 +2062,14 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/lib/imageopto.ts",
+					"fileName": "lib/imageopto.ts",
 					"line": 66,
 					"character": 34
 				}
 			]
 		},
 		{
-			"id": 275,
+			"id": 229,
 			"name": "imageopto",
 			"kind": 64,
 			"kindString": "Function",
@@ -2328,7 +2078,7 @@
 			},
 			"signatures": [
 				{
-					"id": 276,
+					"id": 230,
 					"name": "imageopto",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -2340,7 +2090,7 @@
 					},
 					"parameters": [
 						{
-							"id": 277,
+							"id": 231,
 							"name": "filterOrOpts",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -2356,7 +2106,7 @@
 									},
 									{
 										"type": "reference",
-										"id": 262,
+										"id": 216,
 										"name": "ImageOptoOptions"
 									}
 								]
@@ -2371,14 +2121,14 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/lib/imageopto.ts",
+					"fileName": "lib/imageopto.ts",
 					"line": 74,
 					"character": 25
 				}
 			]
 		},
 		{
-			"id": 100,
+			"id": 97,
 			"name": "left",
 			"kind": 64,
 			"kindString": "Function",
@@ -2388,55 +2138,8 @@
 			},
 			"signatures": [
 				{
-					"id": 101,
-					"name": "left",
-					"kind": 4096,
-					"kindString": "Call signature",
-					"flags": {
-						"isExported": true
-					},
-					"parameters": [
-						{
-							"id": 102,
-							"name": "sharp",
-							"kind": 32768,
-							"kindString": "Parameter",
-							"flags": {
-								"isExported": true
-							},
-							"type": {
-								"type": "reference",
-								"name": "Sharp"
-							}
-						}
-					],
-					"type": {
-						"type": "reference",
-						"name": "Sharp"
-					}
-				}
-			],
-			"sources": [
-				{
-					"fileName": "src/lib/mappers/orient.ts",
-					"line": 7,
-					"character": 10
-				}
-			]
-		},
-		{
-			"id": 97,
-			"name": "right",
-			"kind": 64,
-			"kindString": "Function",
-			"flags": {
-				"isExported": true,
-				"isConst": true
-			},
-			"signatures": [
-				{
 					"id": 98,
-					"name": "right",
+					"name": "left",
 					"kind": 4096,
 					"kindString": "Call signature",
 					"flags": {
@@ -2465,14 +2168,61 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/lib/mappers/orient.ts",
+					"fileName": "lib/mappers/orient.ts",
+					"line": 7,
+					"character": 10
+				}
+			]
+		},
+		{
+			"id": 94,
+			"name": "right",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true,
+				"isConst": true
+			},
+			"signatures": [
+				{
+					"id": 95,
+					"name": "right",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {
+						"isExported": true
+					},
+					"parameters": [
+						{
+							"id": 96,
+							"name": "sharp",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {
+								"isExported": true
+							},
+							"type": {
+								"type": "reference",
+								"name": "Sharp"
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "Sharp"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "lib/mappers/orient.ts",
 					"line": 6,
 					"character": 11
 				}
 			]
 		},
 		{
-			"id": 279,
+			"id": 233,
 			"name": "shouldTransform",
 			"kind": 64,
 			"kindString": "Function",
@@ -2482,7 +2232,7 @@
 			},
 			"signatures": [
 				{
-					"id": 280,
+					"id": 234,
 					"name": "shouldTransform",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -2495,7 +2245,7 @@
 					},
 					"parameters": [
 						{
-							"id": 281,
+							"id": 235,
 							"name": "req",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -2508,7 +2258,7 @@
 							}
 						},
 						{
-							"id": 282,
+							"id": 236,
 							"name": "res",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -2521,7 +2271,7 @@
 							}
 						},
 						{
-							"id": 283,
+							"id": 237,
 							"name": "reqLog",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -2534,7 +2284,7 @@
 							}
 						},
 						{
-							"id": 284,
+							"id": 238,
 							"name": "options",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -2543,7 +2293,7 @@
 							},
 							"type": {
 								"type": "reference",
-								"id": 262,
+								"id": 216,
 								"name": "ImageOptoOptions"
 							}
 						}
@@ -2556,14 +2306,14 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/lib/imageopto.ts",
+					"fileName": "lib/imageopto.ts",
 					"line": 161,
 					"character": 24
 				}
 			]
 		},
 		{
-			"id": 267,
+			"id": 221,
 			"name": "HASTILY_HEADER",
 			"kind": 2097152,
 			"kindString": "Object literal",
@@ -2573,7 +2323,7 @@
 			},
 			"children": [
 				{
-					"id": 268,
+					"id": 222,
 					"name": "NAME",
 					"kind": 32,
 					"kindString": "Variable",
@@ -2582,7 +2332,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/imageopto.ts",
+							"fileName": "lib/imageopto.ts",
 							"line": 44,
 							"character": 6
 						}
@@ -2594,7 +2344,7 @@
 					"defaultValue": "\"X-Optimized\""
 				},
 				{
-					"id": 269,
+					"id": 223,
 					"name": "VALUE",
 					"kind": 32,
 					"kindString": "Variable",
@@ -2603,7 +2353,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/imageopto.ts",
+							"fileName": "lib/imageopto.ts",
 							"line": 45,
 							"character": 7
 						}
@@ -2620,14 +2370,14 @@
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						268,
-						269
+						222,
+						223
 					]
 				}
 			],
 			"sources": [
 				{
-					"fileName": "src/lib/imageopto.ts",
+					"fileName": "lib/imageopto.ts",
 					"line": 43,
 					"character": 20
 				}
@@ -2638,7 +2388,7 @@
 			}
 		},
 		{
-			"id": 197,
+			"id": 158,
 			"name": "formatters",
 			"kind": 2097152,
 			"kindString": "Object literal",
@@ -2648,7 +2398,7 @@
 			},
 			"children": [
 				{
-					"id": 198,
+					"id": 159,
 					"name": "gif",
 					"kind": 32,
 					"kindString": "Variable",
@@ -2657,79 +2407,19 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/map-options.ts",
+							"fileName": "lib/map-options.ts",
 							"line": 46,
 							"character": 5
 						}
 					],
 					"type": {
-						"type": "reflection",
-						"declaration": {
-							"id": 199,
-							"name": "__type",
-							"kind": 65536,
-							"kindString": "Type literal",
-							"flags": {
-								"isExported": true
-							},
-							"signatures": [
-								{
-									"id": 200,
-									"name": "__call",
-									"kind": 4096,
-									"kindString": "Call signature",
-									"flags": {
-										"isExported": true
-									},
-									"parameters": [
-										{
-											"id": 201,
-											"name": "transform",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {
-												"isExported": true
-											},
-											"type": {
-												"type": "reference",
-												"name": "Sharp"
-											}
-										},
-										{
-											"id": 202,
-											"name": "params",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {
-												"isExported": true
-											},
-											"type": {
-												"type": "reference",
-												"name": "IFastlyParams"
-											}
-										}
-									],
-									"type": {
-										"type": "union",
-										"types": [
-											{
-												"type": "reference",
-												"name": "Sharp"
-											},
-											{
-												"type": "intrinsic",
-												"name": "false"
-											}
-										]
-									}
-								}
-							]
-						}
+						"type": "reference",
+						"name": "Mapper"
 					},
 					"defaultValue": "unsupported('format' as Param, 'GIF output unsupported by node-hastily')"
 				},
 				{
-					"id": 203,
+					"id": 160,
 					"name": "jpg",
 					"kind": 64,
 					"kindString": "Function",
@@ -2738,7 +2428,7 @@
 					},
 					"signatures": [
 						{
-							"id": 204,
+							"id": 161,
 							"name": "jpg",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2747,7 +2437,7 @@
 							},
 							"parameters": [
 								{
-									"id": 205,
+									"id": 162,
 									"name": "transform",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2760,7 +2450,7 @@
 									}
 								},
 								{
-									"id": 206,
+									"id": 163,
 									"name": "params",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2781,14 +2471,14 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/map-options.ts",
+							"fileName": "lib/map-options.ts",
 							"line": 47,
 							"character": 5
 						}
 					]
 				},
 				{
-					"id": 207,
+					"id": 164,
 					"name": "pjpg",
 					"kind": 64,
 					"kindString": "Function",
@@ -2797,7 +2487,7 @@
 					},
 					"signatures": [
 						{
-							"id": 208,
+							"id": 165,
 							"name": "pjpg",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2806,7 +2496,7 @@
 							},
 							"parameters": [
 								{
-									"id": 209,
+									"id": 166,
 									"name": "transform",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2819,7 +2509,7 @@
 									}
 								},
 								{
-									"id": 210,
+									"id": 167,
 									"name": "params",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2840,14 +2530,14 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/map-options.ts",
+							"fileName": "lib/map-options.ts",
 							"line": 48,
 							"character": 6
 						}
 					]
 				},
 				{
-					"id": 211,
+					"id": 168,
 					"name": "png",
 					"kind": 64,
 					"kindString": "Function",
@@ -2856,7 +2546,7 @@
 					},
 					"signatures": [
 						{
-							"id": 212,
+							"id": 169,
 							"name": "png",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2865,7 +2555,7 @@
 							},
 							"parameters": [
 								{
-									"id": 213,
+									"id": 170,
 									"name": "transform",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2878,7 +2568,7 @@
 									}
 								},
 								{
-									"id": 214,
+									"id": 171,
 									"name": "params",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2899,14 +2589,14 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/map-options.ts",
+							"fileName": "lib/map-options.ts",
 							"line": 50,
 							"character": 5
 						}
 					]
 				},
 				{
-					"id": 215,
+					"id": 172,
 					"name": "png8",
 					"kind": 64,
 					"kindString": "Function",
@@ -2915,7 +2605,7 @@
 					},
 					"signatures": [
 						{
-							"id": 216,
+							"id": 173,
 							"name": "png8",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2924,7 +2614,7 @@
 							},
 							"parameters": [
 								{
-									"id": 217,
+									"id": 174,
 									"name": "transform",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2937,7 +2627,7 @@
 									}
 								},
 								{
-									"id": 218,
+									"id": 175,
 									"name": "params",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2958,14 +2648,14 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/map-options.ts",
+							"fileName": "lib/map-options.ts",
 							"line": 51,
 							"character": 6
 						}
 					]
 				},
 				{
-					"id": 219,
+					"id": 176,
 					"name": "webp",
 					"kind": 64,
 					"kindString": "Function",
@@ -2974,7 +2664,7 @@
 					},
 					"signatures": [
 						{
-							"id": 220,
+							"id": 177,
 							"name": "webp",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2983,7 +2673,7 @@
 							},
 							"parameters": [
 								{
-									"id": 221,
+									"id": 178,
 									"name": "transform",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2996,7 +2686,7 @@
 									}
 								},
 								{
-									"id": 222,
+									"id": 179,
 									"name": "params",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3017,14 +2707,14 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/map-options.ts",
+							"fileName": "lib/map-options.ts",
 							"line": 53,
 							"character": 6
 						}
 					]
 				},
 				{
-					"id": 223,
+					"id": 180,
 					"name": "webpll",
 					"kind": 64,
 					"kindString": "Function",
@@ -3033,7 +2723,7 @@
 					},
 					"signatures": [
 						{
-							"id": 224,
+							"id": 181,
 							"name": "webpll",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3042,7 +2732,7 @@
 							},
 							"parameters": [
 								{
-									"id": 225,
+									"id": 182,
 									"name": "transform",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3055,7 +2745,7 @@
 									}
 								},
 								{
-									"id": 226,
+									"id": 183,
 									"name": "params",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3076,14 +2766,14 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/map-options.ts",
+							"fileName": "lib/map-options.ts",
 							"line": 54,
 							"character": 8
 						}
 					]
 				},
 				{
-					"id": 227,
+					"id": 184,
 					"name": "webply",
 					"kind": 64,
 					"kindString": "Function",
@@ -3092,7 +2782,7 @@
 					},
 					"signatures": [
 						{
-							"id": 228,
+							"id": 185,
 							"name": "webply",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3101,7 +2791,7 @@
 							},
 							"parameters": [
 								{
-									"id": 229,
+									"id": 186,
 									"name": "transform",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3114,7 +2804,7 @@
 									}
 								},
 								{
-									"id": 230,
+									"id": 187,
 									"name": "params",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3135,7 +2825,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/map-options.ts",
+							"fileName": "lib/map-options.ts",
 							"line": 56,
 							"character": 8
 						}
@@ -3147,26 +2837,26 @@
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						198
+						159
 					]
 				},
 				{
 					"title": "Functions",
 					"kind": 64,
 					"children": [
-						203,
-						207,
-						211,
-						215,
-						219,
-						223,
-						227
+						160,
+						164,
+						168,
+						172,
+						176,
+						180,
+						184
 					]
 				}
 			],
 			"sources": [
 				{
-					"fileName": "src/lib/map-options.ts",
+					"fileName": "lib/map-options.ts",
 					"line": 45,
 					"character": 16
 				}
@@ -3177,7 +2867,7 @@
 			}
 		},
 		{
-			"id": 171,
+			"id": 132,
 			"name": "optoFitToSharp",
 			"kind": 2097152,
 			"kindString": "Object literal",
@@ -3187,7 +2877,7 @@
 			},
 			"children": [
 				{
-					"id": 172,
+					"id": 133,
 					"name": "bounds",
 					"kind": 32,
 					"kindString": "Variable",
@@ -3196,7 +2886,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/resize.ts",
+							"fileName": "lib/mappers/resize.ts",
 							"line": 5,
 							"character": 8
 						}
@@ -3208,7 +2898,7 @@
 					"defaultValue": "\"inside\""
 				},
 				{
-					"id": 173,
+					"id": 134,
 					"name": "cover",
 					"kind": 32,
 					"kindString": "Variable",
@@ -3217,7 +2907,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/resize.ts",
+							"fileName": "lib/mappers/resize.ts",
 							"line": 6,
 							"character": 7
 						}
@@ -3229,7 +2919,7 @@
 					"defaultValue": "\"outside\""
 				},
 				{
-					"id": 174,
+					"id": 135,
 					"name": "crop",
 					"kind": 32,
 					"kindString": "Variable",
@@ -3238,7 +2928,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/resize.ts",
+							"fileName": "lib/mappers/resize.ts",
 							"line": 7,
 							"character": 6
 						}
@@ -3255,15 +2945,15 @@
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						172,
-						173,
-						174
+						133,
+						134,
+						135
 					]
 				}
 			],
 			"sources": [
 				{
-					"fileName": "src/lib/mappers/resize.ts",
+					"fileName": "lib/mappers/resize.ts",
 					"line": 4,
 					"character": 27
 				}
@@ -3274,7 +2964,7 @@
 			}
 		},
 		{
-			"id": 175,
+			"id": 136,
 			"name": "optoResizeFilterToSharp",
 			"kind": 2097152,
 			"kindString": "Object literal",
@@ -3284,7 +2974,7 @@
 			},
 			"children": [
 				{
-					"id": 176,
+					"id": 137,
 					"name": "bicubic",
 					"kind": 32,
 					"kindString": "Variable",
@@ -3293,7 +2983,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/resize.ts",
+							"fileName": "lib/mappers/resize.ts",
 							"line": 13,
 							"character": 9
 						}
@@ -3305,7 +2995,7 @@
 					"defaultValue": "\"cubic\""
 				},
 				{
-					"id": 177,
+					"id": 138,
 					"name": "bilinear",
 					"kind": 32,
 					"kindString": "Variable",
@@ -3314,7 +3004,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/resize.ts",
+							"fileName": "lib/mappers/resize.ts",
 							"line": 14,
 							"character": 10
 						}
@@ -3326,7 +3016,7 @@
 					"defaultValue": "\"mitchell\""
 				},
 				{
-					"id": 178,
+					"id": 139,
 					"name": "cubic",
 					"kind": 32,
 					"kindString": "Variable",
@@ -3335,7 +3025,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/resize.ts",
+							"fileName": "lib/mappers/resize.ts",
 							"line": 15,
 							"character": 7
 						}
@@ -3347,7 +3037,7 @@
 					"defaultValue": "\"cubic\""
 				},
 				{
-					"id": 179,
+					"id": 140,
 					"name": "lanczos",
 					"kind": 32,
 					"kindString": "Variable",
@@ -3356,7 +3046,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/resize.ts",
+							"fileName": "lib/mappers/resize.ts",
 							"line": 16,
 							"character": 9
 						}
@@ -3368,7 +3058,7 @@
 					"defaultValue": "\"lanczos3\""
 				},
 				{
-					"id": 180,
+					"id": 141,
 					"name": "lanczos2",
 					"kind": 32,
 					"kindString": "Variable",
@@ -3377,7 +3067,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/resize.ts",
+							"fileName": "lib/mappers/resize.ts",
 							"line": 17,
 							"character": 10
 						}
@@ -3389,7 +3079,7 @@
 					"defaultValue": "\"lanczos2\""
 				},
 				{
-					"id": 181,
+					"id": 142,
 					"name": "lanczos3",
 					"kind": 32,
 					"kindString": "Variable",
@@ -3398,7 +3088,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/resize.ts",
+							"fileName": "lib/mappers/resize.ts",
 							"line": 18,
 							"character": 10
 						}
@@ -3410,7 +3100,7 @@
 					"defaultValue": "\"lanczos3\""
 				},
 				{
-					"id": 182,
+					"id": 143,
 					"name": "linear",
 					"kind": 32,
 					"kindString": "Variable",
@@ -3419,7 +3109,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/resize.ts",
+							"fileName": "lib/mappers/resize.ts",
 							"line": 19,
 							"character": 8
 						}
@@ -3431,7 +3121,7 @@
 					"defaultValue": "\"mitchell\""
 				},
 				{
-					"id": 183,
+					"id": 144,
 					"name": "nearest",
 					"kind": 32,
 					"kindString": "Variable",
@@ -3440,7 +3130,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/resize.ts",
+							"fileName": "lib/mappers/resize.ts",
 							"line": 20,
 							"character": 9
 						}
@@ -3457,20 +3147,20 @@
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						176,
-						177,
-						178,
-						179,
-						180,
-						181,
-						182,
-						183
+						137,
+						138,
+						139,
+						140,
+						141,
+						142,
+						143,
+						144
 					]
 				}
 			],
 			"sources": [
 				{
-					"fileName": "src/lib/mappers/resize.ts",
+					"fileName": "lib/mappers/resize.ts",
 					"line": 12,
 					"character": 36
 				}
@@ -3481,7 +3171,7 @@
 			}
 		},
 		{
-			"id": 112,
+			"id": 109,
 			"name": "orienters",
 			"kind": 2097152,
 			"kindString": "Object literal",
@@ -3491,7 +3181,7 @@
 			},
 			"children": [
 				{
-					"id": 113,
+					"id": 110,
 					"name": "1",
 					"kind": 32,
 					"kindString": "Variable",
@@ -3500,57 +3190,20 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/orient.ts",
+							"fileName": "lib/mappers/orient.ts",
 							"line": 13,
 							"character": 5
 						}
 					],
 					"type": {
-						"type": "reflection",
-						"declaration": {
-							"id": 114,
-							"name": "__type",
-							"kind": 65536,
-							"kindString": "Type literal",
-							"flags": {
-								"isExported": true
-							},
-							"signatures": [
-								{
-									"id": 115,
-									"name": "__call",
-									"kind": 4096,
-									"kindString": "Call signature",
-									"flags": {
-										"isExported": true
-									},
-									"parameters": [
-										{
-											"id": 116,
-											"name": "x",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {
-												"isExported": true
-											},
-											"type": {
-												"type": "reference",
-												"name": "Sharp"
-											}
-										}
-									],
-									"type": {
-										"type": "reference",
-										"name": "Sharp"
-									}
-								}
-							]
-						}
+						"type": "reference",
+						"id": 87,
+						"name": "Orienter"
 					},
 					"defaultValue": "exif"
 				},
 				{
-					"id": 117,
+					"id": 111,
 					"name": "2",
 					"kind": 32,
 					"kindString": "Variable",
@@ -3559,57 +3212,20 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/orient.ts",
+							"fileName": "lib/mappers/orient.ts",
 							"line": 14,
 							"character": 5
 						}
 					],
 					"type": {
-						"type": "reflection",
-						"declaration": {
-							"id": 118,
-							"name": "__type",
-							"kind": 65536,
-							"kindString": "Type literal",
-							"flags": {
-								"isExported": true
-							},
-							"signatures": [
-								{
-									"id": 119,
-									"name": "__call",
-									"kind": 4096,
-									"kindString": "Call signature",
-									"flags": {
-										"isExported": true
-									},
-									"parameters": [
-										{
-											"id": 120,
-											"name": "x",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {
-												"isExported": true
-											},
-											"type": {
-												"type": "reference",
-												"name": "Sharp"
-											}
-										}
-									],
-									"type": {
-										"type": "reference",
-										"name": "Sharp"
-									}
-								}
-							]
-						}
+						"type": "reference",
+						"id": 87,
+						"name": "Orienter"
 					},
 					"defaultValue": "flipH"
 				},
 				{
-					"id": 121,
+					"id": 112,
 					"name": "3",
 					"kind": 32,
 					"kindString": "Variable",
@@ -3618,57 +3234,20 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/orient.ts",
+							"fileName": "lib/mappers/orient.ts",
 							"line": 15,
 							"character": 5
 						}
 					],
 					"type": {
-						"type": "reflection",
-						"declaration": {
-							"id": 122,
-							"name": "__type",
-							"kind": 65536,
-							"kindString": "Type literal",
-							"flags": {
-								"isExported": true
-							},
-							"signatures": [
-								{
-									"id": 123,
-									"name": "__call",
-									"kind": 4096,
-									"kindString": "Call signature",
-									"flags": {
-										"isExported": true
-									},
-									"parameters": [
-										{
-											"id": 124,
-											"name": "x",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {
-												"isExported": true
-											},
-											"type": {
-												"type": "reference",
-												"name": "Sharp"
-											}
-										}
-									],
-									"type": {
-										"type": "reference",
-										"name": "Sharp"
-									}
-								}
-							]
-						}
+						"type": "reference",
+						"id": 87,
+						"name": "Orienter"
 					},
 					"defaultValue": "flipHV"
 				},
 				{
-					"id": 125,
+					"id": 113,
 					"name": "4",
 					"kind": 32,
 					"kindString": "Variable",
@@ -3677,57 +3256,20 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/orient.ts",
+							"fileName": "lib/mappers/orient.ts",
 							"line": 16,
 							"character": 5
 						}
 					],
 					"type": {
-						"type": "reflection",
-						"declaration": {
-							"id": 126,
-							"name": "__type",
-							"kind": 65536,
-							"kindString": "Type literal",
-							"flags": {
-								"isExported": true
-							},
-							"signatures": [
-								{
-									"id": 127,
-									"name": "__call",
-									"kind": 4096,
-									"kindString": "Call signature",
-									"flags": {
-										"isExported": true
-									},
-									"parameters": [
-										{
-											"id": 128,
-											"name": "x",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {
-												"isExported": true
-											},
-											"type": {
-												"type": "reference",
-												"name": "Sharp"
-											}
-										}
-									],
-									"type": {
-										"type": "reference",
-										"name": "Sharp"
-									}
-								}
-							]
-						}
+						"type": "reference",
+						"id": 87,
+						"name": "Orienter"
 					},
 					"defaultValue": "flipV"
 				},
 				{
-					"id": 132,
+					"id": 117,
 					"name": "6",
 					"kind": 32,
 					"kindString": "Variable",
@@ -3736,57 +3278,20 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/orient.ts",
+							"fileName": "lib/mappers/orient.ts",
 							"line": 18,
 							"character": 5
 						}
 					],
 					"type": {
-						"type": "reflection",
-						"declaration": {
-							"id": 133,
-							"name": "__type",
-							"kind": 65536,
-							"kindString": "Type literal",
-							"flags": {
-								"isExported": true
-							},
-							"signatures": [
-								{
-									"id": 134,
-									"name": "__call",
-									"kind": 4096,
-									"kindString": "Call signature",
-									"flags": {
-										"isExported": true
-									},
-									"parameters": [
-										{
-											"id": 135,
-											"name": "x",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {
-												"isExported": true
-											},
-											"type": {
-												"type": "reference",
-												"name": "Sharp"
-											}
-										}
-									],
-									"type": {
-										"type": "reference",
-										"name": "Sharp"
-									}
-								}
-							]
-						}
+						"type": "reference",
+						"id": 87,
+						"name": "Orienter"
 					},
 					"defaultValue": "right"
 				},
 				{
-					"id": 139,
+					"id": 121,
 					"name": "8",
 					"kind": 32,
 					"kindString": "Variable",
@@ -3795,57 +3300,20 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/orient.ts",
+							"fileName": "lib/mappers/orient.ts",
 							"line": 20,
 							"character": 5
 						}
 					],
 					"type": {
-						"type": "reflection",
-						"declaration": {
-							"id": 140,
-							"name": "__type",
-							"kind": 65536,
-							"kindString": "Type literal",
-							"flags": {
-								"isExported": true
-							},
-							"signatures": [
-								{
-									"id": 141,
-									"name": "__call",
-									"kind": 4096,
-									"kindString": "Call signature",
-									"flags": {
-										"isExported": true
-									},
-									"parameters": [
-										{
-											"id": 142,
-											"name": "x",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {
-												"isExported": true
-											},
-											"type": {
-												"type": "reference",
-												"name": "Sharp"
-											}
-										}
-									],
-									"type": {
-										"type": "reference",
-										"name": "Sharp"
-									}
-								}
-							]
-						}
+						"type": "reference",
+						"id": 87,
+						"name": "Orienter"
 					},
 					"defaultValue": "left"
 				},
 				{
-					"id": 143,
+					"id": 122,
 					"name": "h",
 					"kind": 32,
 					"kindString": "Variable",
@@ -3854,57 +3322,20 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/orient.ts",
+							"fileName": "lib/mappers/orient.ts",
 							"line": 21,
 							"character": 3
 						}
 					],
 					"type": {
-						"type": "reflection",
-						"declaration": {
-							"id": 144,
-							"name": "__type",
-							"kind": 65536,
-							"kindString": "Type literal",
-							"flags": {
-								"isExported": true
-							},
-							"signatures": [
-								{
-									"id": 145,
-									"name": "__call",
-									"kind": 4096,
-									"kindString": "Call signature",
-									"flags": {
-										"isExported": true
-									},
-									"parameters": [
-										{
-											"id": 146,
-											"name": "x",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {
-												"isExported": true
-											},
-											"type": {
-												"type": "reference",
-												"name": "Sharp"
-											}
-										}
-									],
-									"type": {
-										"type": "reference",
-										"name": "Sharp"
-									}
-								}
-							]
-						}
+						"type": "reference",
+						"id": 87,
+						"name": "Orienter"
 					},
 					"defaultValue": "flipH"
 				},
 				{
-					"id": 147,
+					"id": 123,
 					"name": "hv",
 					"kind": 32,
 					"kindString": "Variable",
@@ -3913,57 +3344,20 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/orient.ts",
+							"fileName": "lib/mappers/orient.ts",
 							"line": 22,
 							"character": 4
 						}
 					],
 					"type": {
-						"type": "reflection",
-						"declaration": {
-							"id": 148,
-							"name": "__type",
-							"kind": 65536,
-							"kindString": "Type literal",
-							"flags": {
-								"isExported": true
-							},
-							"signatures": [
-								{
-									"id": 149,
-									"name": "__call",
-									"kind": 4096,
-									"kindString": "Call signature",
-									"flags": {
-										"isExported": true
-									},
-									"parameters": [
-										{
-											"id": 150,
-											"name": "x",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {
-												"isExported": true
-											},
-											"type": {
-												"type": "reference",
-												"name": "Sharp"
-											}
-										}
-									],
-									"type": {
-										"type": "reference",
-										"name": "Sharp"
-									}
-								}
-							]
-						}
+						"type": "reference",
+						"id": 87,
+						"name": "Orienter"
 					},
 					"defaultValue": "flipHV"
 				},
 				{
-					"id": 151,
+					"id": 124,
 					"name": "l",
 					"kind": 32,
 					"kindString": "Variable",
@@ -3972,57 +3366,20 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/orient.ts",
+							"fileName": "lib/mappers/orient.ts",
 							"line": 23,
 							"character": 3
 						}
 					],
 					"type": {
-						"type": "reflection",
-						"declaration": {
-							"id": 152,
-							"name": "__type",
-							"kind": 65536,
-							"kindString": "Type literal",
-							"flags": {
-								"isExported": true
-							},
-							"signatures": [
-								{
-									"id": 153,
-									"name": "__call",
-									"kind": 4096,
-									"kindString": "Call signature",
-									"flags": {
-										"isExported": true
-									},
-									"parameters": [
-										{
-											"id": 154,
-											"name": "x",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {
-												"isExported": true
-											},
-											"type": {
-												"type": "reference",
-												"name": "Sharp"
-											}
-										}
-									],
-									"type": {
-										"type": "reference",
-										"name": "Sharp"
-									}
-								}
-							]
-						}
+						"type": "reference",
+						"id": 87,
+						"name": "Orienter"
 					},
 					"defaultValue": "left"
 				},
 				{
-					"id": 155,
+					"id": 125,
 					"name": "r",
 					"kind": 32,
 					"kindString": "Variable",
@@ -4031,57 +3388,20 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/orient.ts",
+							"fileName": "lib/mappers/orient.ts",
 							"line": 24,
 							"character": 3
 						}
 					],
 					"type": {
-						"type": "reflection",
-						"declaration": {
-							"id": 156,
-							"name": "__type",
-							"kind": 65536,
-							"kindString": "Type literal",
-							"flags": {
-								"isExported": true
-							},
-							"signatures": [
-								{
-									"id": 157,
-									"name": "__call",
-									"kind": 4096,
-									"kindString": "Call signature",
-									"flags": {
-										"isExported": true
-									},
-									"parameters": [
-										{
-											"id": 158,
-											"name": "x",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {
-												"isExported": true
-											},
-											"type": {
-												"type": "reference",
-												"name": "Sharp"
-											}
-										}
-									],
-									"type": {
-										"type": "reference",
-										"name": "Sharp"
-									}
-								}
-							]
-						}
+						"type": "reference",
+						"id": 87,
+						"name": "Orienter"
 					},
 					"defaultValue": "right"
 				},
 				{
-					"id": 159,
+					"id": 126,
 					"name": "v",
 					"kind": 32,
 					"kindString": "Variable",
@@ -4090,57 +3410,20 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/orient.ts",
+							"fileName": "lib/mappers/orient.ts",
 							"line": 25,
 							"character": 3
 						}
 					],
 					"type": {
-						"type": "reflection",
-						"declaration": {
-							"id": 160,
-							"name": "__type",
-							"kind": 65536,
-							"kindString": "Type literal",
-							"flags": {
-								"isExported": true
-							},
-							"signatures": [
-								{
-									"id": 161,
-									"name": "__call",
-									"kind": 4096,
-									"kindString": "Call signature",
-									"flags": {
-										"isExported": true
-									},
-									"parameters": [
-										{
-											"id": 162,
-											"name": "x",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {
-												"isExported": true
-											},
-											"type": {
-												"type": "reference",
-												"name": "Sharp"
-											}
-										}
-									],
-									"type": {
-										"type": "reference",
-										"name": "Sharp"
-									}
-								}
-							]
-						}
+						"type": "reference",
+						"id": 87,
+						"name": "Orienter"
 					},
 					"defaultValue": "flipV"
 				},
 				{
-					"id": 163,
+					"id": 127,
 					"name": "vh",
 					"kind": 32,
 					"kindString": "Variable",
@@ -4149,57 +3432,20 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/orient.ts",
+							"fileName": "lib/mappers/orient.ts",
 							"line": 26,
 							"character": 4
 						}
 					],
 					"type": {
-						"type": "reflection",
-						"declaration": {
-							"id": 164,
-							"name": "__type",
-							"kind": 65536,
-							"kindString": "Type literal",
-							"flags": {
-								"isExported": true
-							},
-							"signatures": [
-								{
-									"id": 165,
-									"name": "__call",
-									"kind": 4096,
-									"kindString": "Call signature",
-									"flags": {
-										"isExported": true
-									},
-									"parameters": [
-										{
-											"id": 166,
-											"name": "x",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {
-												"isExported": true
-											},
-											"type": {
-												"type": "reference",
-												"name": "Sharp"
-											}
-										}
-									],
-									"type": {
-										"type": "reference",
-										"name": "Sharp"
-									}
-								}
-							]
-						}
+						"type": "reference",
+						"id": 87,
+						"name": "Orienter"
 					},
 					"defaultValue": "flipHV"
 				},
 				{
-					"id": 129,
+					"id": 114,
 					"name": "5",
 					"kind": 64,
 					"kindString": "Function",
@@ -4208,7 +3454,7 @@
 					},
 					"signatures": [
 						{
-							"id": 130,
+							"id": 115,
 							"name": "5",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -4217,7 +3463,7 @@
 							},
 							"parameters": [
 								{
-									"id": 131,
+									"id": 116,
 									"name": "sharp",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4238,14 +3484,14 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/orient.ts",
+							"fileName": "lib/mappers/orient.ts",
 							"line": 17,
 							"character": 5
 						}
 					]
 				},
 				{
-					"id": 136,
+					"id": 118,
 					"name": "7",
 					"kind": 64,
 					"kindString": "Function",
@@ -4254,7 +3500,7 @@
 					},
 					"signatures": [
 						{
-							"id": 137,
+							"id": 119,
 							"name": "7",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -4263,7 +3509,7 @@
 							},
 							"parameters": [
 								{
-									"id": 138,
+									"id": 120,
 									"name": "sharp",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4284,7 +3530,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/lib/mappers/orient.ts",
+							"fileName": "lib/mappers/orient.ts",
 							"line": 19,
 							"character": 5
 						}
@@ -4296,32 +3542,32 @@
 					"title": "Variables",
 					"kind": 32,
 					"children": [
+						110,
+						111,
+						112,
 						113,
 						117,
 						121,
+						122,
+						123,
+						124,
 						125,
-						132,
-						139,
-						143,
-						147,
-						151,
-						155,
-						159,
-						163
+						126,
+						127
 					]
 				},
 				{
 					"title": "Functions",
 					"kind": 64,
 					"children": [
-						129,
-						136
+						114,
+						118
 					]
 				}
 			],
 			"sources": [
 				{
-					"fileName": "src/lib/mappers/orient.ts",
+					"fileName": "lib/mappers/orient.ts",
 					"line": 12,
 					"character": 15
 				}
@@ -4345,57 +3591,57 @@
 			"title": "Interfaces",
 			"kind": 256,
 			"children": [
-				262
+				216
 			]
 		},
 		{
 			"title": "Type aliases",
 			"kind": 4194304,
 			"children": [
-				90
+				87
 			]
 		},
 		{
 			"title": "Variables",
 			"kind": 32,
 			"children": [
-				72,
-				73,
-				278,
-				271,
-				238,
-				196,
+				69,
+				70,
+				232,
+				225,
+				195,
+				157,
 				68,
-				270
+				224
 			]
 		},
 		{
 			"title": "Functions",
 			"kind": 64,
 			"children": [
-				253,
-				258,
+				207,
+				212,
 				1,
-				94,
-				103,
-				109,
-				106,
-				272,
-				275,
+				91,
 				100,
+				106,
+				103,
+				226,
+				229,
 				97,
-				279
+				94,
+				233
 			]
 		},
 		{
 			"title": "Object literals",
 			"kind": 2097152,
 			"children": [
-				267,
-				197,
-				171,
-				175,
-				112
+				221,
+				158,
+				132,
+				136,
+				109
 			]
 		}
 	]
