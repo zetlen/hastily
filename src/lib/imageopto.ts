@@ -40,22 +40,22 @@ export interface ImageOptoOptions {
   quiet?: boolean;
 }
 
-const HASTILY_HEADER = {
+export const HASTILY_HEADER = {
   NAME: 'X-Optimized',
   VALUE: 'hastily',
 };
 
-const streamableFileExtensions = new Set(
+export const HASTILY_STREAMABLE_FILETYPES = new Set(
   Object.keys(sharp.format).filter(
     (ext) => sharp.format[ext as keyof FormatEnum].input.stream
   )
 );
 // plus the one sharp doesn't mention outright, the alias to jpeg...
-streamableFileExtensions.add('jpg');
+HASTILY_STREAMABLE_FILETYPES.add('jpg');
 // minus SVGs, which are widely supported in 2019 and we should not rasterize
-streamableFileExtensions.delete('svg');
-const imageExtensionRE = new RegExp(
-  `\\.(?:${[...streamableFileExtensions].join('|')})$`
+HASTILY_STREAMABLE_FILETYPES.delete('svg');
+export const HASTILY_STREAMABLE_PATH_REGEXP = new RegExp(
+  `\\.(?:${[...HASTILY_STREAMABLE_FILETYPES].join('|')})$`
 );
 
 /**
@@ -64,7 +64,7 @@ const imageExtensionRE = new RegExp(
  * @param req {Request}
  */
 export const hasSupportedExtension: RequestFilter = (req) =>
-  imageExtensionRE.test(req.path);
+  HASTILY_STREAMABLE_PATH_REGEXP.test(req.path);
 
 /**
  * Returns a new imageopto middleware for use in Express `app.use()`.
@@ -90,7 +90,7 @@ export function imageopto(
   if (options.filter === hasSupportedExtension) {
     constructorLog.debug(
       'middleware filtering req.path for %s',
-      imageExtensionRE.source
+      HASTILY_STREAMABLE_PATH_REGEXP.source
     );
   }
   const requestLog = createLogger('request');
