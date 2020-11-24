@@ -1426,6 +1426,56 @@
 			}
 		},
 		{
+			"id": 224,
+			"name": "HASTILY_STREAMABLE_FILETYPES",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isExported": true,
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "lib/imageopto.ts",
+					"line": 48,
+					"character": 41
+				}
+			],
+			"type": {
+				"type": "reference",
+				"typeArguments": [
+					{
+						"type": "intrinsic",
+						"name": "string"
+					}
+				],
+				"name": "Set"
+			},
+			"defaultValue": "new Set(\n  Object.keys(sharp.format).filter(\n    (ext) => sharp.format[ext as keyof FormatEnum].input.stream\n  )\n)"
+		},
+		{
+			"id": 225,
+			"name": "HASTILY_STREAMABLE_PATH_REGEXP",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isExported": true,
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "lib/imageopto.ts",
+					"line": 57,
+					"character": 43
+				}
+			],
+			"type": {
+				"type": "reference",
+				"name": "RegExp"
+			},
+			"defaultValue": "new RegExp(\n  `\\\\.(?:${[...HASTILY_STREAMABLE_FILETYPES].join('|')})$`\n)"
+		},
+		{
 			"id": 69,
 			"name": "QUALITY",
 			"kind": 32,
@@ -1490,28 +1540,6 @@
 				"name": "RegExp"
 			},
 			"defaultValue": "/(?:^|,)\\s*?no-transform\\s*?(?:,|$)/"
-		},
-		{
-			"id": 225,
-			"name": "imageExtensionRE",
-			"kind": 32,
-			"kindString": "Variable",
-			"flags": {
-				"isExported": true,
-				"isConst": true
-			},
-			"sources": [
-				{
-					"fileName": "lib/imageopto.ts",
-					"line": 57,
-					"character": 22
-				}
-			],
-			"type": {
-				"type": "reference",
-				"name": "RegExp"
-			},
-			"defaultValue": "new RegExp(\n  `\\\\.(?:${[...streamableFileExtensions].join('|')})$`\n)"
 		},
 		{
 			"id": 195,
@@ -1580,34 +1608,6 @@
 				"name": "Logger"
 			},
 			"defaultValue": "createLogger('params')"
-		},
-		{
-			"id": 224,
-			"name": "streamableFileExtensions",
-			"kind": 32,
-			"kindString": "Variable",
-			"flags": {
-				"isExported": true,
-				"isConst": true
-			},
-			"sources": [
-				{
-					"fileName": "lib/imageopto.ts",
-					"line": 48,
-					"character": 30
-				}
-			],
-			"type": {
-				"type": "reference",
-				"typeArguments": [
-					{
-						"type": "intrinsic",
-						"name": "string"
-					}
-				],
-				"name": "Set"
-			},
-			"defaultValue": "new Set(\n  Object.keys(sharp.format).filter(\n    (ext) => sharp.format[ext as keyof FormatEnum].input.stream\n  )\n)"
 		},
 		{
 			"id": 207,
@@ -2379,7 +2379,7 @@
 				{
 					"fileName": "lib/imageopto.ts",
 					"line": 43,
-					"character": 20
+					"character": 27
 				}
 			],
 			"type": {
@@ -3605,14 +3605,14 @@
 			"title": "Variables",
 			"kind": 32,
 			"children": [
+				224,
+				225,
 				69,
 				70,
 				232,
-				225,
 				195,
 				157,
-				68,
-				224
+				68
 			]
 		},
 		{

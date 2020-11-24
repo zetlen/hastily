@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.9](https://github.com/zetlen/hastily/compare/v0.4.8...v0.4.9) (2020-11-24)
+
+
+### Features
+
+* expose internal constants such as supported path regexp ([#19](https://github.com/zetlen/hastily/issues/19)) ([064b525](https://github.com/zetlen/hastily/commit/064b5253b3435f4a475f3159f509d8a5cb554cf8))
+
 ### [0.4.8](https://github.com/zetlen/hastily/compare/v0.4.7...v0.4.8) (2020-08-20)
 
 ### [0.4.7](https://github.com/zetlen/hastily/compare/v0.4.6...v0.4.7) (2020-07-14)

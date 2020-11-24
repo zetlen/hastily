@@ -2733,6 +2733,12 @@ img {
 			<a href="globals.html#orienter" class="tsd-kind-icon">Orienter</a>
 		</li>
 		<li class=" tsd-kind-variable">
+			<a href="globals.html#hastily_streamable_filetypes" class="tsd-kind-icon">HASTILY_<wbr>STREAMABLE_<wbr>FILETYPES</a>
+		</li>
+		<li class=" tsd-kind-variable">
+			<a href="globals.html#hastily_streamable_path_regexp" class="tsd-kind-icon">HASTILY_<wbr>STREAMABLE_<wbr>PATH_<wbr>REGEXP</a>
+		</li>
+		<li class=" tsd-kind-variable">
 			<a href="globals.html#quality" class="tsd-kind-icon">QUALITY</a>
 		</li>
 		<li class=" tsd-kind-variable">
@@ -2742,9 +2748,6 @@ img {
 			<a href="globals.html#cachecontrolnotransformregexp" class="tsd-kind-icon">cache<wbr>Control<wbr>NoTransform<wbr>Reg<wbr>Exp</a>
 		</li>
 		<li class=" tsd-kind-variable">
-			<a href="globals.html#imageextensionre" class="tsd-kind-icon">image<wbr>ExtensionRE</a>
-		</li>
-		<li class=" tsd-kind-variable">
 			<a href="globals.html#log" class="tsd-kind-icon">log</a>
 		</li>
 		<li class=" tsd-kind-variable">
@@ -2752,9 +2755,6 @@ img {
 		</li>
 		<li class=" tsd-kind-variable">
 			<a href="globals.html#paramslogger" class="tsd-kind-icon">params<wbr>Logger</a>
-		</li>
-		<li class=" tsd-kind-variable">
-			<a href="globals.html#streamablefileextensions" class="tsd-kind-icon">streamable<wbr>File<wbr>Extensions</a>
 		</li>
 		<li class=" tsd-kind-function tsd-is-private">
 			<a href="globals.html#addlisteners" class="tsd-kind-icon">add<wbr>Listeners</a>
@@ -2923,14 +2923,14 @@ hastily.imageopto({
 					<section class="tsd-index-section ">
 						<h3>Variables</h3>
 						<ul class="tsd-index-list">
+							<li class="tsd-kind-variable"><a href="globals.html#hastily_streamable_filetypes" class="tsd-kind-icon">HASTILY_<wbr>STREAMABLE_<wbr>FILETYPES</a></li>
+							<li class="tsd-kind-variable"><a href="globals.html#hastily_streamable_path_regexp" class="tsd-kind-icon">HASTILY_<wbr>STREAMABLE_<wbr>PATH_<wbr>REGEXP</a></li>
 							<li class="tsd-kind-variable"><a href="globals.html#quality" class="tsd-kind-icon">QUALITY</a></li>
 							<li class="tsd-kind-variable"><a href="globals.html#unset" class="tsd-kind-icon">UNSET</a></li>
 							<li class="tsd-kind-variable"><a href="globals.html#cachecontrolnotransformregexp" class="tsd-kind-icon">cache<wbr>Control<wbr>NoTransform<wbr>Reg<wbr>Exp</a></li>
-							<li class="tsd-kind-variable"><a href="globals.html#imageextensionre" class="tsd-kind-icon">image<wbr>ExtensionRE</a></li>
 							<li class="tsd-kind-variable"><a href="globals.html#log" class="tsd-kind-icon">log</a></li>
 							<li class="tsd-kind-variable"><a href="globals.html#mappers" class="tsd-kind-icon">mappers</a></li>
 							<li class="tsd-kind-variable"><a href="globals.html#paramslogger" class="tsd-kind-icon">params<wbr>Logger</a></li>
-							<li class="tsd-kind-variable"><a href="globals.html#streamablefileextensions" class="tsd-kind-icon">streamable<wbr>File<wbr>Extensions</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section ">
@@ -2971,7 +2971,7 @@ hastily.imageopto({
 				<div class="tsd-signature tsd-kind-icon">Orienter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Sharp</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Sharp</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/orient.ts#L4">lib/mappers/orient.ts:4</a></li>
+						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/orient.ts#L4">lib/mappers/orient.ts:4</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-type-declaration">
@@ -3000,12 +3000,32 @@ hastily.imageopto({
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Variables</h2>
 			<section class="tsd-panel tsd-member tsd-kind-variable">
+				<a name="hastily_streamable_filetypes" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagConst">Const</span> HASTILY_<wbr>STREAMABLE_<wbr>FILETYPES</h3>
+				<div class="tsd-signature tsd-kind-icon">HASTILY_<wbr>STREAMABLE_<wbr>FILETYPES<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new Set(Object.keys(sharp.format).filter((ext) &#x3D;&gt; sharp.format[ext as keyof FormatEnum].input.stream))</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/imageopto.ts#L48">lib/imageopto.ts:48</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-variable">
+				<a name="hastily_streamable_path_regexp" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagConst">Const</span> HASTILY_<wbr>STREAMABLE_<wbr>PATH_<wbr>REGEXP</h3>
+				<div class="tsd-signature tsd-kind-icon">HASTILY_<wbr>STREAMABLE_<wbr>PATH_<wbr>REGEXP<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = new RegExp(&#x60;\\.(?:${[...HASTILY_STREAMABLE_FILETYPES].join(&#x27;|&#x27;)})$&#x60;)</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/imageopto.ts#L57">lib/imageopto.ts:57</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-variable">
 				<a name="quality" class="tsd-anchor"></a>
 				<h3><span class="tsd-flag ts-flagConst">Const</span> QUALITY</h3>
 				<div class="tsd-signature tsd-kind-icon">QUALITY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Param</span><span class="tsd-signature-symbol"> = &#x27;quality&#x27; as Param</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/fastly-params.ts#L17">lib/fastly-params.ts:17</a></li>
+						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/fastly-params.ts#L17">lib/fastly-params.ts:17</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -3015,7 +3035,7 @@ hastily.imageopto({
 				<div class="tsd-signature tsd-kind-icon">UNSET<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">unique symbol</span><span class="tsd-signature-symbol"> = Symbol(&#x27;unset&#x27;)</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/fastly-params.ts#L18">lib/fastly-params.ts:18</a></li>
+						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/fastly-params.ts#L18">lib/fastly-params.ts:18</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -3025,17 +3045,7 @@ hastily.imageopto({
 				<div class="tsd-signature tsd-kind-icon">cache<wbr>Control<wbr>NoTransform<wbr>Reg<wbr>Exp<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = /(?:^|,)\s*?no-transform\s*?(?:,|$)/</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/imageopto.ts#L155">lib/imageopto.ts:155</a></li>
-					</ul>
-				</aside>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-variable">
-				<a name="imageextensionre" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagConst">Const</span> image<wbr>ExtensionRE</h3>
-				<div class="tsd-signature tsd-kind-icon">image<wbr>ExtensionRE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = new RegExp(&#x60;\\.(?:${[...streamableFileExtensions].join(&#x27;|&#x27;)})$&#x60;)</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/imageopto.ts#L57">lib/imageopto.ts:57</a></li>
+						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/imageopto.ts#L155">lib/imageopto.ts:155</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -3045,7 +3055,7 @@ hastily.imageopto({
 				<div class="tsd-signature tsd-kind-icon">log<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Logger</span><span class="tsd-signature-symbol"> = createLogger(&#x27;splice&#x27;)</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/splice-response.ts#L13">lib/splice-response.ts:13</a></li>
+						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/splice-response.ts#L13">lib/splice-response.ts:13</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -3055,7 +3065,7 @@ hastily.imageopto({
 				<div class="tsd-signature tsd-kind-icon">mappers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = [[&#x27;width&#x27;, resize],[&#x27;height&#x27;, resize],[&#x27;dpr&#x27;, resize],[&#x27;fit&#x27;, resize],[&#x27;disable&#x27;, resize],[&#x27;enable&#x27;, resize],[&#x27;resize-filter&#x27;, resize],[&#x27;crop&#x27;, extractCrop],[&#x27;canvas&#x27;, resizeCanvas],[&#x27;pad&#x27;, extend],[&#x27;orient&#x27;, orient],[&#x27;bg-color&#x27;, bgFlatten],[&#x27;blur&#x27;, blur],[&#x27;brightness&#x27;, unsupported(&#x27;brightness&#x27;, &#x27;absolute brightness adjustment&#x27;)],[&#x27;contrast&#x27;, unsupported(&#x27;contrast&#x27;, &#x27;absolute contrast adjustment&#x27;)],[&#x27;saturation&#x27;, unsupported(&#x27;saturation&#x27;, &#x27;absolute saturation adjustment&#x27;)],[&#x27;sharpen&#x27;, unsupported(&#x27;sharpen&#x27;, &#x27;unsharp mask&#x27;)],[&#x27;trim&#x27;, unsupported(&#x27;trim&#x27;, &#x27;relative trimming from all four sides&#x27;)],]</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/map-options.ts#L24">lib/map-options.ts:24</a></li>
+						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/map-options.ts#L24">lib/map-options.ts:24</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -3065,17 +3075,7 @@ hastily.imageopto({
 				<div class="tsd-signature tsd-kind-icon">params<wbr>Logger<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Logger</span><span class="tsd-signature-symbol"> = createLogger(&#x27;params&#x27;)</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/fastly-params.ts#L15">lib/fastly-params.ts:15</a></li>
-					</ul>
-				</aside>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-variable">
-				<a name="streamablefileextensions" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagConst">Const</span> streamable<wbr>File<wbr>Extensions</h3>
-				<div class="tsd-signature tsd-kind-icon">streamable<wbr>File<wbr>Extensions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new Set(Object.keys(sharp.format).filter((ext) &#x3D;&gt; sharp.format[ext as keyof FormatEnum].input.stream))</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/imageopto.ts#L48">lib/imageopto.ts:48</a></li>
+						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/fastly-params.ts#L15">lib/fastly-params.ts:15</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -3092,7 +3092,7 @@ hastily.imageopto({
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/splice-response.ts#L218">lib/splice-response.ts:218</a></li>
+								<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/splice-response.ts#L218">lib/splice-response.ts:218</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -3126,7 +3126,7 @@ hastily.imageopto({
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/splice-response.ts#L232">lib/splice-response.ts:232</a></li>
+								<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/splice-response.ts#L232">lib/splice-response.ts:232</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -3157,7 +3157,7 @@ hastily.imageopto({
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/logging.ts#L5">lib/logging.ts:5</a></li>
+								<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/logging.ts#L5">lib/logging.ts:5</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3180,7 +3180,7 @@ hastily.imageopto({
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/orient.ts#L5">lib/mappers/orient.ts:5</a></li>
+								<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/orient.ts#L5">lib/mappers/orient.ts:5</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3203,7 +3203,7 @@ hastily.imageopto({
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/orient.ts#L8">lib/mappers/orient.ts:8</a></li>
+								<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/orient.ts#L8">lib/mappers/orient.ts:8</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3226,7 +3226,7 @@ hastily.imageopto({
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/orient.ts#L10">lib/mappers/orient.ts:10</a></li>
+								<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/orient.ts#L10">lib/mappers/orient.ts:10</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3249,7 +3249,7 @@ hastily.imageopto({
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/orient.ts#L9">lib/mappers/orient.ts:9</a></li>
+								<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/orient.ts#L9">lib/mappers/orient.ts:9</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3272,7 +3272,7 @@ hastily.imageopto({
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/imageopto.ts#L66">lib/imageopto.ts:66</a></li>
+								<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/imageopto.ts#L66">lib/imageopto.ts:66</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -3305,7 +3305,7 @@ hastily.imageopto({
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/imageopto.ts#L74">lib/imageopto.ts:74</a></li>
+								<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/imageopto.ts#L74">lib/imageopto.ts:74</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -3334,7 +3334,7 @@ hastily.imageopto({
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/orient.ts#L7">lib/mappers/orient.ts:7</a></li>
+								<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/orient.ts#L7">lib/mappers/orient.ts:7</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3357,7 +3357,7 @@ hastily.imageopto({
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/orient.ts#L6">lib/mappers/orient.ts:6</a></li>
+								<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/orient.ts#L6">lib/mappers/orient.ts:6</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3380,7 +3380,7 @@ hastily.imageopto({
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/imageopto.ts#L161">lib/imageopto.ts:161</a></li>
+								<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/imageopto.ts#L161">lib/imageopto.ts:161</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -3416,7 +3416,7 @@ hastily.imageopto({
 				<div class="tsd-signature tsd-kind-icon">HASTILY_<wbr>HEADER<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/imageopto.ts#L43">lib/imageopto.ts:43</a></li>
+						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/imageopto.ts#L43">lib/imageopto.ts:43</a></li>
 					</ul>
 				</aside>
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -3425,7 +3425,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">NAME<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;X-Optimized&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/imageopto.ts#L44">lib/imageopto.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/imageopto.ts#L44">lib/imageopto.ts:44</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3435,7 +3435,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">VALUE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;hastily&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/imageopto.ts#L45">lib/imageopto.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/imageopto.ts#L45">lib/imageopto.ts:45</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3446,7 +3446,7 @@ hastily.imageopto({
 				<div class="tsd-signature tsd-kind-icon">formatters<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/map-options.ts#L45">lib/map-options.ts:45</a></li>
+						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/map-options.ts#L45">lib/map-options.ts:45</a></li>
 					</ul>
 				</aside>
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -3455,7 +3455,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">gif<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Mapper</span><span class="tsd-signature-symbol"> = unsupported(&#x27;format&#x27; as Param, &#x27;GIF output unsupported by node-hastily&#x27;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/map-options.ts#L46">lib/map-options.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/map-options.ts#L46">lib/map-options.ts:46</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3469,7 +3469,7 @@ hastily.imageopto({
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/map-options.ts#L47">lib/map-options.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/map-options.ts#L47">lib/map-options.ts:47</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3495,7 +3495,7 @@ hastily.imageopto({
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/map-options.ts#L48">lib/map-options.ts:48</a></li>
+									<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/map-options.ts#L48">lib/map-options.ts:48</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3521,7 +3521,7 @@ hastily.imageopto({
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/map-options.ts#L50">lib/map-options.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/map-options.ts#L50">lib/map-options.ts:50</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3547,7 +3547,7 @@ hastily.imageopto({
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/map-options.ts#L51">lib/map-options.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/map-options.ts#L51">lib/map-options.ts:51</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3573,7 +3573,7 @@ hastily.imageopto({
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/map-options.ts#L53">lib/map-options.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/map-options.ts#L53">lib/map-options.ts:53</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3599,7 +3599,7 @@ hastily.imageopto({
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/map-options.ts#L54">lib/map-options.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/map-options.ts#L54">lib/map-options.ts:54</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3625,7 +3625,7 @@ hastily.imageopto({
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/map-options.ts#L56">lib/map-options.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/map-options.ts#L56">lib/map-options.ts:56</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3648,7 +3648,7 @@ hastily.imageopto({
 				<div class="tsd-signature tsd-kind-icon">opto<wbr>Fit<wbr>ToSharp<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/resize.ts#L4">lib/mappers/resize.ts:4</a></li>
+						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/resize.ts#L4">lib/mappers/resize.ts:4</a></li>
 					</ul>
 				</aside>
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -3657,7 +3657,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">bounds<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"inside"</span><span class="tsd-signature-symbol"> = &quot;inside&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/resize.ts#L5">lib/mappers/resize.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/resize.ts#L5">lib/mappers/resize.ts:5</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3667,7 +3667,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">cover<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"outside"</span><span class="tsd-signature-symbol"> = &quot;outside&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/resize.ts#L6">lib/mappers/resize.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/resize.ts#L6">lib/mappers/resize.ts:6</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3677,7 +3677,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">crop<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"cover"</span><span class="tsd-signature-symbol"> = &quot;cover&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/resize.ts#L7">lib/mappers/resize.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/resize.ts#L7">lib/mappers/resize.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3688,7 +3688,7 @@ hastily.imageopto({
 				<div class="tsd-signature tsd-kind-icon">opto<wbr>Resize<wbr>Filter<wbr>ToSharp<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/resize.ts#L12">lib/mappers/resize.ts:12</a></li>
+						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/resize.ts#L12">lib/mappers/resize.ts:12</a></li>
 					</ul>
 				</aside>
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -3697,7 +3697,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">bicubic<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"cubic"</span><span class="tsd-signature-symbol"> = &quot;cubic&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/resize.ts#L13">lib/mappers/resize.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/resize.ts#L13">lib/mappers/resize.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3707,7 +3707,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">bilinear<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"mitchell"</span><span class="tsd-signature-symbol"> = &quot;mitchell&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/resize.ts#L14">lib/mappers/resize.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/resize.ts#L14">lib/mappers/resize.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3717,7 +3717,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">cubic<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"cubic"</span><span class="tsd-signature-symbol"> = &quot;cubic&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/resize.ts#L15">lib/mappers/resize.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/resize.ts#L15">lib/mappers/resize.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3727,7 +3727,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">lanczos<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"lanczos3"</span><span class="tsd-signature-symbol"> = &quot;lanczos3&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/resize.ts#L16">lib/mappers/resize.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/resize.ts#L16">lib/mappers/resize.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3737,7 +3737,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">lanczos2<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"lanczos2"</span><span class="tsd-signature-symbol"> = &quot;lanczos2&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/resize.ts#L17">lib/mappers/resize.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/resize.ts#L17">lib/mappers/resize.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3747,7 +3747,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">lanczos3<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"lanczos3"</span><span class="tsd-signature-symbol"> = &quot;lanczos3&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/resize.ts#L18">lib/mappers/resize.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/resize.ts#L18">lib/mappers/resize.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3757,7 +3757,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">linear<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"mitchell"</span><span class="tsd-signature-symbol"> = &quot;mitchell&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/resize.ts#L19">lib/mappers/resize.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/resize.ts#L19">lib/mappers/resize.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3767,7 +3767,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">nearest<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"nearest"</span><span class="tsd-signature-symbol"> = &quot;nearest&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/resize.ts#L20">lib/mappers/resize.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/resize.ts#L20">lib/mappers/resize.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3778,7 +3778,7 @@ hastily.imageopto({
 				<div class="tsd-signature tsd-kind-icon">orienters<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/orient.ts#L12">lib/mappers/orient.ts:12</a></li>
+						<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/orient.ts#L12">lib/mappers/orient.ts:12</a></li>
 					</ul>
 				</aside>
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -3787,7 +3787,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">1<span class="tsd-signature-symbol">:</span> <a href="globals.html#orienter" class="tsd-signature-type">Orienter</a><span class="tsd-signature-symbol"> = exif</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/orient.ts#L13">lib/mappers/orient.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/orient.ts#L13">lib/mappers/orient.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3797,7 +3797,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">2<span class="tsd-signature-symbol">:</span> <a href="globals.html#orienter" class="tsd-signature-type">Orienter</a><span class="tsd-signature-symbol"> = flipH</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/orient.ts#L14">lib/mappers/orient.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/orient.ts#L14">lib/mappers/orient.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3807,7 +3807,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">3<span class="tsd-signature-symbol">:</span> <a href="globals.html#orienter" class="tsd-signature-type">Orienter</a><span class="tsd-signature-symbol"> = flipHV</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/orient.ts#L15">lib/mappers/orient.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/orient.ts#L15">lib/mappers/orient.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3817,7 +3817,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">4<span class="tsd-signature-symbol">:</span> <a href="globals.html#orienter" class="tsd-signature-type">Orienter</a><span class="tsd-signature-symbol"> = flipV</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/orient.ts#L16">lib/mappers/orient.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/orient.ts#L16">lib/mappers/orient.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3827,7 +3827,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">6<span class="tsd-signature-symbol">:</span> <a href="globals.html#orienter" class="tsd-signature-type">Orienter</a><span class="tsd-signature-symbol"> = right</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/orient.ts#L18">lib/mappers/orient.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/orient.ts#L18">lib/mappers/orient.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3837,7 +3837,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">8<span class="tsd-signature-symbol">:</span> <a href="globals.html#orienter" class="tsd-signature-type">Orienter</a><span class="tsd-signature-symbol"> = left</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/orient.ts#L20">lib/mappers/orient.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/orient.ts#L20">lib/mappers/orient.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3847,7 +3847,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">h<span class="tsd-signature-symbol">:</span> <a href="globals.html#orienter" class="tsd-signature-type">Orienter</a><span class="tsd-signature-symbol"> = flipH</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/orient.ts#L21">lib/mappers/orient.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/orient.ts#L21">lib/mappers/orient.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3857,7 +3857,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">hv<span class="tsd-signature-symbol">:</span> <a href="globals.html#orienter" class="tsd-signature-type">Orienter</a><span class="tsd-signature-symbol"> = flipHV</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/orient.ts#L22">lib/mappers/orient.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/orient.ts#L22">lib/mappers/orient.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3867,7 +3867,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">l<span class="tsd-signature-symbol">:</span> <a href="globals.html#orienter" class="tsd-signature-type">Orienter</a><span class="tsd-signature-symbol"> = left</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/orient.ts#L23">lib/mappers/orient.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/orient.ts#L23">lib/mappers/orient.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3877,7 +3877,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">r<span class="tsd-signature-symbol">:</span> <a href="globals.html#orienter" class="tsd-signature-type">Orienter</a><span class="tsd-signature-symbol"> = right</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/orient.ts#L24">lib/mappers/orient.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/orient.ts#L24">lib/mappers/orient.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3887,7 +3887,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">v<span class="tsd-signature-symbol">:</span> <a href="globals.html#orienter" class="tsd-signature-type">Orienter</a><span class="tsd-signature-symbol"> = flipV</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/orient.ts#L25">lib/mappers/orient.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/orient.ts#L25">lib/mappers/orient.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3897,7 +3897,7 @@ hastily.imageopto({
 					<div class="tsd-signature tsd-kind-icon">vh<span class="tsd-signature-symbol">:</span> <a href="globals.html#orienter" class="tsd-signature-type">Orienter</a><span class="tsd-signature-symbol"> = flipHV</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/orient.ts#L26">lib/mappers/orient.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/orient.ts#L26">lib/mappers/orient.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3911,7 +3911,7 @@ hastily.imageopto({
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/orient.ts#L17">lib/mappers/orient.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/orient.ts#L17">lib/mappers/orient.ts:17</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3934,7 +3934,7 @@ hastily.imageopto({
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/zetlen/hastily/blob/fca6eb9/src/lib/mappers/orient.ts#L19">lib/mappers/orient.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/zetlen/hastily/blob/728484f/src/lib/mappers/orient.ts#L19">lib/mappers/orient.ts:19</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
