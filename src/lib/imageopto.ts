@@ -55,7 +55,7 @@ HASTILY_STREAMABLE_FILETYPES.add('jpg');
 // minus SVGs, which are widely supported in 2019 and we should not rasterize
 HASTILY_STREAMABLE_FILETYPES.delete('svg');
 export const HASTILY_STREAMABLE_PATH_REGEXP = new RegExp(
-  `\\.(?:${[...HASTILY_STREAMABLE_FILETYPES].join('|')})$`
+  `\\.(?:${[...HASTILY_STREAMABLE_FILETYPES].join('|')})`
 );
 
 /**
