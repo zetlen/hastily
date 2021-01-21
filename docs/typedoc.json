@@ -1473,7 +1473,7 @@
 				"type": "reference",
 				"name": "RegExp"
 			},
-			"defaultValue": "new RegExp(\n  `\\\\.(?:${[...HASTILY_STREAMABLE_FILETYPES].join('|')})$`\n)"
+			"defaultValue": "new RegExp(\n  `/.+\\\\.(${[...HASTILY_STREAMABLE_FILETYPES].join('|')})(?:[?#].*)?`\n)"
 		},
 		{
 			"id": 69,

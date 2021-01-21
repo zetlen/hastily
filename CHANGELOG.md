@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/zetlen/hastily/compare/v0.4.9...v0.5.0) (2021-01-21)
+
+
+### Bug Fixes
+
+* **opts:** filter now optional and matches whole url ([#23](https://github.com/zetlen/hastily/issues/23)) ([bb35c6f](https://github.com/zetlen/hastily/commit/bb35c6f3b44517fe0a8f2cc3ba478f3772afd0b9))
+
 ### [0.4.9](https://github.com/zetlen/hastily/compare/v0.4.8...v0.4.9) (2020-11-24)
 
 
