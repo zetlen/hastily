@@ -103,7 +103,7 @@
     "prettier": "^2.0.5",
     "sharp": "^0.25.4",
     "source-map-support": "^0.5.19",
-    "standard-version": "^9.0.0",
+    "standard-version": "^9.1.0",
     "toxy": "^0.3.16",
     "trash-cli": "^3.1.0",
     "ts-node": "^8.10.2",
