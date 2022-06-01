@@ -101,7 +101,7 @@
     "nyc": "^15.1.0",
     "open-cli": "^6.0.1",
     "prettier": "^2.0.5",
-    "sharp": "^0.25.4",
+    "sharp": "^0.30.5",
     "source-map-support": "^0.5.19",
     "standard-version": "^9.1.0",
     "toxy": "^0.3.16",
